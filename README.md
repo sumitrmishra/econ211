@@ -165,5 +165,5 @@ Welcome to **ECON211: Mathematical Methods for Economics-I (2025-26)** at SIAS, 
 ### Quizzes
 
 **Quiz 01**
-<br>Files: [Question Paper (Set A)](quiz-etc/Quiz01_SetA.pdf) [Question Paper (Set B)](quiz-etc/Quiz01_SetB.pdf) | [Solution (Set A)](quiz-etc/Quiz01_SetA_Solution.pdf) [Solution (Set B)](quiz-etc/Quiz01_SetB_Solution.pdf)
+<br>Files: [Question Paper (Set A)](quiz-exam-etc/Quiz01_SetA.pdf) [Question Paper (Set B)](quiz-exam-etc/Quiz01_SetB.pdf) | [Solution (Set A)](quiz-exam-etc/Quiz01_SetA_Solution.pdf) [Solution (Set B)](quiz-exam-etc/Quiz01_SetB_Solution.pdf)
 
