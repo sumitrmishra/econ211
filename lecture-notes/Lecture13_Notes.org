@@ -1,0 +1,221 @@
+#+TITLE: Derivatives-I
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb, booktabs, caption, dcolumn, etoolbox, gensymb, pgfplots, polynom, subcaption,tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage[table, svgnames, dvipsnames]{xcolor}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+
+
+
+** Derivatives
+
+We know, by now, how to compute the derivative at a given point in the domain of a function. Let's generalize that idea.
+The derivative (denoted by $f^{\prime}(x)$ and also by $\dfrac{dy}{dx}$) of a function $f(x)$ is given by:
+\begin{tcolorbox}[width=4in, enhanced]
+$$
+f^{\prime}(x) = \lim_{h \to 0} \dfrac{f(x + h) - f(x)}{h}
+$$
+\end{tcolorbox}
+
+When the above limit exists, we say that the function is \textbf{differentiable}. Sometimes, a function may not have a derivative at a given point in its domain.
+
+An example: Let $f(x) = |x|$. What is $f^{\prime}(x)$?
+
+When $x > 0$, $f(x) = x$. Therefore,
+
+\[ f^{\prime}(x) = \lim_{h \to 0} \dfrac{f(x + h) - f(x)}{h} \]
+\[ \implies f^{\prime}(x) = \lim_{h \to 0} \dfrac{(x + h) - x}{h} \]
+\[ \implies f^{\prime}(x) = \lim_{h \to 0} \dfrac{h}{h} \]
+\[ \implies f^{\prime}(x) = 1 \]
+
+When $x < 0$, $f(x) = -x$. Therefore,
+\[ f^{\prime}(x) = \lim_{h \to 0} \dfrac{f(x + h) - f(x)}{h} \]
+\[ \implies f^{\prime}(x) = \lim_{h \to 0} \dfrac{-(x + h) - (-x)}{h} \]
+\[ \implies f^{\prime}(x) = \lim_{h \to 0} \dfrac{-h}{h} \]
+\[ \implies f^{\prime}(x) = -1 \]
+
+What happens when $x = 0$? Since the derivative right below zero is -1 and right above zero is +1, we can conclude that the function is not differentiable at $x = 0$.
+
+
+** Derivative Rules
+
+*** Derivative of a Constant
+
+Let $c$ be a constant. Then,
+
+\begin{tcolorbox}[width=4in, enhanced]
+$$
+f^{\prime}(c) = 0
+$$
+\end{tcolorbox}
+
+\textbf{Proof}: We know that:
+\[ f^{\prime}(x) = \lim_{h \to 0} \dfrac{f(x + h) - f(x)}{h} \]
+\[ \implies f^{\prime}(x) = \lim_{h \to 0} \dfrac{c - c}{h} \quad \text{ since $f(x) = f(x + h) = c$} \]
+\[ \implies f^{\prime}(x) = 0 \]
+
+*** Power Rule
+Let $f(x) = x^n$. Then,
+
+\begin{tcolorbox}[width=4in, enhanced]
+$$
+f^{\prime}(x) = nx^{n-1}
+$$
+\end{tcolorbox}
+
+
+An example: What is the derivative of $f(x) = x^6$?
+
+Using the power rule and $n = 6$, we get: $f^{\prime}(x) = 6x^5$.
+
+
+*** Constant Multiple Rule
+For any real-valued function $f(x)$ and a real number $c$:
+
+\begin{tcolorbox}[width = 4in, enhanced]
+$$
+f^{\prime}(cx) = cf^{\prime}(x)
+$$
+\end{tcolorbox}
+
+An example: Let $f(x) = 10x^2$. We know that $\dfrac{d}{dx}(x^2) = 2x$ (by power rule).
+We can now apply the constant multiple rule to get: $f^{\prime}(x) = 10(2x) = 20x$.
+
+*** Sum (and difference) Rule
+
+Let there be two real-valued and differentiable functions $f(x)$ and $g(x)$. Then,
+\begin{tcolorbox}[width=4in, enhanced]
+$$
+\dfrac{d}{dx}(f(x) \pm g(x)) = f^{\prime}(x) \pm g^{\prime}(x)
+$$
+\end{tcolorbox}
+
+An example: Let $f(x) = x^2 + 1$ and $g(x) = x^3 - 5$. Using power and constant rules, we get $f^{\prime}(x) = 2x$ and $g^{\prime}(x) = 3x^2$.
+\begin{align*}
+\dfrac{d}{dx}(f(x) + g(x)) &= f^{\prime}(x) + g^{\prime}(x) \\
+\implies \dfrac{d}{dx}(f(x) + g(x)) &= 2x + 3x^2
+\end{align*}
+
+*** Product Rule
+
+If there are two real-valued and differentiable functions $f(x)$ and $g(x)$. Then,
+
+\begin{tcolorbox}[width=4in, enhanced]
+$$
+\dfrac{d}{dx}(f(x)g(x)) = f^{\prime}(x)\cdot{g(x)} + g^{\prime}(x)\cdot{f(x)}
+$$
+\end{tcolorbox}
+
+An example: Let $f(x) = x^2 + 1$ and $g(x) = x^3 - 5$. We already know that $f^{\prime}(x) = 2x$ and $g^{\prime}(x) = 3x^2$. We will use these values while applying the rule.
+
+\begin{align*}
+\dfrac{d}{dx}(f(x)g(x)) &= 2x\times{(x^3 - 5)} + 3x^2\times{(x^2 + 1)} \\
+\implies \dfrac{d}{dx}(f(x)g(x)) &= 2x^4 - 10x + 3x^4 + 3x^2 \\
+\implies \dfrac{d}{dx}(f(x)g(x)) &= 5x^4 + 3x^2 - 10x \\
+\end{align*}
+
+*** Quotient Rule
+
+If there are two real-valued and differentiable functions $f(x)$ and $g(x)$. Then,
+
+\begin{tcolorbox}[width=4in, enhanced]
+$$
+\dfrac{d}{dx}\Big(\dfrac{f(x)}{g(x)}\Big) = \dfrac{g(x)f^{\prime}(x) - f(x)g^{\prime}(x)}{(g(x))^2}
+$$
+\end{tcolorbox}
+
+An example: Let $f(x) = x - 1$ and $g(x) = x + 1$. $f^{\prime}(x) = 1$ and $g^{\prime}(x) = 1$.
+
+\begin{align*}
+\dfrac{d}{dx}\Big(\dfrac{f(x)}{g(x)}\Big) &= \dfrac{(x + 1)\cdot(1) - (x - 1)\cdot(1)}{(x + 1)^2} \\
+\implies \dfrac{d}{dx}\Big(\dfrac{f(x)}{g(x)}\Big) &= \dfrac{2}{(x + 1)^2}
+\end{align*}
+
+*** Chain Rule
+Let $f(x)$ and $g(x)$ be two real-valued functions such that $f$ is differentiable at $g(x)$. Then, the composite function, say $h(x)$, is differentiable at $x$ and is given by:
+\begin{tcolorbox}[width = 4in, enhanced]
+$$
+h^{\prime}(x) = f^{\prime}(g(x))\cdot{g^{\prime}(x)}
+$$
+\end{tcolorbox}
+
+Sounds too complicated. An example will help us understand this rule.
+Let $f(x) = x + 1$ and $g(x) = x^2$.
+The composite function $h(x) = f(g(x)) = f(x^2) = x^2 + 1$. Let's verify the chain rule.
+
+\begin{align*}
+h^{\prime}(x) &= 2x \\
+f^{\prime}(g(x)) &= 1 \tag{since $f^{\prime}(x) = 1$} \\
+g^{\prime}(x) &= 2x \\
+\implies f^{\prime}(g(x))\times{g^{\prime}(x)} &= 2x
+\end{align*}
+
+The much easier way to learn the chain rule is to use the Leibniz's notation. Let $y = f(u)$ and $u = f(x)$. Then,
+\begin{tcolorbox}[width=4in, enhanced]
+$$
+\dfrac{dy}{dx} = \dfrac{dy}{du}\times{\dfrac{du}{dx}}
+$$
+\end{tcolorbox}
+
+An example: $y = u^2$, $u = x - 1$.
+
+\begin{align*}
+\dfrac{dy}{du} &= 2u \\
+\dfrac{du}{dx} &= 1 \\
+\implies \dfrac{dy}{dx} &= 2u\times{1} \\
+\implies \dfrac{dy}{dx} &= 2(x - 1)
+\end{align*}
+
+** Applications
+
+In economics, the derivative is widely applied to compute 'marginal' quantities. For instance, if you have the cost function of a firm, you can compute the derivative of the cost function in order to get the marginal cost function.
+
+\begin{tabular}{ccc}
+\toprule
+Type & Function & Marginal Function \\
+\midrule
+Total cost & $C(q)$ & $C^{\prime}(q)$ \\
+Total revenue & $R(q)$ & $R^{\prime}(q)$ \\
+Profit & $\pi(q)$ & $\pi^{\prime}(q)$ \\
+\bottomrule
+\end{tabular}
+
+\vspace{2mm}
+
+Let's take an example.
+
+If the cost function is $C(q) = 10 + 2q + q^2$, determine the marginal cost. Calculate the marginal cost when $q = 10$, $q = 100$, and $q = 1000$.
+
+\begin{align*}
+MC(q) &= 2 + 2q \tag{$MC(q) = C^{\prime}(q)$} \\
+MC(10) &= 2 + 2(10) = 22 \\
+MC(100) &= 2 + 2(100) = 202 \\
+MC(1000) &= 2 + 2(1000) = 2002
+\end{align*}
+
+The \textbf{marginal cost} to produce $x$ units represents the actual cost of $(x + 1)^{th}$ unit. So, the approximate cost of producing the 11th unit (in the above example) is \rupee{22}.
+

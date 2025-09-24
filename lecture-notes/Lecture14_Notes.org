@@ -1,0 +1,164 @@
+#+TITLE: Derivatives-II
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb, booktabs, caption, dcolumn, etoolbox, gensymb, pgfplots, polynom, subcaption,tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage[table, svgnames, dvipsnames]{xcolor}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+
+
+
+**  Implicit Differentiation
+
+Differentiating a function of type $y = f(x)$ is easy. Now, we will try to tackle the harder case where a function is an equation (linear or non-linear) $g(x, y) = c$.
+
+An example: Consider a function $xy = k$, where $k$ is a constant.
+
+Let $y = f(x)$. Therefore, we can write $xf(x) = k$.
+
+Differentiate both sides w.r.t. $x$, we get:
+\[ 1\times(f(x)) + x\times(f^{\prime}(x)) = 0 \]
+
+We know that, if $y = f(x)$, then \[ \dfrac{dy}{dx} = f^{\prime}(x) \]
+
+Plugging this back into the above equation, we have:
+
+\begin{align*}
+f(x) + x\times{\dfrac{dy}{dx}} &= 0 \\
+x\times{\dfrac{dy}{dx}} &= -f(x) \\
+x\times{\dfrac{dy}{dx}} &= -y \\
+\dfrac{dy}{dx} &= -\dfrac{y}{x}
+\end{align*}
+
+
+Consider another example: $y^2 + x = 4$. What is $\dfrac{dy}{dx}$?
+
+Let $t = y^2 = (f(x))^2$.
+
+Therefore, $\dfrac{dt}{dy} = 2y$ and we already know that $\dfrac{dy}{dx} = f^{\prime}(x)$.
+
+By chain rule: 
+\begin{align*}
+\dfrac{dt}{dx} &= \dfrac{dt}{dy}\times{\dfrac{dy}{dx}} \\
+\dfrac{dt}{dx} &= 2y\times\dfrac{dy}{dx}
+\end{align*}
+
+Now, we are all set to calculate the derivative of $f(x, y)$.
+
+\begin{align*}
+2y\times\dfrac{dy}{dx} + 1 &= 0 \tag{taking derivative on both sides} \\
+2y\times\dfrac{dy}{dx} &= -1 \\
+\dfrac{dy}{dx} &= \dfrac{-1}{2y}
+\end{align*}
+
+One last example and that's it. Consider the function:  $xy^2 + \dfrac{1}{3}x^3 -xy = 5$.
+
+Let $t = y^2 = (f(x))^2$. This implies $\dfrac{dt}{dy} = 2y$ and $\dfrac{dt}{dx} = 2y\dfrac{dy}{dx}$ (by the chain rule).
+
+Let's now compute $\dfrac{dy}{dx}$.
+
+\begin{align*}
+\dfrac{d}{dx}(xy^2) + \dfrac{d}{dx}(\dfrac{1}{3}x^3) - \dfrac{d}{dx}(xy) &= 0 \\
+\underbrace{y^2\dfrac{d}{dx}(x) + x\dfrac{d}{dx}(y^2)}_{\text{applying the product rule}} + x^2 - \underbrace{y\dfrac{d}{dx}(x) - x\dfrac{d}{dx}(y)}_{\text{applying the product rule}} &= 0 \\
+y^2 + 2xy\dfrac{dy}{dx} + x^2 - y - x\dfrac{dy}{dx} &= 0 \\
+(2xy - x)\dfrac{dy}{dx} + x^2 + y^2 - y &= 0 \\
+(2xy - x)\dfrac{dy}{dx} &= (y - x^2 - y^2) \\
+\dfrac{dy}{dx} &= \dfrac{y - x^2 - y^2}{2xy - x}
+\end{align*}
+
+The recipe:
+\begin{center}
+\begin{tcolorbox}[width=6in, enhanced]
+\begin{itemize}
+\item Apply $\dfrac{d}{dx}$ to both sides, reducing the RHS to zero.
+\item Apply the chain rule rigorously.
+\item Solve for $\dfrac{dy}{dx}$ by carefully applying the product rule.
+\end{itemize} 
+\end{tcolorbox}
+\end{center}
+
+
+
+
+** Elasticity of Demand
+
+\textbf{Definition}: Let the demand function be $q = f(p)$ (continuous and differentiable). Then, the price elasticity of demand, $\epsilon_{p}$ is defined as
+\begin{center}
+\begin{tcolorbox}[width=4in, enhanced]
+\[ \epsilon_{p} = -\dfrac{pf^{\prime}(p)}{f(p)} \]
+\end{tcolorbox}
+\end{center}
+
+If the previous definitions seems too complicated, you can also use the following definition:
+
+\[ \epsilon_{p,q} = -\dfrac{p}{q}\times{\dfrac{dq}{dp}} \]
+
+\textbf{Interpretation:} The price elasticity of demand measures the \textit{percentage change in demand} due to \textit{percentage change in the unit price}. 
+
+
+An example: The unit price $p$ and the quantity demanded (in slices) $q$ of pizza is given by the following equation: $p = -0.05q + 400 \quad  (0 \leq q \leq 24000)$. What is the price elasticity of demand for pizza? Calculate elasticities at $p = 100$, $p = 300$. 
+
+First, rewrite the demand in its standard form ($q$ as a function of $p$).
+$q = 8000 - 20p$
+
+Now, compute $\dfrac{dq}{dp}$.
+
+$\dfrac{dq}{dp} = -20$
+
+The elasticity of demand is:
+
+\begin{align*}
+\epsilon &= \dfrac{p}{q}\times{\dfrac{dq}{dp}} \\
+\implies \epsilon &= \dfrac{p}{q}\times{-20} \\
+\implies \epsilon &= \dfrac{p}{8000 - 20p}\times{-20} \\
+\implies \epsilon &= \dfrac{-20p}{8000 - 20p} \\
+\implies \epsilon &= \dfrac{-p}{400 - p}
+\end{align*}
+
+It is now easy to compute the elasticities at given prices.
+
+\begin{align*}
+\text{When } p = 100, \quad \epsilon &= \dfrac{-100}{400 - 100} = -\dfrac{1}{3} \\
+\text{When } p = 300, \quad \epsilon &= \dfrac{-300}{400 - 300} = -3
+\end{align*}
+
+
+\textbf{Types of Elasticity}
+
+\begin{tcolorbox}[width=6in, enhanced]
+1. When $|\epsilon(p)| = 0$, we say that the demand is \textcolor{cyan}{perfectly inelastic} at price $p$.
+
+2. When $0 < |\epsilon(p)| < 1$, we say that the demand is \textcolor{green2}{inelastic} at price $p$.
+
+3. When $|\epsilon(p)| = 1$, the demand is \textcolor{red_pink}{unitary elastic} at price $p$.
+
+4. When $1 < |\epsilon(p)| \leq \infty$, the demand is \textcolor{cbolive}{elastic} at price $p$.
+
+5. When $|\epsilon(p)| \to \infty$, the demand becomes \textcolor{purple}{perfectly elastic} at price $p$.
+
+\end{tcolorbox}
+
+In the previous example, the elasticity of demand is \textit{inelastic} when $p = 100$ and becomes \textit{elastic} as $p = 300$. Guess what happens when $p = 400$.

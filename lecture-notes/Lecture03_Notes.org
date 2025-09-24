@@ -1,0 +1,208 @@
+#+TITLE: Basic Algebra-II
+#+DATE: \today
+#+LANGUAGE: en
+#+OPTIONS: toc:nil
+#+LATEX_CLASS: article
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb,caption, gensymb, subcaption, tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+
+
+** Inequalities
+
+
+- For any $a, b \in \mathcal{R}$, either $a < b$, $b < a$, or $a = b$.
+
+- If $a < b$, then $a + c < b + c$ for all $c \in \mathcal{R}$.
+
+- If $a > 0$ and $b > 0$, then $a + b > 0$ and $a\times{b} > 0$.
+
+- If $a > b$ and $c < 0$, then $ac < bc$.
+
+- If $a > b$ and $c > d$, then $a + c > b + d$.
+
+- If $0 < a < b$, then $0 < \frac{1}{b} < \frac{1}{a}$.
+
+These rules will still hold even if we are dealing with weak inequalities $(\leq)$. 
+
+
+** Absolute Values and Intervals
+
+*** Intervals
+Let $a, b \in \mathcal{R}$.
+
+- $(a, b)$ represents the open interval from $a$ to $b$ $(a < x < b)$.
+
+- $[a, b]$ represents the closed interval from $a$ to $b$ $(a \leq x \leq b)$.
+
+- $(a, b]$ represents the half-open interval from $a$ to $b$ $(a < x \leq b)$.
+
+- $[a, b)$ represents the half-open interval from $a$ to $b$ $(a \leq x < b)$.
+
+*** Absolute Value
+
+Let $x \in \mathcal{R}$. The absolute value of $x$ is its distance from zero. We can define:
+\begin{equation*}
+|x| =
+\begin{cases}
+x, & \text{if } x > 0 \\
+ -x, & \text{if } x < 0
+\end{cases}
+\end{equation*}
+
+Super-optional, but absolute value also tells us that:
+
+1. $|xy| = |x|\times|y|$
+
+2. If $\epsilon >  0$ then $|x| \leq \epsilon$ if and only if $-\epsilon \leq x \leq \epsilon$.
+
+3. $|x + y| \leq |x| + |y|$. This one is known as the \textit{triangle inequality}.
+
+
+** Linear Equations
+
+A generic linear equation is of the following form:
+\[ y = ax + b \]
+
+We will discuss more about this equation when we cover functions, but it will suffice to know that $a$ and $b$ are parameters in this equation.
+Typically, when you have linear equation with $m$ variables, you will need to have $m$ equations in order to solve for those variables.
+For instance:
+
+\begin{align*}
+x + y &= 3 \\
+x - y & = 1
+\end{align*}
+
+In above equation, we have two variables ($x$ and $y$) and two equations. Therefore, you can solve for the values of $x$ and $y$. However, consider the following equation:
+
+\begin{align*}
+x + y + z &= 6 \\
+x - y &= 0
+\end{align*}
+
+In this case, we cannot determine the values because the number of equations (2) is less than the number of variables (3).
+
+Where are we going to use linear equations in econ?
+In micro-economics, you will use it to solve for equilibrium price and quantity of a good. Consider the following demand and supply equations.
+
+\begin{align*}
+Q^{D} &= 100 - 2P \\
+Q^{S} &= 3P - 20
+\end{align*}
+
+where $Q^D$ is the quantity demanded (of an unknown, unnamed good) and $Q^S$ represents the quantity supplied; $P$ is the price of the good.
+It seems here that we have two equations but three variables ($P$, $Q^D$, $Q^S$), but as you will learn later (in microecon) that, in equilibrium, quantity demanded equals quantity supplied.
+Therefore, we also have our third equation which is $Q^D = Q^S = Q$.
+\begin{align*}
+Q &= 100 - 2P \\
+Q &= 3P - 20
+\end{align*}
+
+You can now easily eliminate $Q$ to first solve for $P$. It turns out that $P^{\ast} = 24$ and $Q^{\ast} = 52$. Note here the little asterisk that I have put. This is the formal notation for the equilibrium.
+
+Let's extend this to another case where the government decides to tax the supply by \rupee 10. So, it seems like the new price will be $P^{+} = P + 10$. We will first rewrite the supply equation.
+
+\begin{align*}
+Q &= 3P - 20 \\
+3P &= Q + 20 \\
+P &= \frac{Q + 20}{3}
+\end{align*}
+
+Therefore, $P^{+} = \frac{Q + 20}{3} + 10$, or some math torture later, $P^{+} = \frac{Q + 50}{3}$. This is your new supply equation given taxes. Now, we once again have two equations with two variables.
+\begin{align*}
+Q  &= 100 - 2P^{+} \\
+P^{+} &=\frac{Q + 50}{3}
+\end{align*}
+
+We should rewrite the demand equation so that we can easily eliminate $P^{+}$ to solve for $Q^{\ast}$.
+
+\begin{align*}
+P^{+}  &= \frac{100 - Q}{2} \\
+P^{+} &= \frac{Q + 50}{3}
+\end{align*}
+
+A few minutes later, you will discover that $Q^{\ast} = 40$ and plugging back this value into one of the two equations will get you $P^{\ast} = 30$. This makes a lot of sense to me. Taxation should bump up the prices and lower the demand for the good.
+
+Now, I have a question for you. What happens if the government decides to impose an ad-valorem tax, say 10%,  on the supply? 
+
+
+Another use case of linear equation lies in macroeconomics. We have the following set of equations:
+
+\begin{align*}
+Y &= C + I + G \\
+C &= c_{0} + c_{1}\times{(Y - T)} \\
+I &= \bar{I} \\
+G &= \bar{G} \\
+\end{align*}
+
+where $Y$ happens to be the GDP, $C$ is the consumption, $T$ is total taxes, $I$ is the total investment, and $G$ is the total government spending. $c_0$ is the consumption people would have even without any income, $c_1$ is the sensitivity of the consumption to income (and $0 < c_1 < 1$). 
+
+The first one is an accounting identity which says that total GDP of a country is the sum of consumption, investment, and government spending. The second one says that the consumption in any economy depends upon the GDP.
+The third one, for the sake of simplicity, assumes that the total investment in an economy is a fixed amount and so is the government spending.
+
+One big question that bothers economists a lot is the one around the relationship between government spending and the GDP. Let's write an equation.
+
+\begin{align*}
+Y &= (c_0 + c_1\times{(Y- T)}) + \bar{I} + \bar{G} \\
+Y &= c_0 + \bar{I} + \bar{G} - c_1\times{T} + c_1\times{Y} \\
+Y\times(1 - c_1) &= c_0 + \bar{I} + \bar{G} \\
+Y &= \frac{c_0 + \bar{I} + \bar{G}}{(1 - c_1)}
+\end{align*}
+
+At this point, we will not worry about the meaning of this final equation.
+
+
+** Quadratic Equations
+
+The general form of a quadratic equation is
+
+\[ ax^2 + bx + c = 0 \]
+
+where $a \neq 0$.
+
+If $b^2 - 4ac \geq 0$ and $a \neq 0$, then
+
+\begin{align*}
+ax^2 + bx + c = 0 \quad \text{ if and only if } x = \frac{-b \pm \sqrt{(b^2 - 4ac)}}{2a}
+\end{align*}
+
+If $x_1$ and $x_2$ are the solutions (or the roots) of $ax^2 + bx + c = 0$, then
+
+\begin{align*}
+ax^2 + bx + c = a(x - x_1)(x - x_2)
+\end{align*}
+
+Let me also discuss a useful (specific) case. If we have a quadratic equation $x^2 + px + q$, then the roots of the equation are:
+
+\[ x = -\frac{p}{2} \pm \sqrt{\frac{p^2}{4} - q} \]
+
+If $x_1$ and $x_2$ are the roots of the quadratic equation $x^2 + px + q$, then
+
+\begin{align*}
+x_1 + x_2 &= -p \\
+x_1\times{x_2} &= q
+\end{align*}
+
+An example will help us understand these rules.
+
+Consider the following quadratic equation, $x^2 - 6x + 8 = 0$.
+Here, $a = 1$, $b = -6$, and $c = 8$. The first thing that you should always do is to check the square root of the following term: $b^2 - 4ac$.
+In this case, $b^2 - 4ac = (-6)^2 - 4\times{1}\times{8} = 36 - 32 = 4$. So, this quadratic equation indeed has real roots. 
+
+- Pathway I: Use $x = \frac{-b \pm \sqrt{(b^2 - 4ac)}}{2a}$.
+
+- Pathway II: Use $x = -\frac{p}{2} \pm \sqrt{\frac{p^2}{4} - q}$
+
+Either of these strategies must yield the solution: $x = \{2, 4\}$.

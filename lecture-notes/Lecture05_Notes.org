@@ -1,0 +1,171 @@
+#+TITLE: Introduction to Matrix Algebra-II
+#+DATE: \today
+#+LANGUAGE: en
+#+OPTIONS: toc:nil
+#+LATEX_CLASS: article
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb,caption, gensymb, subcaption, tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+
+
+** Matrix Operations
+
+
+*** Scalar Multiplication
+
+We need to define the term 'scalar' first. Any real number will be labelled as a scalar. Multiplying a scalar to a matrix requires us to multiply \textbf{each element} of the matrix by the scalar.
+Formally, if we have a matrix $A = \begin{bmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{m1} & a_{m2} & \dots & a_{mn} \end{bmatrix}$ and a scalar $k$, the product $k\times{A}$ is
+\[ kA = \begin{bmatrix} ka_{11} & ka_{12} & \dots & ka_{1n} \\ \vdots & \vdots & \vdots & \vdots \\ ka_{m1} & ka_{m2} & \dots & ka_{mn} \end{bmatrix} \]
+
+An example: let $k = 2$ and $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$.
+
+\[ kA =2\times{ \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}} \]
+
+\[kA = \begin{bmatrix} 2\times{1} & 2\times{2} \\ 2\times{3} & 3\times{4} \end{bmatrix}  \]
+
+\[kA = \begin{bmatrix} 2 & 4 \\ 6 & 8 \end{bmatrix} \]
+
+*** Matrix Addition
+
+Two matrices $A$ and $B$ can only be added if they are of the same order (dimension). Let the dimension of the two matrices be $m\times{n}$. The sum of two matrices will be defined as:
+
+\begin{align*}
+A &= \begin{pmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{m1} & a_{m2} & \dots & a_{mn} \end{pmatrix} \\
+B &= \begin{pmatrix} b_{11} & b_{12} & \dots & b_{1n} \\ \vdots & \vdots & \vdots & \vdots \\ b_{m1} & b_{m2} & \dots & b_{mn} \end{pmatrix} \\
+A + B &= \begin{pmatrix} a_{11} + b_{11} & a_{12} + b_{12} & \dots & a_{1n} + b_{1n} \\ \vdots & \vdots & \vdots & \vdots \\ a_{m1} + b_{m1} & a_{m2} + b_{m2} & \dots & a_{mn} + b_{mn} \end{pmatrix}
+\end{align*}
+
+
+\vspace{1cm}
+
+Example 1: $A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix}$ and $B = \begin{bmatrix} -1 & 0 \\ -2 & -3 \end{bmatrix}$
+
+- Step 1: Check the dimensions of the two matrices. It turns out that $dim(A) = 2\times{2}$ and $dim(B) = 2\times{2}$. They are of the same dimension.
+
+- Step 2: Add each corresponding element from the two matrices. Call each element of the sum of matrices $c_{ij}$.
+
+  - $c_{11} = a_{11} + b_{11} = 1 + (-1) = 0$
+  - $c_{12} = a_{12} + b_{12} = 2 + 0 = 0$
+  - $c_{21} = a_{21} + b_{21} = 3 + (-2) = 1$
+  - $c_{22} = a_{22} + b_{22} = 4 + (-3) = 1$
+
+- Step 3: Write the matrix (call it $C$).
+ \[ C = \begin{bmatrix} 0 & 0 \\ 1 & 1 \end{bmatrix} \]
+
+**** Properties of Matrix Addition
+
+1. Associative: matrix addition is associative
+   \[ A + B = B + A \]
+
+2. Commutative: matrix addition is commutatitve
+   \[ A + (B + C) = (A + B) + C \]
+
+3. Additive zero: adding a zero matrix (of the same order) should keep the matrix unchanged.
+   \[ A + O = A \]
+
+4. Additive inverse: adding the additive inverse of a matrix to the matrix should yield a zero matrix.
+   \[ A + (-A) = O \]
+
+*** Matrix Equality
+
+Two matrices $A$ and $B$ are said to be equal if and only if each element of the two matrices are identical.
+
+An example:
+
+\begin{align*} A &= \begin{pmatrix} x & 1 \\ 2 & 2y \end{pmatrix} & B &= \begin{pmatrix} -1 & 1 \\ 2 & 2 \end{pmatrix} \end{align*}
+
+If $A = B$, then
+
+\begin{align*}
+x &= -1 \quad \text{ since }  a_{11} = b_{11} \\
+2y &= 2 \quad \text{ since } a_{22} = b_{22}
+\end{align*}
+
+Therefore, $x = -1$ and $y = 1$.
+
+*** Matrix Multiplication
+
+Given two matrices $A$ and $B$ whose dimensions are $m_{1}\times{n_1}$ and $m_2\times{n_2}$ respectively, $A\times{B}$ is possible if and only if
+\begin{equation*} n_1 = m_2 \end{equation*}
+
+In plain language, for matrix multiplication to happen, you must have the number of columns in matrix $A$ to match the number of rows in matrix $B$.
+
+An example:
+
+\begin{align*}
+A &= \begin{pmatrix} 1 & 2 & 3 \\ 4 & 5 & 6 \end{pmatrix} \\
+B & = \begin{pmatrix} -1 & - 2 & -3 \end{pmatrix}
+\end{align*}
+
+We must first note the dimensions of the two matrices.
+\begin{align*}
+dim(A) &= 2\times{3} \\
+dim(B) &= 1\times{3}
+\end{align*}
+
+$n_1 = 3$, but $m_2 = 1$. Therefore, $A\times{B}$ is not defined in this case.
+
+If matrix multiplication is indeed possible, the resultant matrix $A\times{B}$ will be of order(dimension) $m_1\times{n_2}$. What will be process of this multiplication?
+You will need to take an entire \textbf{row} from $A$ and multiply each element of that row with all the \textbf{columns} from $B$.
+
+An example:
+
+Consider two matrices
+
+\begin{align*}
+A &= \begin{pmatrix} 1 & 2 \\ 3 & 4 \end{pmatrix} \\
+B &= \begin{pmatrix} -1 & 0  \\ 0 & -2  \end{pmatrix}
+\end{align*}
+
+$dim(A) = 2\times{2}$ and $dim(B) = 2\times{2}$. Since, $n_1 = m_2 = 2$, matrix multiplication is possible here. We also know that $A\times{B}$ will be of dimension $2\times{2}$. Let us call this matrix $C$.
+
+\[ C = \begin{bmatrix} c_{11} & c_{12} \\ c_{21} & c_{22} \end{bmatrix} \]
+
+Each of the elements of $C$ will come from the multiplication of rows (of $A$) and columns (of $B$).
+
+
+Step 1- Let's now dismantle matrix $A$ and create two different row matrices.
+\begin{align*}  A_{R1} &= \textcolor{teal}{\begin{bmatrix} 1 & 2 \end{bmatrix}} & A_{R2} = \textcolor{teal}{\begin{bmatrix} 3 & 4 \end{bmatrix}} \end{align*}
+
+Step 2- Let's create two different column matrices from matrix $B$.
+\begin{align*} B_{C1} &= \textcolor{violet}{\begin{bmatrix} -1 \\  0 \end{bmatrix}} & B_{C2} &= \textcolor{violet}{\begin{bmatrix} 0 \\ -2 \end{bmatrix}} \end{align*}
+
+Step 3- Multiply $A_{R1}$ and $B_{C1}$, $A_{R1}$ and $B_{C2}$, $A_{R2}$ and $B_{C1}$, and $A_{R2}$ and $B_{C2}$.
+
+\begin{align*} c_{11} &= A_{R1}\times{B_{C1}} = \textcolor{teal}{1}\times{\textcolor{violet}{-1}} + \textcolor{teal}{2}\times{\textcolor{violet}{0}} = -1 \\
+               c_{12} &= A_{R1}\times{B_{C2}} = \textcolor{teal}{1}\times{\textcolor{violet}{0}} + \textcolor{teal}{2}\times{\textcolor{violet}{-2}} = -4 \\
+               c_{21} &= A_{R2}\times{B_{C1}} = \textcolor{teal}{3}\times{\textcolor{violet}{-1}} + \textcolor{teal}{4}\times{\textcolor{violet}{0}} = -3 \\
+               c_{22} &= A_{R2}\times{B_{C2}} = \textcolor{teal}{3}\times{\textcolor{violet}{0}} + \textcolor{teal}{4}\times{\textcolor{violet}{-2}} = -8
+\end{align*}
+ 
+Step 4- Write the matrix $C$.
+
+\[ C = \begin{bmatrix} -1 & -4 \\ -3 & -8 \end{bmatrix} \]
+
+
+
+**** Properties of Matrix Multiplication
+
+1. Non-commutative: $A\times{B} \neq B\times{A}$.
+
+2. Associative: $A(BC) = (AB)C$.
+
+3. Distributive: $A(B + C) = AB + AC$.
+
+4. Multiplicative identity: $IA = AI = A$.
+
+5. Multiplicative zero: $OA = AO = O$.
+
+   

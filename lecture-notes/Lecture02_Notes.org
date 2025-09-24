@@ -1,0 +1,251 @@
+#+TITLE: Sets (Contd.) + Basic Algebra - I
+#+DATE: \today
+#+LANGUAGE: en
+#+OPTIONS: toc:nil
+#+LATEX_CLASS: article
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb,caption, gensymb, subcaption, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+
+
+** Some Advanced Topics (Set Theory)
+
+*** (Some more) Set Operations
+
+Let $A, B$, and $C$ be sets. Then,
+\begin{align*}
+A\cap(B \cup C) &= (A \cap B)\cup(A \cap C) \\
+A\cup(B \cap C) &= (A \cup B)\cap(A \cup C) \\
+A\setminus (B \cup C) &= (A \setminus B)\cup(A \setminus C) \\
+A\setminus (B \cap C) &= (A \setminus B)\cap(A \setminus C)
+\end{align*}
+
+*** Cardinality Revisited
+
+We have seen that we can compute the cardinality of $A \cup B$ given two sets $A$ and $B$.
+Let's see what happens when there are, let's say, three sets.
+The rule is simple.
+\[ |A \cup B \cup C| = |A| + |B| + |C| - |A \cap B| - |B \cap C| - |A \cap C| - |A \cap B \cap C| \]
+
+It seems intuitive to knock off elements from the intersections of pairs of sets, but why do we add the cardinality of the intersection of the three sets? The answer lies in the fact that we delete an overlapping element twice and by adding this particular cardinality, we ensure that the deletion only happens once!
+
+Working with more than two sets can be a painful and frustrating. So, it is important that we understand some more rules.
+Let's take an example.
+\begin{align*}
+A &= \{1, 2, 3\} \\
+B &= \{2, 3, 4, 6, 8\} \\
+C &= \{1, 3, 5, 8\} \\
+\ohm &= \{1, 2, 3, 4, 5, 6, 7, 8, 9, 10\}
+\end{align*}
+What is the cardinality of the set which contains elements from $A$ which are neither in $B$ nor $C$? We must be able to first pin down the set. We are on a mission to hunt $A\setminus{(B \cup C)}$.
+Write down $B \cup C$. It is $\{1, 2, 3, 4, 5, 6, 8\}$.
+
+Now, try deleting elements in $A$ that are present in this new set that you just created.
+
+$A \setminus (B \cup C) = \varnothing$
+
+Hence, $|A \setminus (B \cup C)| = 0$.
+
+The general rule for this type happens to be:
+\[ |A\setminus{(B \cup C)}| = |A| - |A \cap B| - |A \cap C| + |A \cap B \cap C| \]
+
+Let's try this with another complex operation. What if we are chasing the cardinality of the set which contains elements from $A$ which are not in $B$ \textbf{and} $C$. This time around we have $A \setminus{(B \cap C)}$.
+Write down $B \cap C$. It is: $\{3, 8\}$.
+
+Now that we got $B \cap C$, we can easily delete these elements from $A$.
+
+$A \setminus (B \cap C) = \{1, 2\}$
+
+Hence, $|A \setminus (B \cap C)| = 2$.
+
+The rule that you can use to quickly do this:
+
+\[ |A \setminus{(B \cap C)}| = |A| - |A \cap B \cap C| \]
+
+Of course, drawing Venn diagrams will make our lives much easier.
+Figure \ref{fig:fig01} shows $A \setminus (B \cup C)$. Figure \ref{fig:fig02} represents $A \setminus (B \cap C)$.
+
+\begin{figure}[htbp!]
+\caption{\label{fig:fig01}}
+\centering
+\begin{tikzpicture}[thick]
+\fill[gray!5] (-3.5, -4) rectangle (4.5, 3.5);
+\draw (-3.5, -4) rectangle (4.5, 3.5) node[above left] {$U$};
+\draw[pattern = north west lines, pattern color = blue!50] (0, 0) circle (1.5) node [above left] {$A$};
+\draw[pattern = dots, pattern color = red!50] (1, 0) circle (1.5) node [above right] {$B$};
+\draw[pattern = crosshatch, pattern color = green!50] (0.5, -1.5) circle (1.5) node [below] {$C$};
+\node at (-0.8, -1) {1};
+\node at (0.2, 0.8) {2};
+\node at (0.5, -0.3) {3};
+\node at (1.8, 0.5) {4, 6};
+\node at (0.5, -2.5) {5};
+\node at (1.2, -1.2) {8};
+\node at (-2.5, 3) {7};
+\node at (2.5, 3) {9};
+\node at (-2.5, -3) {10};
+\node[below] at (0.5, -3) {\( A \setminus (B \cup C) = \varnothing \)};
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[htbp!]
+\caption{\label{fig:fig02}}
+\centering
+\begin{tikzpicture}[thick]
+\fill[gray!5] (-3.5, -4) rectangle (4.5, 3.5);
+\draw (-3.5, -4) rectangle (4.5, 3.5) node[above left] {$U$};
+\draw[pattern = north west lines, pattern color = blue!50] (0, 0) circle (1.5) node [above left] {$A$};
+\draw[pattern = dots, pattern color = red!50] (1, 0) circle (1.5) node [above right] {$B$};
+\draw[pattern = crosshatch, pattern color = green!50] (0.5, -1.5) circle (1.5) node [below] {$C$};
+\begin{scope}
+\clip (0,0) circle (1.5);
+\fill[pattern = grid, pattern color = yellow!70] (0, 0) circle (1.5);
+\clip (1, 0) circle (1.5);
+\clip (0.5, -1.5) circle (1.5);
+\fill[white] (0, 0) circle (1.5);
+\end{scope}
+\node at (-0.8, -1) {1};
+\node at (0.2, 0.8) {2};
+\node at (0.5, -0.3) {3};
+\node at (1.8, 0.5) {4, 6};
+\node at (0.5, -2.5) {5};
+\node at (1.2, -1.2) {8};
+\node at (-2.5, 3) {7};
+\node at (2.5, 3) {9};
+\node at (-2.5, -3) {10};
+\node[below] at (0.5, -3) {\( A \setminus (B \cap C) = \{1, 2\} \)};
+\end{tikzpicture}
+\end{figure}
+
+\clearpage
+\newpage
+
+
+*** Some Theorems and Definitions 
+
+**** \textbf{De Morgan's Laws}
+
+Let $A$ and $B$ be sets.
+
+\begin{align*}
+\text{1. }  (A \cap B)^{\mathsf{c}} &= A^{\mathsf{c}}\cup{B^{\mathsf{c}}} \\
+\text{2. }  (A \cup B)^{\mathsf{c}} &= A^{\mathsf{c}}\cap{B^{\mathsf{c}}}
+\end{align*}
+
+**** \textbf{Power sets}
+
+Let $A$ be a set. The set of all subsets of $A$ is called the \textbf{power set} of A. It is denoted by $\mathcal{P}(A)$.
+
+Example: $A = \{1, 2\}$.
+
+\[ \mathcal{P}(A) = \{\varnothing, {1}, {2}, {1,2}\} \]
+
+One last definition and that's it.
+Any countable set with $n$ elements has $2^n$ subsets.
+If $|A| = n$, then $|\mathcal{P}(A)| = 2^n$.
+
+
+** Basic Algebra
+
+*** Numbers
+
+1. Natural numbers: Denoted by $\mathbb{N}$ and contains $\{1, 2, 3, \cdots\}$
+
+2. Integers: Denoted by $\mathbb{Z}$ and contains $\{0,\pm{1}, \pm{2}, \cdots\}$
+
+3. Whole numbers: Denoted by $\mathbb{W}$ and contains natural numbers plus zero.
+
+4. Rational numbers: Denoted by $\mathbb{Q}$. Any number that can be expressed in the form $\frac{p}{q}$, where $p$ and $q$ are integers. Please note that $q \neq 0$.
+
+5. Real numbers: Denoted by $\mathbb{R}$ and is defined as the set of all rational numbers and irrational numbers.
+
+
+*** Properties of Real Numbers
+
+1. Given two real numbers $a$, $b$, their sum and their product are also real numbers.
+
+2. \textbf{Commutative laws:} For all real numbers $a, b$, the following hold \[ a + b = b + a \] \[ab = ba \]
+
+3. \textbf{Associative laws:} For all real numbers $a, b, c$, $a(b + c) = ab + bc$.
+
+4. \textbf{One and Zero:} For any real number $a$, $a + 0 = a$, and $a\times{1} = a$.
+
+5. \textbf{Negation:} For any real number $a$ there exists another real  number $-a$ such that $a + (-a) = 0$.
+
+6. \textbf{Reciprocals:} For any real number $a$  except for zero, there is a number $\frac{1}{a}$ such that $a\times{\frac{1}{a}} = 1$. 
+
+*** Properties of Powers
+For any real number $x$, and any integer $a$ and $b$:
+\begin{align*}
+x^{a}\times{x^b} &= x^{a + b} \\
+x^{a}\div{x^b} &= x^{a - b} \\
+(x^a)^b &= x^{ab} 
+\end{align*}
+
+*** Rules of Algebra
+Apart from the rules we listed for real numbers, some more may come handy.
+
+\begin{align*}
+(-a)\times{b} &= a\times{(-b)} \\
+(-a)\times{(-b)} &= ab \\
+(ab)\times{c} &= a\times{(bc)}
+\end{align*}
+
+*** Algebraic Expressions
+
+Algebraic expressions represent a combination of variables (typically denoted by a letter) and numbers combined with some mathematical operation.
+Example:
+\[ x^2 + xy + y^3 + 6 \]
+Any expression has particular elements: terms, variables, and coefficients. In the above expression, there are four  distinct terms ($x^2, xy, y^3, 6$). The last term (6) is known as the constant term. 
+Similarly, there are four coefficients (1, 1, 1, 6). The variable parts are $x^2, y^3, xy$.
+
+We often combine terms to simplify an algebraic expression. For example, consider the following expression:
+
+\[ x^2 - 10x + 8 + 5x^2 - 6x - 1 \]
+
+The process of simplifying an expression is to collect similar terms. So, the above expression becomes:
+
+\[ 6x^2 - 16x + 7 \]
+
+
+*** Factorizing
+
+\textbf{Example:} Factorize $16x^2 - 9$.
+
+\begin{align*}
+16x^2 - 9 &= (4x)^2 - (3)^2 \\
+16x^2 - 9 &= (4x + 3)(4x - 3)
+\end{align*}
+
+*** Fractions
+
+**** Properties of Fractions
+
+1. $\frac{a\times{c}}{b\times{c}} = \frac{a}{b}$
+
+2. $\frac{-a}{-b} = \frac{a}{b}$
+
+3. $\frac{a}{b} + \frac{c}{d} = \frac{ad + bc}{bd}$
+
+4. $\frac{a}{b}\div{\frac{c}{d}} = \frac{ad}{bc}$
+
+
+
+*** Fractional Powers
+
+You will get exposed to a variety of functions with fractional powers in both microeconomics as well as macroeconomics. For example, in consumer theory, you will come across Cobb Douglas utility function. An example below.
+\[U = x^{1/2}\times{y^{1/2}} \]
+
+If $x$ is positive and $n$ is a natural number, then $\sqrt[n]a^{n}$ is the unique positive number that gives $x$. 

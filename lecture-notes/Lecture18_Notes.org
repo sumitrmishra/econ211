@@ -1,0 +1,316 @@
+#+TITLE: Integral Calculus
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath, amssymb, booktabs, caption, dcolumn, etoolbox, float, gensymb, pgfplots, polynom, subcaption,tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage[table, svgnames, dvipsnames]{xcolor}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \pgfplotsset{compat=1.18}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+LATEX_HEADER: \newcounter{myeq}
+#+LATEX_HEADER: \setcounter{myeq}{\value{equation}}
+
+** Indefinite Integral
+Suppose that we have the first derivative with us and we wish to recover the function. Integrals come handy in that task.
+
+\begin{tcolorbox}[width=6in, enhanced]
+\textbf{Definition}: A function $F$ is the antiderivative of function $f$ on an interval $I$ if
+\[ F^{\prime}(x) = f(x) \quad\quad \forall x \in I \]
+\end{tcolorbox}
+
+Let's first recover the function manually using the rule. Let's say $f(x) = 2x$. What is $F(x)$? We know that the derivative of $x^2$ is $2x$. Therefore, the antiderivative of $2x$ is $x^2 + C$ (where $C$ is an arbitrary constant).
+
+Let's consider another example. Take a firm whose marginal cost is 2x + 3x^2. You're also told that the firm's fixed cost is \rupee{100}. What is the cost function?
+The antiderivative of $2x$ is $x^2$ and that of $3x^2$ is $x^3$ (check by differentiating $x^3$ w.r.t. $x$). Therefore, the cost function must be $C(x) = x^2 + 3x + C$. We also know that the fixed cost is \rupee{100}.
+
+$C(0) = 100 = (0)^2 + (0)^3 + C \implies C = 100$.
+
+Hence, the cost function must be
+\[ C(x) = x^2 + x^3 + 100 \]
+
+\begin{tcolorbox}[width=6in, enhanced]
+\textbf{Definition}: Given that $f(x) = F^{\prime}(x)$:
+\[ \int f(x)dx = F(x) + C \]
+\end{tcolorbox}
+
+Some terminology- $\int$ is the symbol of the integral, $f(x)$ is known as the integrand, and $dx$ indicates the variable of integration. We have already seen $C$ in action. It is the arbitrary constant.
+Why do we need this arbitrary constant? Let's take an example: consider $F(x) = x^2$ and $G(x) = x^2 + 1$. Also, think about the following function $f(x) = 2x$. Whether you differentiate $F(x)$ or $G(x)$, you arrive at $f(x)$. Now that we know that an integrand may be associated with many different functions, we should also agree that we need to add a constant to make the original function 'generic'.
+
+
+*** Integral Rules
+
+\begin{tcolorbox}[colframe=cbolive, width = 5in, enhanced]
+
+\begin{itemize}
+\item \textbf{Constant Rule: } $\int k{dx} = kx + C$.
+\item \textbf{Constant Multiple Rule: } $\int k\cdot{f(x)}dx = k\int f(x)dx$.
+\item \textbf{Sum/Diff Rule: } $\int [f(x) + g(x)]dx = \int f(x)dx + \int g(x)dx$.
+\item \textbf{Power Rule: } $\int x^n{dx} = \dfrac{x^{n + 1}}{n + 1} + C$.
+\item \textbf{Log Rule: } $\int \dfrac{1}{x}{dx} = \log|x| + C \quad\quad x \neq 0$.
+\item \textbf{Exponent Rule I: } $\int a^{kx}dx = \dfrac{a^{kx}}{k\log(a)} + C \quad\quad x \neq 0$.
+\item \textbf{Exponent Rule II: } $\int e^{kx}dx = \dfrac{1}{k}e^{kx} + C \quad\quad k \neq 0$.
+\end{itemize}
+\end{tcolorbox}
+
+Some examples:
+
+\begin{enumerate}
+\item What is $\int x^2dx$?
+
+\textbf{Answer:} Using the power rule, we get $\int x^2dx = \dfrac{1}{3}x^3 + C$.
+
+\item  What is $\int (x^2 + 2x)dx$?
+
+\textbf{Answer: } Using the sum rule, we get $\int (x^2 + 2x)dx = \int x^2dx + \int 2xdx = \dfrac{1}{3}x^3 + x^2 + C$
+
+\item What is $\int e^{2x}dx$?
+
+\textbf{Answer: } Using the exponent rule, we get: $\int e^{2x}dx = \dfrac{1}{2}e^{2x} + C$
+\end{enumerate}
+
+** Definite Integral
+
+*** Area and Definite Integral
+
+The concept of the integral is closely tied to finding the area of a curve.
+Consider Figure \ref{fig:fig01}. As the function $y = f(x)$ moves from $x = a$ to $x = b$, what is the area under the shaded region?
+
+Let $F(x)$ be an arbitrary indefinite integral of $f(x)$. We also define the area under the curve as $A(x)$.
+Then, $A(x) = F(x) + C$. At any given point on this curve, the area will be zero. Therefore, $A(a) = F(a) + C \implies C = -F(a)$.
+
+Hence, \[ A(x) = F(x) - F(a) \quad\quad \text{ where } F(x) = \int f(x)dx\].
+
+\begin{figure}[H]
+	\begin{tikzpicture}[scale = 1.5]
+		\def\f(#1){0.5 * sin(deg(#1 - 2)) + 2.5}
+		\begin{axis}[
+			axis lines=middle,
+			xlabel=$x$,
+			ylabel=$y$,
+			xmin=0, xmax=6,
+			ymin=0, ymax=4,
+			xtick={1, 5},
+			xticklabels={$a$, $b$},
+			ytick=\empty,
+			grid=none,
+			domain=0:6,
+			samples=100
+			]
+			\fill[
+			pattern=north west lines,
+			pattern color=blue,
+			opacity=0.6
+			] (axis cs:1, 0) -- plot[domain=1:5] (\x, {\f(\x)}) -- (axis cs:5, 0) -- cycle;
+			
+			\addplot[thick, red_pink, smooth] {\f(x)};
+			
+			\draw[thick, red_pink] (axis cs:1, 0) -- (axis cs:1, {\f(1)});
+			\draw[thick, teal] (axis cs:5, 0) -- (axis cs:5, {\f(5)});
+			
+			\node[above, red, xshift=1cm] at (axis cs:4.5, {\f(4.5)}) {$y=f(x)$};
+			
+		\end{axis}
+	\end{tikzpicture}
+\caption{}
+\label{fig:fig01}
+\end{figure}
+
+
+An example: Compute the area under the line $f(x) = x$ over the interval $[1, 3]$.
+
+\textbf{Answer:} Let's first compute the indefinite integral $\int f(x)dx$.
+
+$F(x) = \int f(x)dx = \int xdx = \dfrac{1}{2}x^2 + C$.
+
+The area under $f(x)$ will be $A = F(3) - F(1) = \dfrac{9}{2} - \dfrac{1}{2} = 4$. See Figure \ref{fig:fig02} for the details.
+
+\begin{figure}[H]
+	\begin{tikzpicture}[scale=1.2]
+		\begin{axis}[
+			axis lines = middle,
+			xlabel = $x$,
+			ylabel = {$y$},
+			xmin = 0, xmax = 4,
+			ymin = 0, ymax = 4,
+			xtick = {0, 1, 3},
+			xticklabels = {$0$, $1$, $3$},
+			ytick = {0, 1, 3},
+			yticklabels = {$0$, $1$, $3$},
+			grid = major,
+			grid style = {dashed, gray!30},
+			samples = 100,
+			domain = 0:4,
+			axis equal image
+			]
+			\fill[
+			pattern = north east lines,
+			pattern color = blue!50,
+			opacity = 0.5
+			] (axis cs:1,1) -- plot[domain=1:3] (\x, \x) -- (axis cs:3,0) -- (axis cs:1,0) -- cycle;
+			\addplot[thick, red_pink] {\x};
+			\node[red, above right] at (axis cs:2.5,2.5) {$y = x$};
+			\node[black] at (axis cs:2,1.2) {\tiny Area = $\int_1^3 x  dx$};
+			\node at (axis cs:0,0) [below left] {$O$};
+		\end{axis}
+	\end{tikzpicture}
+\caption{}
+\label{fig:fig02}
+\end{figure}
+
+*** Definite Integral: Definition
+
+\begin{tcolorbox}[width=6in, enhanced]
+\[ \int_{a}^{b} f(x)dx = \Big|_{a}^{b} F(x) = F(b) - F(a) \]
+
+where $F$ is any arbitrary indefinite integral of $f$ over an interval containing both $a$ and $b$.
+\end{tcolorbox}
+
+Some examples.
+
+\begin{enumerate}
+
+\item Evaluate $\int_{1}^{2} \dfrac{x}{2}dx$
+
+\textbf{Answer:}  $\int_{1}^{2} \dfrac{x}{2}dx = \Big|_{1}^{2} x = 2 - 1 = 1$. 
+
+\item Evaluate $\int_{2}^{4} 4x^3dx$.
+
+\textbf{Answer:} $\int_{2}^{4}4x^3dx = \Big|_{2}^{4}x^4 = 4^4 - 2^4 = 240$.
+
+\item Evaluate: $\int_{1}^{3} \dfrac{1}{x}dx$.
+
+\textbf{Answer:} $\int_{1}^{3} \dfrac{1}{x}dx = \Big|_{1}{3} \log|x| = \log|3| - \log|1| \approx 1.1$.
+
+\item Evaluate: $\int_{0}^{3} (e^x - 1)dx$.
+
+\textbf{Answer: } $\int_{0}^{3} (e^x - 1)dx = \int_0^3 e^xdx - \int_0^3 1\cdot{dx} = \Big|_{0}^{3} e^x - \Big|_{0}^{3}x = (e^3 - 1) - (3 - 0) = e^3 - 4$.
+
+\end{enumerate}
+
+*** Properties of Definite Integrals
+
+\begin{tcolorbox}[width = 6in, enhanced]
+\begin{align}
+\text{(1)} & \quad \int_{a}^{b} f(x)dx = -\int_{b}^a f(x)dx  \notag\\
+\text{(2)} &\quad \int_{a}^{a} f(x)dx = 0  \notag \\
+\text{(3)} &\quad \int_{a}^{b} kf(x)dx = k\int_{a}^{b} f(x)dx \tag{$k$ is a constant} \\
+\text{(4)} &\quad \int_{a}^{b} f(x)dx = \int_{a}^{c} f(x)dx + \int_{c}^{b} f(x)dx \tag{where $a < b < c$}
+\end{align}
+\end{tcolorbox}
+
+** Applications in Economics
+
+*** Consumer Surplus
+
+It is the difference between the willingness to pay for a good and the actual price that the consumer pays for the good. Imagine that the demand for Pretentious Coffee Shop's \textit{matcha latte} is given by $q = 10 - p$. The supply of \textit{matcha latte} is given by $q = -2 + p$.
+The equilibrium price, $p^{\ast} = 6$ and the equilibrium quantity, $q^{\ast} = 4$. Figure \ref{fig:fig03} shows the equilibrium. 
+Let's try to understand the concept of willingness to pay (WTP). Imagine a world without matcha lattes. The WTP is $p = 10 - 0 = 10$. What if we were all fighting for a solitary, elusive pitcher of matcha latte? What will be the WTP? The WTP is $p = 10 - 1 = 9$. As more and more match lattes are produced, the WTP falls. The reservation price is 10 and the actual price (based on market equilibrium) is \rupee 6. The difference is \rupee{4}.
+
+Now, we are all set to compute the consumer surplus (CS). Let $p^{\ast}$ and $q^{\ast}$ be the market equilibrium price and quantity respectively. The area under the demand curve ($f(q)$) will represent the consumer surplus. We can use the following integral:
+
+\[ CS = \int_{0}^{q^{\ast}} f(q)dq - p^{\ast}\cdot{q^{\ast}} \quad \text{ where } f(q) \text{ is the inverse demand}  \] 
+
+
+\begin{align*}
+CS &= \int_{0}^{4} (10 - q)dq - 6\cdot{4} \\
+CS &= \int_{0}^{4} 10\cdot{dq} - \int_{0}^{6}qdq - 24 \tag{using the sum rule} \\
+CS &= \Big|_{0}^{4} 10q - \Big|_{0}^{4}\dfrac{q^2}{2} - 24 \tag{using the power rule} \\
+CS &= (40 - 0) - (8 - 0) - 24 \\
+CS &= 8
+\end{align*}
+
+\begin{figure}[H]
+	\begin{tikzpicture}[scale=0.85, >=stealth]
+		\draw[->, thick] (0,0) -- (11,0) node[below] {Quantity ($q$)};
+		\draw[->, thick] (0,0) -- (0,11) node[left] {Price ($p$)};
+		\def\qEquilibrium{4} 
+		\def\pEquilibrium{6} 
+		\def\pDemandIntercept{10}
+		\def\pSupplyIntercept{2}
+		\draw[ultra thick, blue] (0, \pDemandIntercept) node[left] {$10$} -- 
+		node[near end, above, sloped, black] {\footnotesize Demand: $q = 10 - p$} 
+		(10, 0);
+	        \draw[ultra thick, red_pink] (0, \pSupplyIntercept) node[left] {$2$} --
+                 node[near end, above, sloped, black] {\footnotesize Supply: $q = -2 + p$} 
+                (8, 10);
+                \fill[turquoise!60, opacity=0.6] 
+		(0, \pEquilibrium) -- 
+		(0, \pDemandIntercept) -- 
+		(\qEquilibrium, \pEquilibrium) -- cycle;
+                \node[blue] at (1.5, 7) {\footnotesize Consumer Surplus};
+		\draw[dashed, gray] (\qEquilibrium, 0) node[below] {$4$} -- (\qEquilibrium, \pEquilibrium);
+		\draw[dashed, gray] (0, \pEquilibrium) node[left] {$6$} -- (\qEquilibrium, \pEquilibrium);
+		\filldraw[black] (\qEquilibrium, \pEquilibrium) circle (2pt) node[right=2pt] {\footnotesize \textcolor{black}{Equilibrium}};
+		\node at (0,0) [below left] {0};
+	\end{tikzpicture}
+\caption{}
+\label{fig:fig03}
+\end{figure}
+	
+
+
+
+*** Producer Surplus
+It refers to the difference between the price that the seller receives and their marginal cost. Please note that the supply curve also represents the margnial cost curve for a firm. We will focus on the Pretentious Coffee Shop. By now, we know that the equilibrium price of their matcha latte is $p^{\ast} = 6$. When $q = 1$, the marginal cost is $3$ and the producer surplus is \rupee 3. When $q = 4$, the marginal cost is $6$. Therefore, the producer surplus at the equilibrium is zero. What happens when $q = 5$? The marginal cost now exceeds the price. Hence, the Pretentious Coffee Shop may stop selling the latte at this stage. Figure \ref{fig:fig04} depicts the equilibrium.
+
+We can now formally define the producer surplus. Let $p^{\ast}$ and $q^{\ast}$ be the market equilibrium price and quantity respectively. The producer surplus is the area above the supply curve ($g(q)$). We can use the following integral:
+\[ PS = p^{\ast}\cdot{q^{\ast}} - \int_{0}^{q^{\ast}}g(q)dq \quad \text{ where } g(q) \text{ is the inverse supply curve}\]
+
+\begin{align*}
+PS &= p^{\ast}q^{\ast} - \int_{0}^{4} (2 + q)dq \\
+PS &= 6\cdot{4} - \int_{0}^{4}2dq - \int_{0}^{4}qdq \tag{using the sum rule} \\
+PS &= 24 - \Big|_{0}^{4}2q - \Big|_{0}^{4}\dfrac{q^2}{2} \\
+PS &= 24 - (8 - 0) - (8 - 0) \\
+PS &= 24 - 16 \\
+PS &= 8
+\end{align*}
+
+\begin{figure}[H]
+	\begin{tikzpicture}[scale=0.75, >=stealth]
+		\draw[->, thick] (0,0) -- (11,0) node[below] {Quantity ($q$)};
+		\draw[->, thick] (0,0) -- (0,11) node[left] {Price ($p$)};
+		\def\qEquilibrium{4} 
+		\def\pEquilibrium{6} 
+		\def\pDemandIntercept{10}
+		\def\pSupplyIntercept{2}
+		\draw[ultra thick, blue] (0, \pDemandIntercept) node[left] {$10$} -- 
+		node[near end, above, sloped, black] {\footnotesize Demand: $q = 10 - p$} 
+		(10, 0);
+	        \draw[ultra thick, red_pink] (0, \pSupplyIntercept) node[left] {$2$} --
+                 node[near end, above, sloped, black] {\footnotesize Supply: $q = -2 + p$} 
+                (8, 10);
+                \fill[purple!60, opacity=0.6] 
+		(0, \pEquilibrium) -- 
+		(\qEquilibrium, \pEquilibrium) -- 
+		(0, \pSupplyIntercept) -- cycle;
+                \node[blue] at (1.5, 5.5) {\footnotesize Producer Surplus};
+		\draw[dashed, gray] (\qEquilibrium, 0) node[below] {$4$} -- (\qEquilibrium, \pEquilibrium);
+		\draw[dashed, gray] (0, \pEquilibrium) node[left] {$6$} -- (\qEquilibrium, \pEquilibrium);
+		\filldraw[black] (\qEquilibrium, \pEquilibrium) circle (2pt) node[right=2pt] {\footnotesize \textcolor{black}{Equilibrium}};
+		\node at (0,0) [below left] {0};
+	\end{tikzpicture}
+\caption{}
+\label{fig:fig04}
+\end{figure}

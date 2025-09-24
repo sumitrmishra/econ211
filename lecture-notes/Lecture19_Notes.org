@@ -1,0 +1,247 @@
+#+TITLE: Functions of Two Variables
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath, amssymb, booktabs, caption, dcolumn, etoolbox, float, gensymb, pgfplots, polynom, subcaption,tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage[table, svgnames, dvipsnames]{xcolor}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \pgfplotsset{compat=1.18}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+LATEX_HEADER: \newcounter{myeq}
+#+LATEX_HEADER: \setcounter{myeq}{\value{equation}}
+
+** Introduction
+
+\textbf{Definition}: A function $f:\mathbb{R}^2 \to \mathbb{R}$ is a rule that assigns to each ordered pair  $(x, y)$ a unique real number, denoted by $z = f(x, y)$.
+
+*** Domain of a Function
+The definition of the domain of a function remains similar to the one that we encountered while learning functions of one variable. Therefore, we will try to work through a few examples to understand the domain.
+
+\textbf{Example 1:} $f(x, y) = x + y$
+
+Please note that there are no restrictions on either $x$ or $y$. So, we can say that the domain of $f(x, y) = x + y$ is $D_f = \{(x, y): x \in \mathbb{R}, y \in \mathbb{R}\}$.
+
+\textbf{Example 2}: $f(x, y) = \sqrt{x} + y$
+
+We know that square roots are always non-negative. Therefore, $x \geq 0$. There is no such restriction on $y$. Hence, the domain of $f(x, y) = \sqrt{x} + y$ is $D_f = \{(x, y): x \geq 0, y \in \mathbb{R}\}$.
+
+\textbf{Example 3}: $f(x, y) = \sqrt{x} + \sqrt{y - 1}$
+
+$x \geq 0$ and $y \geq 1$ for the function to have valid values. Therefore, the domain of the function is $D_f = \{(x, y): x \geq 0, y \geq 1\}$.
+
+\textbf{Example 4}: $f(x, y) = \sqrt{4 - x^2 - y^2}$.
+
+For the function to have a valid value, the following condition must hold $4 - x^2 - y^2 \geq 0$ or $x^2 + y^2 \leq 4$. Therefore, the domain of the function is: $D_f = \{(x, y) \in \mathbb{R}^2: x^2 + y^2 \leq 4\}$.
+
+** Homogeneous Functions
+In economic theory, we often use functions that are \textbf{homogeneous}. For instance, we often describe the process of producing a good through what is known as a production function. Let's imagine a coffee shop that produces espressos using an espresso machine and the labour of a barista.
+The big economic question that we can ask is: what happens to the number of espressos dialed in if we double the inputs? Will the number of shots get doubled or more than doubled or less than doubled? Homogeneity of a function allows us to answer these questions.
+
+\begin{tcolorbox}[width=6in, enhanced]
+\textbf{Definition:} Let $f$ be a function defined on a set $S \subset \mathbb{R}^2$ such that $(tx, ty) \in S$ whenever $t > 0$ and $(x, y) \in S$. Let $k$ be real number. Then $f$ is homogeneous of degree $k$ if
+\[ f(tx, ty) = t^{k}f(x, y) \]
+\end{tcolorbox}
+
+\textbf{Example 1}: $f(x, y) = x + y$.
+
+Let $t = 2$. Then,
+\begin{align*}
+f(2x, 2y) &= 2x + 2y \\
+\implies f(2x, 2y) &= 2(x + y) \\
+\implies f(2x, 2y) &= 2f(x, y) \\
+\implies f(2x, 2y) &= 2^1f(x, y)
+\end{align*}
+
+Therefore, the degree of homogeneity of $f(x, y) = x + y$ is 1.
+
+\textbf{Example 2}: $f(x, y) = Ax^{\alpha}y^{\beta}$.
+
+\begin{align*}
+f(tx, ty) &= A(tx)^\alpha(ty)^\beta \\
+f(tx, ty) &= A(t^{\alpha + \beta}(x^{\alpha}y^{\beta})\\
+f(tx, ty) &= t^{\alpha + \beta}(Ax^{\alpha}y^{\beta}) \\
+f(tx, ty) &= t^{\alpha + \beta}f(x, y)
+\end{align*}
+
+The degree of homogeneity of $f(x, y)$ is $\alpha + \beta$.
+
+\textbf{Example 3}: $f(x, y) = x^2 + xy^2$
+
+\begin{align*}
+f(tx, ty) &= (tx)^2 + (tx)(ty)^2 \\
+f(tx, ty) &= t^2x^2 + t^3xy^2 \\
+\end{align*}
+
+While it does seem like this function is not homogeneous, but it is important that we show this. Let there be a $k$ such that:
+\[ t^2x^2 + t^3xy^2 = t^k(x^2 + xy^2) \]
+
+Let $x = 1$, $y = 0$. Then,
+\[ t^2 = t^k \implies k = 2 \].
+
+Let $x = 0$, $y = 1$. Then,
+\[ t^3 = t^k \implies k = 3 \]
+
+$k$ cannot be simultaneously equal to two distinct numbers. Hence, the given function is not homogeneous.
+
+We often encounter production functions in economic theory. The production function is usually homogeneous of degree one and is characterized by constant returns to scale. If the production function's homogeneity is $<$ 1, then we say that we have increasing returns to scale. Finally, if the homogeneity of a production function is $<$ 1, then we describe the production as exhibiting decreasing returns to scale.
+
+The demand for a good as a function of prices and income is homogeneous of degree zero. Consider a very simple example. Suppose that you spend all your income ($M$) on coffee ($x$) and cake ($y$) whose unit prices are $p_x$ and $p_y$ respectively. We can write:
+\[ p_{x}x + p_{y}y = M \]
+
+Let's double the prices and income.
+\[ 2p_x{x} + 2p_{y}{y} = 2M \quad \text{ or } \quad p_x{x} + p_y{y} = M \]
+
+
+
+** Partial Derivatives
+
+Let $f$ be a function of two variables $x$ and $y$ defined on an open set $S \subset \mathbb{R}^2$. Let $(x, y)$ be a point in $S$. Then, if
+\[\lim\limits_{h \to 0}{\dfrac{f(x + h, y) - f(x, y)}{h}}\]
+exists, then it is the partial derivative w.r.t. $x$ at $(x, y)$. We denote it as $\dfrac{\partial f}{\partial x}$ or $f_{x}$.
+
+We can say something more about such functions. If $f$ is defined on an open set $S$ and also differentiable at a point $\mathbf{x} = (x, y)$. Then all partial derivatives exist and $f$ is continuous at $\mathbf{x}$.[fn:1]
+
+A function defined on an open set $S$ is \textbf{continuously differentiable} on $S$ if and only if all the  partial derivatives exist and those partial derivatives are continuous.
+
+*** First Order Partial Derivatives
+\begin{tcolorbox}[width=6in, enhanced]
+Let $f(x, y)$ be a well-behaved function. Then,
+
+\begin{itemize}
+\item $\dfrac{\partial f}{\partial x}$ represents the first order partial derivative w.r.t. $x$ while holding $y$ as a constant.
+
+\item $\dfrac{\partial f}{\partial y}$ represents the first order partial derivative w.r.t. $y$ while holding $x$ as a constant.
+\end{itemize}
+\end{tcolorbox}
+
+\clearpage\newpage
+\textbf{Example 1:} $f(x, y) = x + 2y$.
+
+\begin{align*}
+\dfrac{\partial f}{\partial x} &= \dfrac{\partial}{\partial x}(x + 2y) \\
+\implies \dfrac{\partial f}{\partial x} &= \dfrac{\partial}{\partial x}(x) + \dfrac{\partial}{\partial x}(2y) \\
+\implies \dfrac{\partial f}{\partial x} &= 1 \\
+\dfrac{\partial f}{\partial y} &= \dfrac{\partial}{\partial y}(x + 2y) \\
+\implies \dfrac{\partial f}{\partial y} &= \dfrac{\partial}{\partial y}(x) + \dfrac{\partial}{\partial y}(2y) \\
+\implies \dfrac{\partial f}{\partial y} &= 2
+\end{align*}
+
+\textbf{Example 2:} $f(x, y) = x^2 + xy + y^2$.
+
+\begin{tabular}{ll}
+    Partial derivative with respect to \( x \): & 
+    \( \dfrac{\partial f}{\partial x} = \dfrac{\partial}{\partial x}(x^2) + \dfrac{\partial}{\partial x}(xy) + \dfrac{\partial}{\partial x}(y^2) = 2x + y + 0 = 2x + y \) \\[1em]
+    & \\
+    Partial derivative with respect to \( y \): & 
+    \( \dfrac{\partial f}{\partial y} = \dfrac{\partial}{\partial y}(x^2) + \dfrac{\partial}{\partial y}(xy) + \dfrac{\partial}{\partial y}(y^2) = 0 + x + 2y = x + 2y \) \\
+\end{tabular}
+
+
+*** Second Order Partial Derivatives
+Consider the two partial derivatives from the previous discussion: $\dfrac{\partial f}{\partial x}$ and $\dfrac{\partial f}{\partial y}$. We can compute the second order derivatives by differentiating these two derivatives w.r.t. $x$ as well as $y$. This means that not only would the standard second order derivatives exist (which you have been familiar with in single variable calculus), two new partial derivatives are also produced in the process.
+\begin{tabular}{llll}
+\( \dfrac{\partial^2 f}{\partial x^2} = \dfrac{\partial}{\partial x}\Big(\dfrac{\partial f}{\partial x}\Big) \) & \( \dfrac{\partial^2 f}{\partial y^2} = \dfrac{\partial}{\partial y}\Big(\dfrac{\partial f}{\partial y}\Big) \) & \( \dfrac{\partial^2 f}{\partial y\partial x} = \dfrac{\partial}{\partial y}\Big(\dfrac{\partial f}{\partial x}\Big) \) & \( \dfrac{\partial^2 f}{\partial x\partial y} = \dfrac{\partial}{\partial x}\Big(\dfrac{\partial f}{\partial y}\Big) \)
+\end{tabular}
+
+The last two quantities are known as the second order cross-partial derivatives. Let us first formally define it.
+
+\textbf{Definition:} Let $f$ be a function defined on an open set $S$. We further assume that the first order partial derivatives $f_x$ and $f_{y}$ exist. Then, if the derivative of $f_{x}$ w.r.t. $y$ exists (and that of $f_y$ w.r.t. $x$ exists), we call it the second order cross-partial derivative. You will realise that these two cross-partial derivatives will be identical thanks to Young's theorem.
+
+\begin{tcolorbox}[width=7in, enhanced]
+\textcolor{red_pink}{Young's Theorem:}
+Let $f$ be a function defined on an open set $S \subset \mathbb{R}^2$. If the partial derivatives $f_x$ and $f_y$ exist on an open set $S$ containing $(x, y)$ and both these partial derivatives are differentiable, then $f^{\prime}_{xy} = f^{\prime}_{yx}$.
+\end{tcolorbox}
+
+\textbf{Example 1:} $f(x,y) = x^2 + xy + y^2$.
+
+First-order partial derivatives:
+
+\begin{tabular}{ll}
+    \( f_x(x, y) = \dfrac{\partial f}{\partial x} = 2x + y \) \\[1em]
+    \( f_y(x, y) = \dfrac{\partial f}{\partial y} = x + 2y \) \\
+\end{tabular}
+
+Second-order partial derivatives:
+
+\begin{tabular}{lll}
+    \( f_{xx}(x, y) = \dfrac{\partial^2 f}{\partial x^2} = 2 \) &
+    \( f_{xy}(x, y) = \dfrac{\partial^2 f}{\partial y \partial x} = 1 \) \\[1em]
+    \( f_{yx}(x, y) = \dfrac{\partial^2 f}{\partial x \partial y} = 1 \) &
+    \( f_{yy}(x, y) = \dfrac{\partial^2 f}{\partial y^2} = 2 \) \\
+\end{tabular}
+
+\vspace{1em}
+
+\textbf{Example 2:} $f(x,y) = xy^2$.
+
+First-order partial derivatives:
+
+\begin{tabular}{ll}
+    \( f_x(x, y) = \dfrac{\partial f}{\partial x} = y^2 \) \\[1em]
+    \( f_y(x, y) = \dfrac{\partial f}{\partial y} = 2xy \) \\
+\end{tabular}
+
+
+Second-order partial derivatives:
+
+\begin{tabular}{lll}
+    \( f_{xx}(x, y) = \dfrac{\partial^2 f}{\partial x^2} = 0 \) &
+    \( f_{xy}(x, y) = \dfrac{\partial^2 f}{\partial y \partial x} = 2y \) \\[1em]
+    \( f_{yx}(x, y) = \dfrac{\partial^2 f}{\partial x \partial y} = 2y \) &
+    \( f_{yy}(x, y) = \dfrac{\partial^2 f}{\partial y^2} = 2x \) \\
+\end{tabular}
+
+\vspace{1em}
+
+\textbf{Example 3:} $f(x,y) = x^2\ln(y)$
+
+First-order partial derivatives:
+
+\begin{tabular}{ll}
+    \( f_x(x, y) = \dfrac{\partial f}{\partial x} = 2x\ln(y) \) \\[1em]
+    \( f_y(x, y) = \dfrac{\partial f}{\partial y} = \dfrac{x^2}{y} \) \\
+\end{tabular}
+
+Second-order partial derivatives:
+
+\begin{tabular}{lll}
+    \( f_{xx}(x, y) = \dfrac{\partial^2 f}{\partial x^2} = 2\ln(y) \) &
+    \( f_{xy}(x, y) = \dfrac{\partial^2 f}{\partial y \partial x} = \dfrac{2x}{y} \) \\[1em]
+    \( f_{yx}(x, y) = \dfrac{\partial^2 f}{\partial x \partial y} = \dfrac{2x}{y} \) &
+    \( f_{yy}(x, y) = \dfrac{\partial^2 f}{\partial y^2} = -\dfrac{x^2}{y^2} \) \\
+\end{tabular}
+
+
+
+
+
+
+[fn:1] That partial derivatives exist \textit{does not imply} that the function is continuous or differentiable.
+
+Consider $f(x, y) = \begin{cases} 1 & \text{ if } x \neq 0, y \neq 0 \\ 0 &  \text{ if } x = 0, y = 0 \end{cases}$
+
+The partial derivatives, indeed, exist at $(0, 0)$ but the function is neither continuous nor differentiable at $(0,0)$.
+
+

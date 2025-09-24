@@ -1,0 +1,131 @@
+#+TITLE: Mathematics of Finance-I
+#+DATE: \today
+#+LANGUAGE: en
+#+OPTIONS: toc:nil
+#+LATEX_CLASS: article
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb,caption, gensymb, subcaption, tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+
+
+** Summation Operator
+
+Consider a department with seven teams headed by seven managers. Each manager handles a team of 10. You'd want to measure the number of hours logged by each team.
+You can write:
+\[ T_1 + T_2 + T_3 + T_4 + T_5 + T_6 + T_7 \]
+
+Now imagine the tediousness of the task had there been 100 teams. We can use a compact way to write out such additions. Let $T_i$ be any team. $i$ runs from 1 to 7.
+We make use of the greek letter sigma ($\Sigma$) to represent the summation.
+\[ \displaystyle\sum_{i=1}^{i=7} T_i \]
+
+Please note some stylistic elements of this operation.
+\begin{itemize}
+\item \textbf{Index} ($i$)- a placeholder required for the summation.
+\item \textbf{Lower limit} ($i=a$)- the starting value that the index takes. In the example above, $a = 1$.
+\item \textbf{Upper limit} ($i=b$)- the ending value that the index takes. In the example we have seen, $b = 7$.
+\item \textbf{Expression}- the expression that is being summed up. In the example above, it is $T_i$.
+\end{itemize}
+
+An example:
+Consider the following summation: $\displaystyle\sum_{i=1}^{i=3} (2i - 3)$. Write the expansion of the summation.
+
+\begin{align*}
+\displaystyle\sum_{i=1}^{i=3} (2i - 3) & \\
+=& \underbrace{[2(\textcolor{cbred}{1}) - 3]}_{\textcolor{cbred}{i=1}} + \underbrace{[2(\textcolor{cbred}{2}) - 3]}_{\textcolor{cbred}{i=2}} + \underbrace{[2(\textcolor{cbred}{3}) - 3]}_{\textcolor{cbred}{i=3}} \\
+=& -1 + 1 + 3 \\
+=& 3
+\end{align*}
+
+
+*** Rules for Sums
+
+\begin{itemize}
+\item For two expressions $a$ and $b$, $\displaystyle\sum_{i=1}^{i=n} (a_i + b_i) = \displaystyle\sum_{i=1}^{i=n} a_i + \displaystyle\sum_{i=1}^{i=n} b_i$
+\item Given any expression $a$ and a constant $k$, $\displaystyle\sum_{i=1}^{i=n}ka_i = k\displaystyle\sum_{i=1}^{i=n}a_i$.
+\item For any constant $k$, $\displaystyle\sum_{i=1}^{i=n} k = kn$.
+\end{itemize}
+
+Let's use these rules to establish a useful relationship in statistics. Let there be $n$ numbers $x_1, x_2, \cdots, x_n$ and $m_x$ be their average.
+Therefore, \[ m_x = \dfrac{1}{n}\displaystyle\sum_{i=1}^{i=n} x_i \].
+We can show that:
+\[ \displaystyle\sum_{i=1}^{i=n} (x_i - m_x) = 0 \] and \[\displaystyle\sum_{i=1}^{i=n} (x_i - m_x)^2 = \displaystyle\sum_{i=1}^{i=n} (x_i^2) - n{m_x^2}\]
+
+
+We begin with the first term:
+\begin{align*}
+\displaystyle\sum_{i=1}^{i=n} (x_i - m_x) &= \displaystyle\sum_{i=1}^{i=n} (x_i) - \displaystyle\sum_{i=1}^{i=n} (m_x) \tag{using the first rule}\\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x) &= n\times{m_x} - \displaystyle\sum_{i=1}^{i=n} (m_x) \tag{since $m_x = \dfrac{1}{n}\displaystyle\sum_{i=1}^{i=n} x_i$} \\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x) &= n\times{m_x} - \displaystyle\sum_{i=1}^{i=n} (m_x\times{1}) \tag{multiplying $m_x$ by 1 should keep the expression intact} \\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x) &= n\times{m_x} - m_x\displaystyle\sum_{i=1}^{i=n} 1 \tag{since $m_x$ is a constant}\\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x) &= n\times{m_x} - m_x\times{n} \tag{since for any constant $k$, the sum is $kn$}\\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x) &= 0
+\end{align*}
+
+We can now proceed to the harder proof.
+
+\begin{align*}
+\displaystyle\sum_{i=1}^{i=n} (x_i - m_x)^2 &= \displaystyle\sum_{i=1}^{i=n} (x_i^2 - 2x_i\times{m_x} + (m_x^2)) \tag{expanding the expression using $(a - b)^2 = a^2 -2ab + b^2$} \\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x)^2 &= \displaystyle\sum_{i=1}^{i=n} x_i^2 + \displaystyle\sum_{i=1}^{i=n} -2x_i\times{m_x} + \displaystyle\sum_{i=1}^{i=n} m_x^2 \tag{using the first rule} \\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x)^2 &= \displaystyle\sum_{i=1}^{i=n} x_i^2  -2m_x\displaystyle\sum_{i=1}^{i=n} x_i + \displaystyle\sum_{i=1}^{i=n} m_x^2 \tag{using the second rule} \\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x)^2 &= \displaystyle\sum_{i=1}^{i=n} x_i^2 -2m_x(n\times{m_x}) + \displaystyle\sum_{i=1}^{i=n} m_x^2 \tag{since we know that $m_x = \displaystyle\sum_{i=1}^{i=n}$}\\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x)^2 &= \displaystyle\sum_{i=1}^{i=n} x_i^2 -2nm_x^2 + \displaystyle\sum_{i=1}^{i=n}m_x^2\times{1} \tag{trivially multiplying the last term by 1 should keep the expression unchanged} \\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x)^2 &= \displaystyle\sum_{i=1}^{i=n} x_i^2 -2nm_x^2 + m_x^2\displaystyle\sum_{i=1}^{i=n} 1 \tag{following the second rule} \\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x)^2 &= \displaystyle\sum_{i=1}^{i=n} x_i^2 -2nm_x^2 + nm_x^2 \tag{following the third rule} \\
+\implies \displaystyle\sum_{i=1}^{i=n} (x_i - m_x)^2 &= \displaystyle\sum_{i=1}^{i=n} (x_i^2) -n{m_x^2}
+\end{align*}
+
+
+** Series and Sequences
+
+*** Arithmetic Series
+
+An arithmetic series is a series of numbers in which you move from one number to the next one by \textit{adding} a constant.
+
+Some examples: $1, 2, 3$ (constant = 1); $1, 3, 5$ (constant = 2); $2, 5, 8$ (constant = 3).
+
+Any general arithmetic progression (AP) will be of the following form:
+\[ a, a + d, a + 2d, a + 3d, \cdots \]
+
+where $a$ is the first term of the AP and $d$ is the constant term, a.k.a, common difference.
+
+Some features of an AP:
+
+\begin{itemize}
+\item The $n^{th}$ term of an AP is given by: $a + (n-1)d$.
+\item The sum of the first $n$ terms of an AP is given by: $\displaystyle\sum_{i=1}^{i=n} = \dfrac{n}{2}[2a + (n - 1)d]$
+\end{itemize}
+
+
+*** Geometric Series
+A geometric series or a geometric progression (GP) is a series of numbers in which you move from one number to the next one by \textit{multiplying} a constant.
+
+Some examples: $2, 4, 8$ (constant = 2); $5, 20, 80$ (constant = 4); $100, 20, 4$ (constant = $\dfrac{1}{5}$).
+
+Any general geometric progression will be of the following form:
+\[ a, a\times{r}, a\times{r^2}, a\times{r^3}, \cdots \]
+
+where $a$ is the first term, and $r$ the multiplicative constant, a.k.a., common ratio.
+
+Some features of a GP:
+
+\begin{itemize}
+\item The $n^{th}$ term of a GP is given by: $a\times{r^{n-1}}$.
+\item The sum of the first $n$ terms of a GP is given by: $\displaystyle\sum_{i=1}^{i=n} = \dfrac{a\times(r^n - 1)}{r - 1}$.
+     \begin{itemize}
+      \item \textbf{Special Case:} When $0 < r < 1$ and $n \to \infty$, the sum is given by:
+             \[ \displaystyle\sum_{i=1}^{\infty} = \dfrac{a}{1- r} \]
+      \end{itemize}
+\end{itemize}
+

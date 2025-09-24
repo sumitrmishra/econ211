@@ -1,0 +1,252 @@
+#+TITLE: Unconstrained Optimization
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath, amssymb, booktabs, caption, dcolumn, etoolbox, float, gensymb, pgfplots, polynom, subcaption,tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage[table, svgnames, dvipsnames]{xcolor}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \pgfplotsset{compat=1.18}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+LATEX_HEADER: \newcounter{myeq}
+#+LATEX_HEADER: \setcounter{myeq}{\value{equation}}
+#+LATEX_HEADER: \definecolor{saddlecolor}{HTML}{E64173}    % cranberry for saddle points
+#+LATEX_HEADER: \definecolor{mincolor}{HTML}{006896}       % navy for local minima
+#+LATEX_HEADER: \definecolor{maxcolor}{HTML}{D65616}       % orange for local maxima
+#+LATEX_HEADER: \newcommand{\saddlepoint}[1]{{\color{saddlecolor}#1}}
+#+LATEX_HEADER: \newcommand{\minpoint}[1]{{\color{mincolor}#1}}
+#+LATEX_HEADER: \newcommand{\maxpoint}[1]{{\color{maxcolor}#1}}
+
+
+** Introduction
+
+While optimization is a broad topic, our goal in this lecture will be focused on a narrow issue. We will dwell in the realm of nicely-behaved (continuous and differentiable) functions. We will also restrict ourselves to think about local optima. We will also use compact notations for the partial derivatives.
+
+\begin{tcolorbox}
+\begin{tabular}{cccccc}
+$f_x = \dfrac{\partial f}{\partial x}$ & $f_y = \dfrac{\partial f}{\partial y}$ & $f_{xx} = \dfrac{\partial^2 f}{\partial x^2}$ & $f_{yy} = \dfrac{\partial^2 f}{\partial y^2}$ & $f_{xy} = \dfrac{\partial^2 f}{\partial y\partial x}$ & $f_{yx} = \dfrac{\partial^2 f}{\partial x\partial y}$
+\end{tabular}
+\end{tcolorbox}
+
+** Local Optima
+
+Let $(x_0, y_0)$ be a \textbf{stationary point} of the function $f$ of two variables. Then, we should have (at this point):
+
+\textbf{Step 1}: Find and set the first-order partial derivatives to zero to find $(x_0, y_0)$. Therefore, the necessary condition is:
+
+\begin{center}
+\begin{tcolorbox}[width = 3in, enhanced]
+\begin{tabular}{c}
+$f_x = 0$ \\
+$f_y = 0$
+\end{tabular}
+\end{tcolorbox}
+\end{center}
+
+\textbf{Step 2}: In order to classify (or label) the stationary, we need all the second-order derivatives. We also need the \textit{Hessian} of the function.
+
+\begin{tcolorbox}[width = 6in, enhanced]
+
+Let $f$ be a twice-differentiable function of two variables. The \textbf{Hessian} of $f$ at $\mathbf{x}$ is
+
+\[ H(\mathbf{x}) = \begin{pmatrix} f_{xx}(\mathbf{x}) & f_{xy}(\mathbf{x}) \\ f_{yx}(\mathbf{x}) & f_{yy}(\mathbf{x}) \end{pmatrix} \]
+
+\end{tcolorbox}
+
+\begin{tcolorbox}[width=7in, enhanced]
+We define the determinant of the Hessian  as: $D = (f_{xx}f_{yy}) - (f_{xy})^2$.
+\vspace{2mm}
+\noindent
+\begin{table}[H]
+\begin{tabular}{@{} l l l l @{}}
+\toprule
+\textbf{Case} & \textbf{Second Order Conditions} & \textbf{Conclusion} & \textbf{Concavity}\\
+\midrule
+1. & $D > 0$ \textbf{and} $f_{xx} < 0$ & \maxpoint{Local Maximum} & Concave. \\
+2. & $D > 0$ \textbf{and} $f_{xx} > 0$ & \minpoint{Local Minimum} & Convex. \\
+\centering
+3. & $D < 0$ & \saddlepoint{Saddle Point} & Convex (one side), Concave (other side).\\
+4. & $D = 0$ & \textbf{Inconclusive} & - \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{tcolorbox}
+
+
+** Examples
+
+1-  $f(x, y) = (x - 1)^2 + (y - 1)^2$
+
+	To find the stationary points, we first compute the first-order partial derivatives and set them equal to zero.
+	\begin{align*}
+		f_x  &= \frac{\partial}{\partial x}((x - 1)^2 + (y - 1)^2) \\
+		&= 2(x - 1) \\
+		f_y  &= \frac{\partial}{\partial y}((x- 1)^2 + (y - 1)^2) \\
+		&= 2(y - 1)
+	\end{align*}
+
+ 
+	We look for potential stationary points by setting  both partial derivatives to zero.
+	\begin{align*}
+	f_x &= 0 \\
+	\implies 2(x - 1) &= 0 \\
+	\implies x &= 1 \\
+	f_y &= 0 \\
+	\implies 2(y - 1) &= 0 \\
+	\implies y &= 1
+	\end{align*}
+	
+	We got only one candidate point: $(1, 1)$.
+
+	Let's now test for the second order condition for which we need the second order partial derivatives.
+	\vspace{3mm}
+	
+       \begin{tabular}{cccc}
+        \toprule
+	$\begin{aligned}
+	f_{xx} &= \frac{\partial}{\partial x}(2(x - 1)) \\
+	       &= 2
+        \end{aligned}$ &
+        $\begin{aligned}
+	f_{yy} &= \frac{\partial}{\partial y}(2(y - 1)) \\
+	       &= 2 
+        \end{aligned}$ &
+       $\begin{aligned}
+	f_{xy} &= \frac{\partial}{\partial y}(2(x - 1)) \\
+	       &= 0
+        \end{aligned}$ &
+        $\begin{aligned}
+	f_{yx} &= \frac{\partial}{\partial x}(2(y - 1)) \\
+	       &= 0
+	\end{aligned}$ \\
+        \bottomrule
+	\end{tabular}
+	\vspace{3mm}
+	
+	We can see that $f_{xx} > 0$ and $f_{yy} > 0$. Therefore, it seems like $(1,1)$ represents the local minimum, but we must also check the value of the determinant of the Hessian. $D > 0$ implies that this is indeed the \minpoint{local minimum}.
+
+\clearpage \newpage
+2-  $f(x, y) = 60x + 34y - 6x^2 - 3y^2 - 4xy + 5$.
+
+\vspace{3mm}
+
+\textbf{First Order Partial Derivatives}
+
+$f_x = 60 - 12x - 4y$
+
+$f_y &= 34 - 6y - 4x$
+
+Set these two partial derivatives to zero.
+\vspace{-3mm}
+\begin{align*}
+12x + 4y &= 60 \\
+4x + 6y &= 34
+\end{align*}
+
+Solving these equations, we get: $x = 3$, $y = 4$.
+
+We have only candidate stationary point: $(3, 4)$.
+
+\textbf{Second Order Partial Derivatives}
+
+\vspace{3mm}
+
+       \begin{tabular}{cccc}
+        \toprule
+	$\begin{aligned}
+	f_{xx} &= \frac{\partial}{\partial x}(60 - 12x - 4y) \\
+	       &= -12
+        \end{aligned}$ &
+        $\begin{aligned}
+	f_{yy} &= \frac{\partial}{\partial y}(34 - 6y - 4x) \\
+	       &= -6
+        \end{aligned}$ &
+       $\begin{aligned}
+	f_{xy} &= \frac{\partial}{\partial y}(60 - 12x - 4y) \\
+	       &= -4
+        \end{aligned}$ &
+        $\begin{aligned}
+	f_{yx} &= \frac{\partial}{\partial x}(34 - 6y - 4x) \\
+	       &= -6
+	\end{aligned}$ \\
+        \bottomrule
+	\end{tabular}
+	
+\vspace{2mm}
+
+$f_{xx} < 0$, $f_{yy} < 0$, and $D > 0$ $\implies$ \maxpoint{Local maximum}
+
+\vspace{3mm}
+
+3- $f(x, y) = 4x^2 -xy + y^2 - x^3$.
+
+\textbf{First Order Partial Derivatives}
+
+$f_x = 8x - y - 3x^2$
+
+$f_y &= -x + 2y$
+
+Set these two partial derivatives to zero.
+\vspace{-3mm}
+\begin{align*}
+8x^2 - y - 3x^2 &= 0 \\
+x &= 2y \\
+\implies 16y - y - 3(2y)^2 &= 0 \\
+\implies 15y - 12y^2 &= 0 \\
+\implies 3y(5 - 4y) &= 0 \\
+\implies y &= 0, \dfrac{5}{4} \\
+\implies x &= 0, \dfrac{5}{2}
+\end{align*}
+
+We have two stationary points: $(0,0)$ and $(\dfrac{5}{2}, \dfrac{5}{4})$.
+
+\textbf{Second Order Partial Derivatives}
+
+\vspace{3mm}
+
+       \begin{tabular}{cccc}
+        \toprule
+	$\begin{aligned}
+	f_{xx} &= \frac{\partial}{\partial x}(8x - y - 3x^2) \\
+	       &= 8 - 6x
+        \end{aligned}$ &
+        $\begin{aligned}
+	f_{yy} &= \frac{\partial}{\partial y}(- x + 2y) \\
+	       &= 2
+        \end{aligned}$ &
+       $\begin{aligned}
+	f_{xy} &= \frac{\partial}{\partial y}(8x - y - 3x^2) \\
+	       &= -1
+        \end{aligned}$ &
+        $\begin{aligned}
+	f_{yx} &= \frac{\partial}{\partial x}(-x + 2y) \\
+	       &= -1
+	\end{aligned}$ \\
+        \bottomrule
+	\end{tabular}
+	
+\vspace{2mm}
+
+Based on the values, we have a \minpoint{local minimum} at $(0,0)$ and a \saddlepoint{saddle point} at $(\dfrac{5}{2}, \dfrac{5}{4})$.
+
+

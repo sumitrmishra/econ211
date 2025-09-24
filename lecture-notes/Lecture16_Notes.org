@@ -1,0 +1,78 @@
+#+TITLE: Single Variable Optimization-I
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb, booktabs, caption, dcolumn, etoolbox, gensymb, pgfplots, polynom, subcaption,tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage[table, svgnames, dvipsnames]{xcolor}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+
+** Introduction
+
+Suppose that a function $f$ is differentiable in an interval $I$ and $c$ is an interior point of $I$. Then, for $x = c$ to be a stationary point for $f$, the necessary condition is that
+\[ f^{\prime}(x) = 0 \]
+
+The sufficient condition for the extreme value will be
+
+\begin{align*}
+\text{Maximum if: } f^{\prime\prime}(c) &< 0 \\
+\text{Minimum if: } f^{\prime\prime}(c) &> 0
+\end{align*}
+
+
+\textbf{Example 1}: Compute the stationary points for the following function: $f(x) = x^2 - 4x + 4$.
+
+\begin{align*}
+f^{\prime}(x) &= 2x - 4 \\
+2x -4 &= 0 \tag{applying the necessary condition} \\
+2x &= 4 \\
+x &= 2
+\end{align*}
+
+It seems like this function has an extreme point $x = 2$. Is this a maximum or minimum?
+
+\begin{align*}
+f^{\prime\prime}(x) &= 2 \\
+\implies f^{\prime\prime}(x) &> 0
+\end{align*}
+
+The second order condition seems to suggest that at $x = 2$, the function $f(x)$ is being minimized.
+
+\textbf{Example 2}: Compute the stationary points for the following function: $f(x) = 4 - 2x - x^2$.
+
+\begin{align*}
+f^{\prime}(x) &= -2 -2x \\
+-2 -2x &= 0 \tag{applying the necessary condition} \\
+\implies x&= -1
+\end{align*}
+
+We have determined that $x=1$ is an extreme point. Let's check for the second order condition.
+
+\begin{align*}
+f^{\prime\prime}(x) &= -2 \\
+f^{\prime\prime}(x) &< 0
+\end{align*}
+
+The second order condition suggests that $x = -1$ maximizes the function.

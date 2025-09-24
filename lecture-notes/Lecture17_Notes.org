@@ -1,0 +1,363 @@
+#+TITLE: Single Variable Optimization-II
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb, booktabs, caption, dcolumn, etoolbox, gensymb, pgfplots, polynom, subcaption,tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage[table, svgnames, dvipsnames]{xcolor}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+
+** Increasing and Decreasing Functions
+
+Consider a function $f(x)$  defined in an interval $I$.
+
+\begin{tcolorbox}[width=6in, enhanced]
+- $f(x)$ is an increasing function if $x_1 >  x_2 \implies f(x_1) \geq f(x_2)$.
+  
+- $f(x)$ is a decreasing function if $x_1 > x_2 \implies f(x_1) \leq f(x_2)$.
+
+- $f(x)$ is a strictly increasing function if $x_1 > x_2 \implies f(x_1) > f(x_2)$.
+
+- $f(x)$ is a strictly decreasing function if $x_1 < x_2 \implies f(x_1) < f(x_2)$. 
+\end{tcolorbox}
+
+We can also use the derivative to classify a function as increasing or decreasing. A function is increasing if $f^{\prime}(x) \geq 0$ and decreasing if $f^{\prime}(x) \leq 0$.
+
+An example: $f(x) = x^2$.
+
+Compute the first derivative. $f^{\prime}(x) = 2x$.
+
+Applying the derivative condition, we get: $2x \geq 0$ for the function to be increasing. Therefore, the function $f(x) = x^2$ is increasing whenever $x \geq 0$. 
+So, do we conclude that this function is increasing? The answer is no, because we should also look for the values of $x$ where $f^{\prime}(x) \leq 0$ or $2x \leq 0$. Hence, the function $f(x)$ is decreasing when $x \leq 0$. You should plot the function to verify this. 
+
+\begin{tikzpicture}[scale=1.1]
+    \draw[->, thick] (-3,0) -- (3,0) node[right] {$x$};
+    \draw[->, thick] (0,-1) -- (0,5) node[above] {$y$};
+    
+
+    \draw[gray!20, thin] (-3,-1) grid (3,5);
+    
+    
+    \draw[domain=-2.2:2.2, smooth, variable=\x, blue, very thick] 
+        plot ({\x}, {\x*\x});
+    
+
+    \draw[domain=-2.2:0, smooth, variable=\x, red, very thick] 
+        plot ({\x}, {\x*\x});
+      \node at (-1.3, 2.5) {\footnotesize Decreasing};
+    
+    \draw[domain=0:2.2, smooth, variable=\x, green!60!black, very thick] 
+        plot ({\x}, {\x*\x});
+    \node at (2.2, 2.5)  {\footnotesize Increasing};
+    
+    \fill[orange] (0,0) circle (2.5pt);
+    \node[teal] at (0,0) [above right] {\footnotesize Minimum};
+    
+    \node[blue] at (1.5,4) {$y = x^2$};
+    
+    \foreach \x in {-2,-1,1,2}
+        \draw (\x,0.1) -- (\x,-0.1) node[below] {$\x$};
+    \foreach \y in {1,2,3,4}
+        \draw (0.1,\y) -- (-0.1,\y) node[left] {$\y$};
+\end{tikzpicture}
+
+** Concave and Convex Functions
+
+The first order derivative is useful when we want to figure out whether a function has a stationary point or is increasing (decreasing).
+Similarly, the second order derivative tells us whether a function is convex or concave. It goes without saying that we must have a twice-differentiable function defined in an interval. Luckily, a lot of functions that you are going to encounter in economics will be well-behaved functions (cost, revenue, profit, utility, production functions). Let $I$ be the interval. 
+
+\begin{tcolorbox}[width=6in, enhanced]
+
+- $f^{\prime\prime}(x) \leq 0 \implies$ the function is \textcolor{red_pink}{concave} in interval $I$.
+
+- $f^{\prime\prime}(x) \geq  0 \implies$ the function is \textcolor{teal}{convex} in interval $I$.
+
+\end{tcolorbox}
+
+An example: $f(x) = x^3 - x$.
+
+Differentiate this function twice to get $f^{\prime\prime}(x) = 6x$. We can see that for all $x < 0$, the second order derivative will be negative and for all $x > 0$, the second order derivative will be positive. Therefore, $f(x)$ is concave in $(-\infty, 0]$ and convex in $[0, \infty)$.
+
+** First Order Derivative Test
+
+Let $x = c$ be a stationary point. Then,
+\begin{tcolorbox}[width=6in, enhanced]
+\begin{itemize}
+\item If $f^{\prime}(x) \geq 0  \quad  \forall x < c$ and $f^{\prime}(x) \leq 0 \quad \forall x > c$, then $c$ must be a maximum point.
+\item If $f^{\prime}(x) \leq 0  \quad \forall x < c$ and $f^{\prime}(x) \geq 0 \quad \forall x > c$, then $c$ must be a minimum point.
+\end{itemize}
+\end{tcolorbox}
+
+An example: Classify the stationary points of $x^3 - 12x$ using the first order derivative test.
+
+\begin{align*}
+f^{\prime}(x) &= 3x^2 - 12 \\
+\implies 3x^2 - 12 &= 0 \tag{using the necessary condition for stationary points} \\
+\implies x^2 - 4 &= 0 \\
+\implies x^2 &= 4 \\
+\implies x &= \pm{2}
+\end{align*}
+
+When $c = -2$,
+
+\begin{align*}
+f^{\prime}(-3) &= 3(-3)^2 - 12 > 0 \\
+f^{\prime}(-1) &= 3(-1)^2 - 12 < 0 
+\end{align*}
+
+When $c = 2$,
+\begin{align*}
+f^{\prime}(1) &= 3(1)^2 - 12 < 0 \\
+f^{\prime}(3) &= 3(3)^2 - 12 > 0 
+\end{align*}
+
+The first order derivative test suggests that $x = -2$ is the maximum point and $x = 2$ is the minimum point for the given function.
+
+
+** Absolute and Local Extrema
+
+\textbf{Definition: Absolute Extrema}
+
+\begin{tcolorbox}[width=6in, enhanced]
+- If $c \in D_f$, then $f(c)$ is the absolute maximum value of $f(x)$ if $f(c) \geq f(x) \quad \forall x \in D_f$.
+
+- If $c \in D_f$, then $f(c)$ is the absolute minimum value of $f(x)$ if $f(c) \leq f(x) \quad \forall x \in D_f$.
+\end{tcolorbox}
+
+
+\textbf{Definition: Local Extrema}
+
+\begin{tcolorbox}[width=6in, enhanced]
+- If $c \in D_f$, then $f(c)$ is a local maximum value of $f(x)$ if $f(c) > f(x)$ for all $x$ in some open interval containing $c$.
+
+- If $c \in D_f$, then $f(c)$ is a local minimum value of $f(x)$ if $f(c) < f(x)$ for all $x$ in some open interval containing $c$.
+\end{tcolorbox}
+
+An example: Consider $f(x) = x^3 - 12x$. The domain of the function is $(-\infty, \infty)$. We can easily see that this function does not have an absolute maximum or minimum. 
+
+Let's consider an interval $I = [-3, 3]$ (a part of the domain). Can we identify the absolute minimum and maximum points for $I$?
+The rule tells us to check for the stationary points as well as the end points.
+$f(-3) = 9$, $f(3) = -9$, $f(-2) = 16$, and $f(2) = -16$.
+
+Within interval $I$, $x = -2$ and $x = 2$ represent absolute minimum and absolute maximum points respectively. $x = -2$ and $x = -1$ are also the local maximum and local minimum points respectively. Please take a couple of values close to $\pm{2}$ to verify that this is indeed true.
+
+\vspace{2mm}
+
+Let's take another example. $f(x) = |x|$ and $I = [-2, 3]$.
+
+$f(-2) = 2$, $f(0) = 0$, and $f(3) = 3$. 
+
+This function has an absolute minimum at $x = 0$ and an absolute maximum at $x = 3$. 
+
+
+\begin{tikzpicture}
+  \begin{axis}[
+      axis lines = middle,
+      xlabel = \(x\),
+      ylabel = \(y\),
+      xmin = -2.5, xmax = 3.5,
+      ymin = -0.5, ymax = 3.5,
+      xtick = {-2,-1,0,1,2,3},
+      ytick = {0,1,2,3},
+      grid = both,
+      grid style = {line width=.1pt, draw=gray!10},
+      major grid style = {line width=.2pt,draw=gray!50},
+      axis equal image = false,
+      width=10cm,
+      height=8cm
+    ]
+    \addplot [
+      domain = -2:3,
+      samples = 200,
+      smooth,
+      thick,
+      blue
+    ] {abs(x)};
+    \addplot [only marks, mark=*, mark size=2.5pt, red] coordinates {(-2,2) (0,0) (3,3)};
+    \node [red, above right] at (axis cs: -2,2) {\((-2, 2)\)};
+    \node [red, below right] at (axis cs: 0,0) {\((0, 0)\)};
+    \node [red, above left] at (axis cs: 3,3) {\((3, 3)\)};
+    \node [blue, right] at (axis cs: 1.5,1.5) {\(f(x) = |x|\)};
+  \end{axis}
+\end{tikzpicture}
+
+
+\clearpage\newpage
+** Extreme Value Theorem
+
+\begin{tcolorbox}[width=6in, enhanced]
+If a function $f$ is continuous in a closed interval $[a, b]$, then $f$ is guaranteed to have an absolute minimum point $c$ and an absolute maximum point $d$ on $[a, b]$ such that:
+\[ f(c) \leq f(x) \leq f(d) \quad \forall x \in [a, b]  \]
+\end{tcolorbox}
+
+*** Finding Extreme Values: A Cookbook
+
+\begin{itemize}
+\item[Step 1] Determine whether the function is continuous on $[a, b]$.
+\item[Step 2] Using the necessary condition, find all stationary points that are in $(a, b)$.
+\item[Step 3] Evaluate the value of the function at the stationary points \textbf{and} the endpoints ($a, b$).
+\item[Step 4] Classify the largest and the smallest value of the function as the absolute maximum and the absolute minimum respectively.
+\end{itemize}
+
+An example: $f(x) = \dfrac{2}{x + 2}$ and interval $I = [1, 3]$.
+
+Note that this function does not have any critical point. So, now we are only left to evaluate the endpoints.
+When $x = 1$, $f(1) = \dfrac{2}{3}$.
+When $x = 3$, $f(3) = \dfrac{2}{5}$.
+
+Therefore, the function has an absolute minimum at $x = 3$ and an absolute maximum at $x = 1$.
+
+
+** Mean Value Theorem
+
+\begin{tcolorbox}[width=5in, enhanced]
+Suppose that $f(x)$ is continuous on $[a, b]$ and differentiable on $(a, b)$. Then, there exists a point $c \in (a, b)$ such that
+\[ f^{\prime}(c) = \dfrac{f(b) - f(a)}{b - a} \]
+\end{tcolorbox}
+
+An example: Consider $f(x) = x^3 - x$. Test the MVT on $f(x)$ in $[0, 1]$.
+\begin{align*}
+f^{\prime}(c) &= \dfrac{f(2) - f(0)}{2 - 0} \\
+f^{\prime}(c) &= \dfrac{(2)^3 - 2 - (0^3 - 0)}{2} \\
+f^{\prime}(c) &= \dfrac{6}{2} \\
+f^{\prime}(c) &= 3
+\end{align*}
+
+Using the given function, we can write:
+\begin{align*}
+f^{\prime}(x) &= 3x^2 - 1 \\
+\implies f^{\prime}(c) &= 3c^2 - 1 \\
+\implies 3c^2 - 1 &= 3 \\
+\implies 3c^2 &= 4 \\
+\implies c^2 &= \dfrac{4}{3} \\
+\implies c &= \dfrac{2}{\sqrt{3}} \tag{why?}
+\end{align*}
+
+** Second Derivative Test and Inflection Points
+
+We have already seen the second derivative test in the previous lecture. We will expand the test to fully characterize the stationary points.
+
+Let $c$ be a stationary point of a function $f(x)$. Then,
+
+\begin{tcolorbox}[width=6in, enhanced]
+$f^{\prime}(c) = 0 \quad \& \quad f^{\prime\prime}(c) \leq 0 \Rightarrow \textcolor{red_pink}{\text{MAXIMUM}}$
+
+$f^{\prime}(c) = 0 \quad \& \quad f^{\prime\prime}(c) \geq 0 \Rightarrow \textcolor{cbolive}{\text{MINIMUM}}$
+
+$f^{\prime}(c) = 0 \quad \& \quad f^{\prime\prime}(c) = 0 \Rightarrow \textcolor{gray!90}{\text{????}}$
+\end{tcolorbox}
+
+We will zoom in on the second part of the last condition. We can label such a point where the second derivate vanishes as the \textbf{inflection point} if
+
+\begin{tcolorbox}
+ $f^{\prime\prime}(x) \geq 0$ when $x > c$ and $f^{\prime\prime}(x) \leq 0$ when $x < c$
+
+\textbf{OR}
+
+$f^{\prime\prime}(x) \leq 0$ when $x > c$ and $f^{\prime\prime}(x) \geq 0$ when $x < c$
+\end{tcolorbox}
+
+\texttt{tl;dr version}: $c$ is an inflection point if the second derivative changes sign around $x = c$.
+
+An example: $f(x) = 2 + 3x - x^3$.
+
+$f^{\prime}(x) = 3 - 3x^2$ and $f^{\prime\prime}(x) = -6x$.
+
+Since the necessary condition for an inflection point is $f^{\prime\prime}(x) = 0$, therefore, the inflection point for this function is $x = 0$.
+
+Let's see what happens when we calculate the value of the second derivative below and above $x = 0$.
+
+We will use $x = - 1$ and $x = 1$.
+
+When $x = -1$, $f^{\prime\prime}(-1) = 6 > 0$.
+When $x = 1$, $f^{\prime\prime}(1) = -6 < 0$.
+
+We can see that the function changes signs at $x = 0$.
+
+Therefore, $x= 0$ represents the inflection point for $f(x) = 2 + 3x - x^3$.
+
+\begin{center}
+\begin{table}[htbp!]
+\begin{tabular}{ccc}
+\toprule
+Interval & Second Derivative & Curvature \\
+\midrule
+$(-\infty, 0)$ & \textbf{Positive} & Convex \\
+$(0, \infty)$ & \textbf{Negative} & Concave \\
+\bottomrule
+\end{tabular}
+\end{table}
+\end{center}
+
+	\begin{tikzpicture}
+		\begin{axis}[
+			width=15cm,
+			height=10cm,
+			axis lines = middle,
+			xlabel = $x$,
+			ylabel = $f(x)$,
+			xmin = -2, xmax = 2,
+			xtick={-2, -1, 0, 1, 2},
+			ymin = -4, ymax = 6,
+			grid = both,
+			samples = 100
+			]
+			\addplot[turquoise, very thick, domain=-2:0] {2 + 3*x - x^3};
+			\addplot[red_pink, very thick, domain=0:2] {2 + 3*x - x^3};
+			\fill[orange] (axis cs:0,2) circle (2pt);
+			\node[above right] at (axis cs:0,2) {\footnotesize \textcolor{orange}{Inflection point}};
+                        \fill[black] (axis cs:0,0) circle (1.5pt);
+                        \node[below left] at (axis cs:0,0) {\footnotesize 0};
+		\end{axis}
+	\end{tikzpicture}
+
+\vspace{2mm}
+	
+Consider another example: $f(x) = \dfrac{1}{2}x^4 + x^3 -6x^2$.
+
+
+The second derivative is: $f^{\prime\prime}(x) = 6x^2 + 6x - 12$.
+
+
+The condition for inflection point is $f^{\prime\prime}(x) = 0$.
+
+\begin{align*}
+6x^2 + 6x - 12 &= 0 \\
+6(x^2 + x - 2) &= 0 \\
+6(x + 2)(x - 1) &= 0
+\end{align*}
+
+The two possible candidates for the inflection point are $x = -2$ and $x = 1$. 
+
+Let's pick $x = -3$, $x = 0$, and $x = 2$ for the sufficient condition test.
+
+When $x = -3$, $f^{\prime\prime} = 6(-3)^2 + 6(-3) - 12 = 24 > 0$.
+
+When $x = 0$, $f^{\prime\prime} = 6(0) + 6(0) - 12 = -12 < 0$.
+
+When $x = 2$, $f^{\prime\prime} = 6(2)^2 + 6(2) - 12 = 24 > 0$.
+
+Therefore, $x = -2$ and $x = 1$ are the inflection points. 

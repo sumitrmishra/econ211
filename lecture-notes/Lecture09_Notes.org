@@ -1,0 +1,92 @@
+#+TITLE: Functions-I
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb, caption, etoolbox, gensymb, subcaption, tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+
+
+** What are functions?
+
+In order to understand sets, we will return to sets. Consider two sets $A$ and $B$.
+*** Ordered Pairs
+Think of points on the $xy$ plane. We typically represent them as a pair. Consider $x = 0$ and $y = 1$. We can write this point as $(0,1)$. Any such construction is known as an ordered pair, where each element of a pair comes from two different sets.
+These are called ordered pairs because the order in which elements appear matters. Let $\langle{x_1}, y_1\rangle$ be an ordered pair and $\langle{x_2}, y_2\rangle$ be another ordered pair.
+These two pairs can only be identical if and only if $x_1 = x_2$ and $y_1 = y_2$.
+*** Cartesian Product
+The Cartesian product of these two sets, $A\times{B}$ is defined as the ordered pairs of elements from each of the sets. 
+Let $A = \{1, 2\}$ and $B = \{a, b\}$. The Cartesian product of these two sets is
+\[ A\times{B} = \{(1, a), (1, b), (2, a), (2, b)\} \]
+
+*** Definition of function
+A function, $f: A \rightarrow  B$ between two sets $A$ and $B$ is a subset of the Cartesian product $A\times{B}$ such that for every $a \in A$, there exists a unique $b \in B$.
+
+An example:
+
+Let $A = \{1, 2, 3\}$ and $B = \{x, y , z\}$. Then,
+\[f = \{(1, x), (2, y), (3, z)\} \]
+$f(1) = x$, $f(2) = y$, and $f(3) = z$.
+
+More generally, set $A$ is known as the domain of the function and set $B$ the codomain of the function.
+
+Another example:
+
+Let $f: A \rightarrow B$ where $A = \{1, 2\}$ and $B= \{x, y\}$ such that $f(1) = x$ and $f(2) = y$. In this case, the domain of the function $f$ is $\{1, 2\}$ and the codomain happens to be $\{x, y\}$.
+
+
+Before we proceed, we must also be able to understand functions more intuitively. To put it in simple terms, a function is a  mapping from an input to an output.
+
+\begin{equation*}
+\boxed{\underbrace{\text{INPUT}}_{x}\underbrace{\rightarrow}_{\text{FUNCTION}}\underbrace{\text{OUTPUT}}_{y}}
+\end{equation*}
+
+
+** Domain and Range
+
+*** Domain
+The domain of a function is the set of all possible values that the input can take such that the function is defined.
+
+An example:
+Consider $f(x) = \dfrac{1}{x - 2}$. What is the domain of this function?
+\vspace{1mm}
+
+When $x = 2$, the function is not defined. All other values are possible. Therefore, we can say that the domain of the function $f(x)$ is:
+$D_f= x \in (-\infty, 2)\cup(2, \infty)$. You can also write the domain as: $D_f = x \in \mathbb{R}\setminus\{2\}$.
+
+*** Range
+The range of a function is defined as the set of all possible values of output that the function can generate.
+
+An example:
+Consider $f(x) = x^2 + 1$. What is the range of this function?
+
+Please note that we have a square on the RHS whose minimum value, as long we stick to real numbers, will be zero. Therefore, the minimum possible value of the output can be 1.
+Hence, the range of the function $f(x)$ is $R_f = f(x) \in [1, \infty)$.
+
+You can verify this in a more structured manner. Consider:
+\begin{align*}
+y &= x^2 + 1 \\
+\implies x^2 &= y - 1 \\
+\implies x &= \sqrt{y - 1}
+\end{align*}
+
+Looking at the RHS, we know that $y \geq 1$ for $x$ to be defined. Therefore, the range that we calculated using a verbal argument is correct.

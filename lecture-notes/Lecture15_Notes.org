@@ -1,0 +1,101 @@
+#+TITLE: Derivatives-III
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb, booktabs, caption, dcolumn, etoolbox, gensymb, pgfplots, polynom, subcaption,tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage[table, svgnames, dvipsnames]{xcolor}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+
+
+
+** Elasticity and Revenue
+
+We discussed elasticity of demand in the last lecture. In this lecture, we would like to establish an important relationship between the elasticity of demand and total revenue.
+Let demand be $q = f(p)$. Then, the total revenue will be $TR = p\times{q}$.
+Therefore,\[  TR = p\times{f(p)} \]
+
+Compute the marginal revenue.
+
+\begin{align*}
+MR &= \dfrac{d}{dp}(p\times{f(p)}) \\
+MR &= p\dfrac{d}{dp}(f(p)) + f(p)\dfrac{d}{dp}(p) \tag{applying the product rule} \\
+MR &= pf^{\prime}(p) + f(p) \\
+MR &= f(p)\Big[p\dfrac{f^{\prime}(p)}{f(p)} + 1\Big] \\
+MR &= f(p)[1 - \epsilon_{p}] \tag{since $e_p = -\dfrac{p}{q}\times\dfrac{dq}{dp}$}
+\end{align*}
+
+\textbf{Case-I}: The demand is inelastic, that is, $\epsilon_p < 1 \implies 1 - \epsilon_p > 0$. Therefore,
+\[ MR = f(p)(1 - \epsilon_p) > 0 \]
+
+Since $MR > 0$, a small increase (decrease) in price will lead to a rise (fall) in the total revenue.
+
+\textbf{Case-II}: The demand is unitary elastic, that is, $\epsilon_p = 1 \implies 1 - \epsilon_p = 0$. Therefore,
+\[ MR = 0 \]
+
+Since $MR = 0$, any small increase or decrease in the unit price will not affect a change in total revenue.
+
+\textbf{Case-III} The demand is elastic, that is, $\epsilon_p > 1 \implies 1 - \epsilon_p < 0$. Therefore,
+\[ MR = f(p)(1 - \epsilon_p) < 0 \]
+
+Since $MR < 0$, any small increase (decrease) in the price will lead to a fall (rise) in the revenue.
+
+\vspace{2mm}
+
+An example will help us understand this relationship. Let $q = 10 - p \quad (0 \leq p \leq 10)$. Consider three different prices $p = 4$, $p = 5$, and $p = 6$.
+
+We know that $\dfrac{dq}{dp} = -1$.
+
+When $p = 4$, $q = 6$, and $\epsilon_p = |\dfrac{4}{6}\dfrac{dq}{dp}| = \dfrac{2}{3}$.
+
+What happens when the firm tries to lower its price? Let's say price falls from 4 to $p = 3$. Let's also check what happens when price goes up from $p = 4$ to $p = 4.5$.
+\begin{align*}
+TR(p = 4) &= 4\times{6} = 24 \\
+TR(p = 3) &= 3\times{7} = 21 \\
+TR(p = 4.5) &= 4.5\times{5.5} = 24.75
+\end{align*}
+We can see that, when the demand is inelastic, lowering price will be a bad news for the firm's revenue.
+
+When $p = 5$, $q = 5$, and $\epsilon_p = |\dfrac{5}{5}\dfrac{dq}{dp}| = 1$.
+
+What happens when the firm tries to, let's say increase the price from 5 to $p = 5.5$, and lower the price to $4.5$?
+\begin{align*}
+TR(p = 5) &= 5\times{5} = 25 \\
+TR(p = 4.5) &= 4.5\times{5.5} = 24.75 \\
+TR(p = 5.5) &= 5.5\times{4.5} = 24.75
+\end{align*}
+
+We can conclude that, when the demand is unitary elastic, lowering or raising unit price won't impact firm's revenue.
+
+When $p = 6$, $q = 4$, and $\epsilon_p = \dfrac{6}{4} = \dfrac{3}{2}$.
+
+What happens when the firm tries to change its price from this price? Let's say the unit price moves from $p = 6$ to $p = 7$, and then it falls from $p = 6$ to $p = 5$.
+\begin{align*}
+TR(p = 6) &= 6\times{4} = 24 \\
+TR(p = 7) &= 7\times{3} = 21 \\
+TR(p = 5) &= 5\times{5} = 25
+\end{align*}
+
+We can infer from the calculation that, when the demand is elastic, lowering price will raise firm revenue and increasing the unit price will lead to a fall in the total revenue.

@@ -1,0 +1,616 @@
+#+TITLE: Functions-III
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb, caption, etoolbox, gensymb, pgfplots, polynom, subcaption, tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+#+LATEX_HEADER: \renewcommand{\thefigure}{A.\arabic{figure}}
+#+LATEX_HEADER: \setcounter{figure}{0}
+
+
+** Properties of Function
+
+*** Shifting Graphs
+
+A very common application of function in economics lies in the demand-supply framework. For instance, knowing functions is useful in understanding what happens to the equilibrium price and the equilibrium quantity when the demand goes up.
+
+Let $f(x)$ be a function. What will be the graph of the following transformations of the function?
+
+(i) $f(x) \pm c$
+
+(ii) $f(x \pm c)$
+
+(iii) $cf(x)$ or $\dfrac{f(x)}{c}$
+
+(iv) $f(x \pm c)$
+
+We will use a simple linear function to understand these transformations.
+
+\textbf{Case (i)}: Let $f(x) = x + 2$, and $c = 2$.
+
+$\boxed{f(x) + c = (x + 2) + 2 = \textcolor{red_pink}{x + 4}}$; $\boxed{f(x) - c = (x + 2) - 2 =\textcolor{green2}{x}}$
+
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[xscale = 0.8, yscale = 0.6]
+\draw[->, thick] (0, 0) -- (0, 10) node[above] {$y$};
+\draw[->, thick] (0, 0) -- (6, 0) node[right] {$x$};
+\draw[thin, dashed, gray!40] (0, 2) grid (6,10);
+\foreach \x in {1, 2, 3, 4, 5}
+\draw (\x, 0.1) -- (\x, -0.1) node[below] {\x};
+\foreach \y in {2, 4, 6, 8, 10}
+\draw (0.1, \y) -- (-0.1, \y) node[left] {\y};
+\node at (0,0) [below left] {0};
+\draw[smooth, thick, blue, domain=0:5] plot (\x, {\x + 2}) node[right, black] {\textcolor{blue}{$y = x + 2$}};
+\draw[dashed, thick, red_pink, domain=0:5] plot (\x, {\x + 4}) node[right, black] {\textcolor{red_pink}{$y = x + 4$}};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[xscale = 0.8, yscale = 0.6]
+\draw[->, thick] (0, 0) -- (0, 10) node[above] {$y$};
+\draw[->, thick] (0, 0) -- (6, 0) node[right] {$x$};
+\draw[thin, dashed, gray!40] (0, 2) grid (6,10);
+\foreach \x in {1, 2, 3, 4, 5}
+\draw (\x, 0.1) -- (\x, -0.1) node[below] {\x};
+\foreach \y in {2, 4, 6, 8, 10}
+\draw (0.1, \y) -- (-0.1, \y) node[left] {\y};
+\node at (0,0) [below left] {0};
+\draw[smooth, thick, blue, domain=0:5] plot (\x, {\x + 2}) node[right, black] {\textcolor{blue}{$y = x + 2$}};
+\draw[dashed, thick, green2, domain=0:5] plot (\x, {\x}) node[right, black] {\textcolor{green2}{$y = x$}};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+
+\textbf{Case (ii)}: Let $f(x) = 2x + 1$ and $c = 2$.
+
+\fbox{$f(x + 2) = 2(x + 2) + 1 = 2x + 3$}; \fbox{$f(x - 2) = 2(x - 2) + 1 = 2x - 1$}
+
+\begin{center}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[xscale = 0.8, yscale = 0.6]
+\draw[->, thick] (0, -2) -- (0, 14) node[above] {$y$};
+\draw[->, thick] (0, 0) -- (6, 0) node[right] {$x$};
+\draw[thin, dashed, gray!40] (0, 2) grid (6,10);
+\foreach \x in {1, 2, 3, 4, 5}
+\draw (\x, 0.1) -- (\x, -0.1) node[below] {\x};
+\foreach \y in {2, 4, 6, 8, 10, 14}
+\draw (0.1, \y) -- (-0.1, \y) node[left] {\y};
+\node at (0,0) [below left] {0};
+\draw[smooth, thick, blue, domain=0:5] plot (\x, {2*\x + 1}) node[right, black] {\textcolor{blue}{$y = 2x + 1$}};
+\draw[dashed, thick, red_pink, domain=0:5] plot (\x, {2*\x + 3}) node[right, black] {\textcolor{red_pink}{$y = 2x + 3$}};
+%\draw[dashed, thick, cbgreen, domain=0:5] plot(\x, {2*\x -1}) node[right, black] {$y = 2x - 1$};
+\end{tikzpicture}
+\end{minipage}
+\begin{minipage}{0.4\textwidth}
+\begin{tikzpicture}[xscale = 0.8, yscale = 0.6]
+\draw[->, thick] (0, -2) -- (0, 14) node[above] {$y$};
+\draw[->, thick] (0, 0) -- (6, 0) node[right] {$x$};
+\draw[thin, dashed, gray!40] (0, 2) grid (6,10);
+\foreach \x in {1, 2, 3, 4, 5}
+\draw (\x, 0.1) -- (\x, -0.1) node[below] {\x};
+\foreach \y in {2, 4, 6, 8, 10, 14}
+\draw (0.1, \y) -- (-0.1, \y) node[left] {\y};
+\node at (0,0) [below left] {0};
+\draw[smooth, thick, blue, domain=0:5] plot (\x, {2*\x + 1}) node[right, black] {\textcolor{blue}{$y = 2x + 1$}};
+\draw[dashed, thick, green2, domain=0:5] plot(\x, {2*\x -1}) node[right, black] {\textcolor{green2}{$y = 2x - 1$}};
+\end{tikzpicture}
+\end{minipage}
+\end{center}
+
+\textbf{Case (iii)}: $f(x) = 2(x + 1)$, $c = 2$.
+
+
+\fbox{$cf(x) = 4(x + 1)$}; $\boxed{\dfrac{f(x)}{c} = x + 1}$
+
+Figure \ref{fig:fig01} shows these transformations. The function becomes steeper when you multiply a constant, and the function becomes becomes flatter when divide the function by a constant.
+
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,  
+				height=0.6\textheight, 
+				scale only axis,
+				enlarge x limits=false,
+				enlarge y limits=false,
+				title={},
+				xlabel={$x$},
+				ylabel={$y$},
+				axis lines=middle,
+				grid=major,
+				xmin=-5, xmax=6,
+				ymin=-16, ymax=24,
+				xtick={-4,-2,0,2,4,6},
+				ytick={-15,-10,-5,0,5,10,15,20},
+				legend pos=north west,
+				legend style={font=\large},
+				ticklabel style={font=\large},
+				label style={font=\large},
+				title style={font=\large}
+				]
+				
+				% original function
+				\addplot[blue, very thick, smooth, domain=-5:6, samples=50] {2*(x+1)};
+				\addlegendentry{$f(x) = 2(x+1)$}
+				
+				\addplot[red_pink, very thick, dashed, smooth, domain=-5:6, samples=50] {4*(x+1)};
+				\addlegendentry{$cf(x) = 4(x+1)$}
+				
+				\addplot[green2, very thick, dotted, smooth, domain=-5:6, samples=50] {x+1};
+				\addlegendentry{$f(x)/c = x+1$}
+				
+			\end{axis}
+		\end{tikzpicture}
+		\caption{}
+               \label{fig:fig01}
+	\end{figure}
+
+
+\textbf{Case (iv)}: $f(x) = x^2$, $c = 1$.
+
+$\boxed{f(x + c) = f(x + 1) = (x + 1)^2}$
+
+Figure \ref{fig:fig02} shows these transformations. It is worth noting that the graphs look identical and it seems like that the function has moved along the x-axis.
+
+\clearpage
+
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,  
+				height=0.6\textheight, 
+				scale only axis,
+				enlarge x limits=false,
+				enlarge y limits=false,
+				title={},
+				xlabel={$x$},
+				ylabel={$y$},
+				axis lines=middle,
+				grid=major,
+				xmin=-5, xmax=6,
+				ymin=-16, ymax=24,
+				xtick={-4,-2,0,2,4,6},
+				ytick={0, 4, 9, 16, 25, 36, 50},
+				legend pos=north west,
+				legend style={font=\large},
+				ticklabel style={font=\large},
+				label style={font=\large},
+				title style={font=\large}
+				]
+				
+				% original function
+				\addplot[blue, very thick, smooth, domain=-5:6, samples=50] {(x)^2};
+				\addlegendentry{$f(x) = x^2$}
+				
+				\addplot[red_pink, very thick, dashed, smooth, domain=-5:6, samples=50] {(x+1)^2};
+				\addlegendentry{$f(x + c) = (x+1)^2$}
+				
+				\addplot[green2, very thick, dotted, smooth, domain=-5:6, samples=50] {(x - 1)^2};
+				\addlegendentry{$f(x - c) = (x - 1)^2$}
+				
+			\end{axis}
+		\end{tikzpicture}
+		\caption{}
+               \label{fig:fig02}
+	\end{figure}
+
+\clearpage
+	
+**** Shifting Demand and Supply Curves
+
+An important use-case of shifting a function in microeconomics is in the demand-supply framework. We will work with an example to understand this.
+Let the demand function be $q = 5 - 0.5p$ and the supply function be $q = 0.5p - 1$. Therefore, the inverse demand function will be $p = 10 - 2q$ and the inverse supply function will be $p = 2 + 2q$.
+If you solve these equations, the market equilibrium is $(p, q) = (6, 2)$. Please see Figure \ref{fig:appfig01} for the details.
+
+
+
+\textbf{Case-I: Demand goes up} When we say that demand increases, it means that the demand curve will shift to the right. Let the new demand function be $p = 12 - 2q$.
+Both the equilibrium price and the equilibrium quantity will increase (provided the supply remains fixed). Please see Figure \ref{fig:appfig02} for the details.
+
+
+\textbf{Case-II: Demand goes down} When we say the demand falls, it means that the demand curve will shift to the left. Let the new demand function be $p = 8 - 2q$. Both the equilibrium price and the equilibrium quantity will go down. Figure \ref{fig:appfig03} shows these changes.
+
+\textbf{Case-III: Supply goes up} When we say that the supply has increased, this means that the supply curve will shift downwards.Let the new supply function be $p = 1 + 2q$. The equilibrium price will go down and the equilibrium quantity will increase (provided the demand remains unchanged). These results are shown in Figure \ref{fig:appfig04}.
+
+\textbf{Case-IV: Supply goes down} When we say that the supply has fallen, this means that supply curve will shift upwards causing the equilibrium price to increase and the equilibrium quantity to go down. Let the new supply function be $p = 4 + 2q$. Figure \ref{fig:appfig05} shows the shift in the equilibrium.
+
+The appendix contains the graphs for these scenarios.
+
+You should think about the following situations.
+\begin{enumerate}
+\item What happens when the government imposes a per-unit tax of \rupee{10} on producer?
+\item What happens when the government imposes a per-unit tax of 10\% on the producer?
+\end{enumerate}
+
+\textbf{Hint:} In both these scenarios, the supply curve will shift. 
+
+
+*** Composite Functions 
+
+\textbf{Definition:} Let their be a function $y = f(u)$ and $u = g(x)$, then we can write $y$ in terms of $x$.
+\[ y = f(g(x)) \]
+
+It is worth mentioning here that the order in which $f$ and $g$ appear matters. It will be useful to remember this distinction when you are working with functions in a programming class.
+Take the following exercise.
+
+Construct a vector `x` in \texttt{R} with three numbers.
+Now, perform the two tasks sequentially.
+First, take the average of the numbers and then compute the square root of the average.
+
+#+BEGIN_SRC R:
+# generate a vector
+x <- c(1, 2, 3)
+# compute the mean (average)
+mean_x <- mean(x)
+# compute the square root
+sqrt_mean_x <- sqrt(mean_x)
+# you can also do it in one go
+sqrt_mean_x <- sqrt(mean(x))
+# you cannot write!
+sqrt_mean_x <- mean(sqrt(x))
+#+END_SRC
+
+Let's do this with a couple of simple mathematical example.
+
+Consider $y = 2u$ and $u = x^2$. What will be $y$ in terms of $x$?
+$y = 2u = 2(x^2) = 2x^2$. 
+
+Let $y = f(x) = 2x + 1$ and $u = g(x) = x - 1$. What will be $f(g(x)$ and $g(f(x))$?
+
+\begin{align*}
+f(g(x)) &= f(x - 1) = 2(x - 1) + 1 = 2x - 1 \\
+g(f(x)) &= g(2x + 1) = (2x + 1) + 1 = 2x + 2
+\end{align*}
+
+
+
+*** Inverse of a Function
+
+\textbf{Definition}: Let $f$ be a function with domain $A$ and range $B$. If and only if $f$ is one-to-one, it has a defined \textbf{inverse function} $g$ with domain $B$ and range $A$.
+For each $y \in B$, there exists a unique number $x \in A$.
+
+\[ \boxed{g(y) = x \Leftrightarrow  y = f(x) \quad (x \in A, y \in B)} \]
+
+The notation for the inverse function is $f^{-1}(x)$ and the following is true:
+\[ f(f^{-}(x)) = f^{-1}(f(x) = x \]
+
+There are too many things going on here. So, we will try to understand one piece at a time. Let's start with the idea of 'one-to-one' functions.
+A function is one-to-one if and only if
+\[ \forall x_1, \forall x_2,\quad  x_1 \neq x_2 \implies f(x_1) \neq f(x_2) \]
+Alternatively, a function is one-to-one if
+\[ f(x_1) = f(x_2) \implies x_1 = x_2 \]
+
+\textbf{Examples:}
+
+\[ f(x) = 2x + 1 \]
+
+Let's begin with a counter-claim that there are indeed $x_1$ and $x_2$ (such that $x_1$ and $x_2$ are two distinct real numbers) in the domain such that $f(x_1) = f(x_2)$.
+\begin{align*}
+f(x_1) &= f(x_2) \\
+2(x_1) + 1 &= 2(x_2) + 1 \\
+2x_1 &= 2x_2 \\
+x_1 &= x_2
+\end{align*}
+
+Therefore, the function $y = 2x + 1$ is one-to-one.
+
+\[f(x) = x^2 \]
+For this one, $f(1) = 1$, and $f(-1) = 1$, but we know that $-1 \neq 1$. Therefore, $f(x) = x^2$ is not a one-to-one function.
+
+
+Now that we know what one-to-functions are (and aren't), we will compute the inverse. We know that $f(x) = 2x + 1$ is one-to-one.
+Let $f(x) = y$ and we will try to write $y$ in terms of $x$ using the function.
+\begin{align*}
+y &= 2x + 1 \\
+2x &= y - 1 \\
+x &= \dfrac{y - 1}{2}
+\end{align*}
+
+Therefore, the inverse of $f(x)$ is $f^{-1}(x) = \dfrac{x - 1}{2}$.
+
+Let's now verify the property of the inverse that $f(f^{-1}(x)) = f^{-1}(f(x)) = x$.
+
+\begin{align*}
+f(x) &= 2x + 1 \\
+\implies f(f^{-1}(x)) &= 2(f^{-1}(x)) + 1 \tag{replace $x$ with $f^{-1}(x)$} \\
+\implies f(f^{-1}(x)) &= 2(\dfrac{x - 1}{2}) + 1 \\
+\implies f(f^{-1}(x)) &= x \\
+f^{-1}(x) &=  \dfrac{x - 1}{2} \\
+\implies f^{-1}(f(x)) &=  \dfrac{f(x) - 1}{2} \\
+\implies f^{-1}(f(x)) &=  \dfrac{(2x + 1) - 1}{2} \\
+\implies f^{-1}(f(x)) &= x
+\end{align*}
+
+
+
+
+
+\clearpage\newpage
+
+#+LATEX:\appendix
+
+
+Figures for demand and supply curve shifts
+
+
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				height=0.6\textheight,
+				scale only axis,
+				enlarge x limits=false,
+				enlarge y limits=false,
+				title={Market Equilibrium},
+				xlabel={Quantity ($q$)},
+				ylabel={Price ($p$)},
+				axis lines=middle,
+				grid=major,
+				xmin=0, xmax=6,
+				ymin=0, ymax=12,
+				xtick={0,1,2,3,4,5,6},
+				ytick={0,2,4,6,8,10,12},
+				legend pos=north east,
+				legend style={font=\tiny},
+				ticklabel style={font=\large},
+				label style={font=\large},
+				title style={font=\large},
+				restrict y to domain=0:12, 
+				]
+				
+				% Inverse Demand: p = 10 - 2q (from q = 5 - 0.5p)
+				\addplot[blue, very thick, smooth, domain=0:5, samples=50] {10 - 2*x}; 
+				\addlegendentry{Inverse Demand: $p = 10 - 2q$}
+				
+				% Inverse Supply: p = 2 + 2q (from q = 0.5p - 1)
+				\addplot[red_pink, very thick, smooth, domain=0:5, samples=50] {2 + 2*x};
+				\addlegendentry{Inverse Supply: $p = 2 + 2q$}
+				
+				% Equilibrium point (q=2, p=6)
+				\addplot[black, mark=*, mark size=3pt, only marks] coordinates {(2,6)};
+				\addlegendentry{Equilibrium: $(2,6)$}
+				\addplot[black, dashed, thin] coordinates {(2,0) (2,6) (0,6)};
+				\node[above right] at (axis cs:2,6) {$(2,6)$};	
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Inverse demand and supply curves showing market equilibrium}
+		\label{fig:appfig01}
+	\end{figure}
+
+
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				height=0.6\textheight,
+				scale only axis,
+				enlarge x limits=false,
+				enlarge y limits=false,
+				title={Inverse Demand Curve Shifts Rightwards},
+				xlabel={Quantity ($q$)},
+				ylabel={Price ($p$)},
+				axis lines=middle,
+				grid=major,
+				xmin=0, xmax=6,
+				ymin=0, ymax=12,
+				xtick={0,1,2,2.5,3,4,5,6},
+				ytick={0,2,4,6,7,8,10,12},
+				legend pos=north east,
+				legend style={font=\tiny},
+				ticklabel style={font=\large},
+				label style={font=\large},
+				title style={font=\large},
+				restrict y to domain=0:12,
+				]
+				
+				\addplot[blue, very thick, smooth, domain=0:5, samples=50] {10 - 2*x};
+				\addlegendentry{Original Demand: $p = 10 - 2q$}
+				
+				\addplot[orange, very thick, smooth, domain=0:6, samples=50] {12 - 2*x};
+				\addlegendentry{New Demand: $p = 12 - 2q$}
+				
+				\addplot[red_pink, very thick, smooth, domain=0:5, samples=50] {2 + 2*x};
+				\addlegendentry{Supply: $p = 2 + 2q$}
+				\addplot[black, mark=*, mark size=3pt, only marks] coordinates {(2,6)};
+				\addlegendentry{Original Equilibrium: $(2,6)$}
+				\addplot[black, dashed, thin] coordinates {(2,0) (2,6) (0,6)};
+				\node[above right] at (axis cs:2,6) {$(2,6)$};
+				\addplot[black, mark=*, mark size=3pt, only marks] coordinates {(2.5,7)};
+				\addlegendentry{New Equilibrium: $(2.5,7)$}
+				\addplot[black, dashed, thin] coordinates {(2.5,0) (2.5,7) (0,7)};
+				\node[above right] at (axis cs:2.5,7) {$(2.5,7)$};
+				
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Inverse demand curve shifts rightwards, increasing both price and quantity at the new equilibrium.}
+                \label{fig:appfig02}
+	\end{figure}
+
+
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				height=0.6\textheight,
+				scale only axis,
+				enlarge x limits=false,
+				enlarge y limits=false,
+				title={Inverse Demand Curve Shifts Leftwards},
+				xlabel={Quantity ($q$)},
+				ylabel={Price ($p$)},
+				axis lines=middle,
+				grid=major,
+				xmin=0, xmax=6,
+				ymin=0, ymax=12,
+				xtick={0,1,1.5,2,3,4,5,6},
+				ytick={0,2,4,5,6,8,10,12},
+				legend pos=north east,
+				legend style={font=\tiny},
+				ticklabel style={font=\large},
+				label style={font=\large},
+				title style={font=\large},
+				restrict y to domain=0:12,
+				]
+				
+				\addplot[blue, very thick, smooth, domain=0:5, samples=50] {10 - 2*x};
+				\addlegendentry{Original Demand: $p = 10 - 2q$}
+				
+				\addplot[orange, very thick, smooth, domain=0:4, samples=50] {8 - 2*x};
+				\addlegendentry{New Demand: $p = 8 - 2q$}
+				
+				\addplot[red, very thick, smooth, domain=0:5, samples=50] {2 + 2*x};
+				\addlegendentry{Supply: $p = 2 + 2q$}
+				
+				\addplot[black, mark=*, mark size=3pt, only marks] coordinates {(2,6)};
+				\addlegendentry{Original Equilibrium: $(2,6)$}
+				\addplot[black, dashed, thin] coordinates {(2,0) (2,6) (0,6)};
+				\node[above right] at (axis cs:2,6) {$(2,6)$};
+				
+				\addplot[black, mark=*, mark size=3pt, only marks] coordinates {(1.5,5)};
+				\addlegendentry{New Equilibrium: $(1.5,5)$}
+				\addplot[black, dashed, thin] coordinates {(1.5,0) (1.5,5) (0,5)};
+				\node[above right] at (axis cs:1.5,5) {$(1.5,5)$};
+				
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Inverse demand curve shifts leftwards, decreasing both price and quantity at the new equilibrium.}
+                \label{fig:appfig03}
+	\end{figure}
+
+
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				height=0.6\textheight,
+				scale only axis,
+				enlarge x limits=false,
+				enlarge y limits=false,
+				title={Inverse Supply Curve Shifts Upwards},
+				xlabel={Quantity ($q$)},
+				ylabel={Price ($p$)},
+				axis lines=middle,
+				grid=major,
+				xmin=0, xmax=6,
+				ymin=0, ymax=12,
+				xtick={0,1,1.5,2,3,4,5,6},
+				ytick={0,2,4,6,7,8,10,12},
+				legend pos=north east,
+				legend style={font=\tiny},
+				ticklabel style={font=\large},
+				label style={font=\large},
+				title style={font=\large},
+				restrict y to domain=0:12,
+				]
+				
+ 				\addplot[blue, very thick, smooth, domain=0:5, samples=50] {10 - 2*x};
+				\addlegendentry{Demand: $p = 10 - 2q$}
+				\addplot[red_pink, very thick, smooth, domain=0:5, samples=50] {2 + 2*x};
+				\addlegendentry{Original Supply: $p = 2 + 2q$}
+				
+				\addplot[orange, very thick, smooth, domain=0:4, samples=50] {4 + 2*x};
+				\addlegendentry{New Supply: $p = 4 + 2q$}
+				
+				\addplot[black, mark=*, mark size=3pt, only marks] coordinates {(2,6)};
+				\addlegendentry{Original Equilibrium: $(2,6)$}
+				\addplot[black, dashed, thin] coordinates {(2,0) (2,6) (0,6)};
+				\node[above right] at (axis cs:2,6) {$(2,6)$};
+				
+				\addplot[black, mark=*, mark size=3pt, only marks] coordinates {(1.5,7)};
+				\addlegendentry{New Equilibrium: $(1.5,7)$}
+				\addplot[black, dashed, thin] coordinates {(1.5,0) (1.5,7) (0,7)};
+				\node[above right] at (axis cs:1.5,7) {$(1.5,7)$};
+				
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Inverse supply curve shifts upwards, increasing price and decreasing quantity at the new equilibrium.}
+                \label{fig:appfig04}
+	\end{figure}
+
+
+	\begin{figure}[htbp]
+		\centering
+		\begin{tikzpicture}
+			\begin{axis}[
+				width=\textwidth,
+				height=0.6\textheight,
+				scale only axis,
+				enlarge x limits=false,
+				enlarge y limits=false,
+				title={Inverse Supply Curve Shifts Downwards},
+				xlabel={Quantity ($q$)},
+				ylabel={Price ($p$)},
+				axis lines=middle,
+				grid=major,
+				xmin=0, xmax=6,
+				ymin=0, ymax=12,
+				xtick={0,1,2,2.25,3,4,5,6},
+				ytick={0,2,4,5.5,6,8,10,12},
+				legend pos=north east,
+				legend style={font=\tiny},
+				ticklabel style={font=\large},
+				label style={font=\large},
+				title style={font=\large},
+				restrict y to domain=0:12,
+				]
+				
+				\addplot[blue, very thick, smooth, domain=0:5, samples=50] {10 - 2*x};
+				\addlegendentry{Demand: $p = 10 - 2q$}
+				
+				\addplot[red, very thick, smooth, domain=0:5, samples=50] {2 + 2*x};
+				\addlegendentry{Original Supply: $p = 2 + 2q$}
+				
+				\addplot[orange, very thick, smooth, domain=0:5.5, samples=50] {1 + 2*x};
+				\addlegendentry{New Supply: $p = 1 + 2q$}
+				
+				\addplot[black, mark=*, mark size=3pt, only marks] coordinates {(2,6)};
+				\addlegendentry{Original Equilibrium: $(2,6)$}
+				\addplot[black, dashed, thin] coordinates {(2,0) (2,6) (0,6)};
+				\node[above right] at (axis cs:2,6) {$(2,6)$};
+				
+				\addplot[black, mark=*, mark size=3pt, only marks] coordinates {(2.25,5.5)};
+				\addlegendentry{New Equilibrium: $(2.25,5.5)$}
+				\addplot[black, dashed, thin] coordinates {(2.25,0) (2.25,5.5) (0,5.5)};
+				\node[above right] at (axis cs:2.25,5.5) {$(2.25,5.5)$};
+				
+			\end{axis}
+		\end{tikzpicture}
+		\caption{Inverse supply curve shifts downwards, decreasing price and increasing quantity at the new equilibrium.}
+                \label{fig:appfig05}
+	\end{figure}
+	

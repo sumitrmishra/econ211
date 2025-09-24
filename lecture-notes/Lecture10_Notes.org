@@ -1,0 +1,370 @@
+#+TITLE: Functions-II
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb, caption, etoolbox, gensymb, polynom, subcaption, tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+
+
+
+
+** Types of Functions
+
+*** Linear Functions
+
+A simple linear function is defined as
+\[ y = mx + c \]
+
+where $m$ is the slope of the line and $c$ the intercept.
+
+
+An example:
+
+\[ y = 2x + 1 \]
+
+This function represents a line with a slope = 2 and intercept = 1. 
+
+
+The equation of a line that passses through two points $(x_1, y_1)$ and $(x_2, y_2)$ can be written as:
+
+\begin{equation*} (y - y_1) = \dfrac{y_2 - y_1}{x_2 - x_1}(x - x_1) \end{equation*}
+
+
+An example:
+
+What is the equation of the line that passes through $(0, 3)$, $(-1, 1)$?
+
+\textbf{Step 1: } Compute the slope of the line.
+\begin{align*}
+m &= \dfrac{(1 - 3)}{(-1 - 0)} \\
+m &= \dfrac{-2}{-1} \\
+m &= 2
+\end{align*}
+
+\textbf{Step 2: } Write the equation of the line using \textit{any} given point.
+
+\begin{align*}
+(y - 3) &= 2\times(x - 0) \tag{using given values} \\
+y -3 &= 2x \\
+y &= 2x + 3
+\end{align*}
+
+
+
+
+**** Graph
+
+Figure \ref{fig:fig1} shows a graph with many possible scenarios of slope and intercept. 
+
+	\begin{figure}[htbp!]
+		\centering
+		%  m > 0, c > 0
+		\begin{subfigure}[b]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=0.8, >=stealth]
+				\draw[->] (-3,0) -- (3,0) node[below] {$x$};
+				\draw[->] (0,-3) -- (0,3) node[left] {$y$};
+				\draw[gray!30, step=1] (-3,-3) grid (3,3);
+				\node at (0,0) [below left] {$O$};
+				\draw[red, thick, domain=-2:2] plot (\x, {1.5*\x + 1}) 
+				node[right] {\scriptsize $m>0$, $c>0$};
+				%\draw[dashed, gray] (0,1) -- (-1.33,1);
+			\end{tikzpicture}
+			\caption{$m > 0$, $c > 0$}
+		\end{subfigure}
+		\hfill
+		%  m > 0, c < 0
+		\begin{subfigure}[b]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=0.8, >=stealth]
+				\draw[->] (-3,0) -- (3,0) node[below] {$x$};
+				\draw[->] (0,-3) -- (0,3) node[left] {$y$};
+				\draw[gray!30, step=1] (-3,-3) grid (3,3);
+				\node at (0,0) [below left] {$O$};
+				\draw[blue, thick, domain=-1:2] plot (\x, {\x - 1}) 
+				node[right] {\scriptsize $m>0$, $c<0$};
+				%\draw[dashed, gray] (0,-1) -- (1,-1);
+			\end{tikzpicture}
+			\caption{$m > 0$, $c < 0$}
+		\end{subfigure}
+		\vspace{0.5cm} 
+		% m < 0, c > 0
+
+		\begin{subfigure}[b]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=0.8, >=stealth]
+				\draw[->] (-3,0) -- (3,0) node[below] {$x$};
+				\draw[->] (0,-3) -- (0,3) node[left] {$y$};
+				\draw[gray!30, step=1] (-3,-3) grid (3,3);
+				\node at (0,0) [below left] {$O$};
+				\draw[green!70!black, thick, domain=-2:2] plot (\x, {-\x + 0.5}) 
+				node[right] {\scriptsize $m<0$, $c>0$};
+				\draw[dashed, gray] (0,0.5) -- (0.5,0.5);
+			\end{tikzpicture}
+			\caption{$m < 0$, $c > 0$}
+		\end{subfigure}
+		\hfill
+		%  m < 0, c < 0
+		\begin{subfigure}[b]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=0.8, >=stealth]
+				\draw[->] (-3,0) -- (3,0) node[below] {$x$};
+				\draw[->] (0,-3) -- (0,3) node[left] {$y$};
+				\draw[gray!30, step=1] (-3,-3) grid (3,3);
+				\node at (0,0) [below left] {$O$};
+				\draw[purple, thick, domain=-1:2] plot (\x, {-0.5*\x - 1}) 
+				node[right] {\scriptsize $m<0$, $c<0$};
+%				\draw[dashed, gray] (0,-1) -- (-2,-1);
+			\end{tikzpicture}
+			\caption{$m < 0$, $c < 0$}
+		\end{subfigure}
+		\caption{$y = mx + c$ with varying slope ($m$) and intercept ($c$).}
+                \label{fig:fig1}
+	\end{figure}
+
+\clearpage\newpage
+
+**** Supply and Demand
+
+Consider a generic market with the following demand and supply setup.
+\begin{align*}
+\text{Supply : } P = \alpha + \beta\times{Q_S} \\
+\text{Demand : } P = \gamma - \delta\times{Q_D}
+\end{align*}
+
+where $\alpha, \beta, \gamma, \delta > 0$.
+
+What are the equilibrium price and quantity?
+
+At equilibrium, \fbox{Demand = Supply}. Therefore,
+\begin{align*}
+\alpha + \beta{Q^{\ast}} &= \gamma - \delta{Q^{\ast}} \\
+\implies (\beta + \delta)Q^{\ast} &= \gamma - \alpha \\
+\implies Q^{\ast} &= \dfrac{\gamma - \alpha}{\beta + \delta} \\
+P^{\ast} &= \alpha + \beta{Q^{\ast}} \\
+\implies P^{\ast} &= \alpha + \beta{\dfrac{\gamma - \alpha}{\beta + \delta}} \\
+\implies P^{\ast} &= \dfrac{\alpha\delta + \beta\gamma}{\beta + \delta}
+\end{align*}
+
+
+
+**** Linear Inequalities
+
+A general form of linear inequality is given by:
+
+\begin{align*}
+\alpha{x} + \beta{y} &\leq b \\
+\alpha{x} + \beta{y} &\geq b
+\end{align*}
+
+***** Budget Sets
+
+A person's income is $M$ and they wish to spend it on espressos ($x$) and cakes ($y$). The price of a cup of espresso is $p_x$ and the price of a slice of a cake is $p_y$.
+Suppose that this person (who wishes not to be named) wants to consume non-zero quantities of coffee and cake ($x \geq 0, y \geq 0$). What is their budget set?
+\[ B = \{(x, y): p_x{x} + p_y{y} \leq M, x \geq 0, y \geq 0\} \]
+
+
+An example: Consider an individual with income, $M = 6$, who wishes to spend it on two goods $x$ and $y$. The price of good $x$ is $2$ and the price of good $y$ is 3.
+What is the budget set?
+
+		The budget set is defined as:
+		\[ B = \{(x, y) \in \mathbb{R}^2 : 2x + 3y \leq 6, x \geq 0, y \geq 0\} \]
+		
+		\begin{center}
+			\begin{tikzpicture}[scale=1.5]
+				% Axes
+				\draw[->] (-0.5,0) -- (4,0) node[right]{$x$};
+				\draw[->] (0,-0.5) -- (0,3) node[above]{$y$};
+				
+				% Budget line: 2x + 3y = 6
+				\draw[thick, blue] (0,2) -- (3,0);
+				
+				% Labels for intercepts
+				\node[below] at (3,0) {3};
+				\node[left] at (0,2) {2};
+				
+				% Shade the budget set
+				\fill[blue!10] (0,0) -- (0,2) -- (3,0) -- cycle;
+				
+				% Label the budget set
+				\node at (1,0.7) {$B$};
+				
+				% Label the inequality
+				\node[blue] at (2,2.5) {$2x + 3y \leq 6$};
+			\end{tikzpicture}
+		\end{center}
+
+
+
+
+
+*** Quadratic Functions
+
+A general quadratic function is defined as:
+
+\[ f(x) = ax^2 + bx + c \]
+
+
+**** Graph of a Quadratic Function
+
+The graph of the function $f(x) = ax^2 + bx + c$ is called a \textbf{parabola}. Informally, when $a < 0$, we get an inverted-U and when $a > 0$, we have a U-shaped parabola.
+Figure \ref{fig:fig2} represents all possible scenarios.
+
+
+
+	\begin{figure}[h]
+		\centering
+		
+		% Row 1
+		\begin{subfigure}[b]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=0.8]
+				\draw[->] (-2,0) -- (2,0) node[right]{$x$};
+				\draw[->] (0,-1.5) -- (0,2) node[above]{$y$};
+				\draw[thick, red, domain=-1.5:2.5] plot (\x, {-(\x)^2 + \x + 0.5});
+				\node[align=center] at (0,-1.8) {\footnotesize (a) $a < 0$, $b^2 \geq 4ac$};
+			\end{tikzpicture}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=0.8]
+				\draw[->] (-2,0) -- (2,0) node[right]{$x$};
+				\draw[->] (0,-1.5) -- (0,2) node[above]{$y$};
+				\draw[thick, orange, domain=-1.5:1.5] plot (\x, {-(\x)^2 - 0.5});
+				\node[align=center] at (0,-1.8) {\footnotesize (b) $a < 0$, $b^2 < 4ac$};
+			\end{tikzpicture}
+		\end{subfigure}
+		
+		% Row 2
+		\vspace{0.5cm}
+		\begin{subfigure}[b]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=0.8]
+				\draw[->] (-2,0) -- (2,0) node[right]{$x$};
+				\draw[->] (0,-0.5) -- (0,2) node[above]{$y$};
+				\draw[thick, blue, domain=-1.5:1.5] plot (\x, {(\x)^2 + 0.5});
+				\node[align=center] at (0,-1.2) {\footnotesize (c) $a > 0$, $b^2 < 4ac$};
+			\end{tikzpicture}
+		\end{subfigure}
+		\hfill
+		\begin{subfigure}[b]{0.45\textwidth}
+			\centering
+			\begin{tikzpicture}[scale=0.8]
+				\draw[->] (-2,0) -- (2,0) node[right]{$x$};
+				\draw[->] (0,-0.5) -- (0,2) node[above]{$y$};
+				\draw[thick, green!70!black, domain=-1.5:1.5] plot (\x, {(\x)^2});
+				\node[align=center] at (0,-0.8) {\footnotesize (d) $a > 0$, $b^2 \geq 4ac$};
+			\end{tikzpicture}
+		\end{subfigure}
+		
+		\vspace{0.5cm}
+		\caption{The graph of the parabola $y = ax^2 + bx + c$ for different values of $a$, $b$, and $c$. \\ 
+			(a) Inverted-U shaped with real roots, (b) Inverted-U shaped with no real roots, \\
+			(c) U-shaped with no real roots, (d) U-shaped with (at least) one real root.}
+		\label{fig:fig2}
+	\end{figure}
+
+**** Maximum and Minimum Values of a Quadratic Function
+
+While we haven't yet formally started discussing maxima and minima, we will discuss max-min for quadratic functions (informally).
+
+\begin{itemize}
+\item If $a > 0$, then $f(x) = ax^2 + bx + c$ has its \textbf{minimum} value at $x = \dfrac{-b}{2a}$.
+\item if $a < 0$, the $f(x) = ax^2 + bx + c$ has its \textbf{maximum} value at $x = \dfrac{-b}{2a}$
+\end{itemize}
+
+An example:
+
+Consider two functions: $f(x) = -3x^2 + 30x - 60$ and $g(x) = 2x^2 + 6x + 24$.
+
+For $f(x)$, $a < 0$. Therefore, the function $f(x)$ achieves its maximum value. $a = -3$, $b = 30$.
+\begin{align*}
+x^{\ast} &= \dfrac{-30}{2\times{-1}} \\
+\implies x^{\ast} &= 15
+\end{align*}
+
+For $g(x)$, $a > 0$. Therefore, the function $g(x)$ achieves its minimum value. $a = 2$, $b = 6$.
+\begin{align*}
+x^{\ast} &= \dfrac{6}{2\times{2}} \\
+\implies x^{\ast} &= \dfrac{3}{2}
+\end{align*}
+
+
+
+*** Polynomials
+
+A general polynomial of degree $n$ is defined as:
+
+\begin{equation} f(x) = a_0 + a_1x + a_2x^2 + \dots +  a_nx^n \label{eq:eq1} \end{equation}
+
+According to the fundamental theorem of algebra, every polynomial of degree $n$ can be written as a product of polynomials of degree 1 and 2.
+
+Suppose that $a_0, a_1, \dots, a_n$ are all integers. Then all possible integer roots of Equation \ref{eq:eq1} must be factors of the constant term $a_0$.
+
+
+
+**** Factoring Polynomials
+
+Let $P(x)$ and $Q(x)$ be two polynomials such that the degree of $P(x)$ is at least as large as that of $Q(x)$. Then, there always exist unique polynomials $q(x)$ and $r(x)$ such that
+\[ P(x) = Q(x)\times{q(x)} + r(x) \]
+
+Therefore, \[ \dfrac{P(x)}{Q(x)} = q(x) + \dfrac{r(x)}{Q(x)} \]
+
+An example:
+
+Let $P(x) = x^3 - 4x^2 + 8x + 16$ and $Q(x) = x - 2$.
+
+\begin{center}
+\polylongdiv{x^3 - 4x^2 + 8x + 16}{x- 2}
+\end{center}
+
+Therefore,
+\begin{align*}
+x^3 - 4x^2 + 8x + 16 &= (x - 2)(x^2 -2x + 4) + 24 \\
+\dfrac{x^3 - 4x^2 + 8x + 16}{x- 2} &= x^2 - 2x + 4 + \dfrac{24}{x - 2}
+\end{align*}
+
+
+If a polynomial $P(x)$ has a factor $x - a$, then:
+\[ P(a) = 0 \]
+
+An example:
+
+Consider a polynomial $P(x) = x^2 -kx + 4$. What should be the value of $k$ such that $P(x)$ is divisible by $x - 2$.
+
+We will use the rule we wrote above. If $P(x)$ is divisble by $x - 2$, then
+\begin{align*}
+P(2) &= 0 \\
+\implies (2)^2 -k(2) + 4 &= 0 \\
+\implies 4 -2k + 4 &= 0 \\
+\implies 2k &= 8 \\
+\implies k &= 4
+\end{align*}
+
+
+
+
+
+
+

@@ -1,0 +1,276 @@
+#+TITLE: Limits
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb, booktabs, caption, dcolumn, etoolbox, gensymb, pgfplots, polynom, subcaption, tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage[table, svgnames, dvipsnames]{xcolor}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+
+
+
+** Limits
+
+Let there be a function $f(x)$. Then, $f(x)$ has a number $L$ as the limit as $x$ approaches $a$ (by which we mean that $x$ is very close to $a$, but not equal to $a$).
+We write:
+\[ \displaystyle{\lim_{x \to a} f(x) = L} \]
+
+
+An example:
+
+Consider the function $f(x) = \dfrac{x^2 - 4}{x - 2}$. What is the limit of $f(x)$ when $x$ approaches 2?
+
+Please note that $x = 2$ is not in the domain of the function. Let's use some values around $x = 2$. Table \ref{tab:tab01} shows these values.
+Figure \ref{fig:fig01} plots the function. We can see that the limit approaches 4 as we move closer to $x = 2$, but of course, the value of the function itself is not defined at $x = 2$.
+
+
+\begin{table}[htbp]
+\centering
+\caption{Values of $f(x)$ as $x \to 2$}
+\label{tab:tab01}
+\begin{tabular}{c *{8}{c}}
+\toprule
+$x$ & 1.9 &  1.99 &  1.999 & 1.9999 & 2.0001 & 2.001 & 2.01 & 2.1 \\
+\midrule
+ $f(x)$ & \color{turquoise}{3.9} & \color{turquoise}{3.99}  & \color{turquoise}{3.999}  & \color{turquoise}{3.9999} & \color{turquoise}{4.0001} & \color{turquoise}{4.001} & \color{turquoise}{4.01} & \color{turquoise}{4.1} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\begin{figure}[htbp]
+\centering
+\begin{tikzpicture}
+\begin{axis}[axis lines = middle, xlabel = \(x\), ylabel = {\(f(x)\)}, xmin = -1, xmax = 5, ymin = -1, ymax = 5,
+             xtick = {0, 1, 2, 3, 4}, ytick = {0, 1, 2, 3, 4, 5}, grid = major, grid style = {dashed, gray!30},
+	     legend pos = north west, legend cell align = {left}, legend style = {font = \tiny}, legend style = {at={(-0.5, 1)}, anchor=west},
+	     tick label style = {font = \small}, label style = {font=\small}, title style = {font=\large\bfseries},
+	     title={Limit of $f(x) = \frac{x^2 - 4}{x - 2}$ as $x\to2$},
+	     enlargelimits = true, axis line style = {-Stealth},
+	     samples = 50]
+             \addplot[
+                      domain = -1:1.999,
+                      blue,
+                      very thick]{x + 2};
+	     \addplot[
+	              domain = 2:5,
+		      blue,
+		      very thick]{x + 2};
+             \addlegendentry{\(f(x) = x + 2,\; x \neq 2\)}
+             \addplot [only marks, mark=*, mark size = 2pt, color = blue] coordinates {(2,4)};
+             \draw[color = turquoise, very thick, fill = white, line width = 1.2pt] (axis cs: 2, 4) circle [radius = 3.5pt];
+             \addlegendentry{\textcolor{turquoise}{\(\circ\) Hole at $(2, 4)$}}
+             \addplot [dashed, red_pink, thick] coordinates {(0, 4) (2, 4)};
+             \addplot [dashed, red_pink, thick] coordinates {(2, 0) (2, 4)};
+             \addlegendimage{red_pink, dashed, thick};
+             \addlegendentry{$\lim_{x \to 2} f(x) = 4$}
+             \node [red_pink, above] at (axis cs: 0.5, 4.2) {$y = 4$};
+             \node [red_pink, right] at (axis cs: 2.1, 2) {$x = 2$};
+             \node [red_pink, above right] at (axis cs: 2, 4) {$(2, 4)$};
+\end{axis}
+ \end{tikzpicture}
+\caption{}
+\label{fig:fig01}
+\end{figure}	    
+
+
+*** One-sided Limits
+
+**** Left-hand limits (LHL)
+We write: \[ \displaystyle{\lim_{x \to a^{-}} f(x) =  L} \]
+
+when we choose a value of $x$ very close to $a$, but less than $a$.
+
+**** Right-hand limits (RHL)
+We write: \[ \lim_{x \to a^{+}} f(x) = L \]
+
+when we select a value of $x$ very close to $a$, but more than $a$.
+
+In general, we say that the actual limit of the function to be defined if and only if LHL = RHL.
+
+An example:
+
+Consider the following piece-wise function.
+\[ f(x) = \begin{cases} x - 1 & \text { if } x \leq 1 \\ x + 1 & \text{ if } x > 1 \end{cases} \]
+
+What is $\displaystyle{\lim_{x \to 1} f(x)}$?
+
+We will first calculate the LHL. In order to do so, we need to be clear about the form of the function. When $x \leq 1$, $f(x) = x - 1$.
+
+Therefore,
+LHL = $\displaystyle{\lim_{x \to 1^{-}} f(x)} = \displaystyle{\lim_{x \to 1^{-}} x - 1} = 0$.
+
+Similarly, when $x > 1$, $f(x) = x + 1$.
+
+Therefore,
+RHL = $\displaystyle{\lim_{x \to 1^{+}} f(x)} = \displaystyle{\lim_{x \to 1^{+}} x + 1} = 2$.
+
+We can see that LHL $\neq$ RHL. Therefore, the limit is not defined. 
+
+*** Properties of Limits
+
+Let $\displaystyle{\lim_{x \to a} f(x) = L}$ and $\displaystyle{\lim_{x \to a} g(x) = M}$ and let $c$ be some constant. Then
+\begin{enumerate}
+\item $\displaystyle{\lim_{x \to a} cf(x) = cL}$
+\item $\displaystyle{\lim_{x \to a} (f(x) + g(x)) = L + M}$
+\item $\displaystyle{\lim_{x \to a} (f(x) - g(x)) = L - M}$
+\item $\displaystyle{\lim_{x \to a} (f(x)\dot{g(x)}) = LM}$
+\item $\displaystyle{\lim_{x \to a}\dfrac{f(x)}{g(x)}} = \dfrac{\displaystyle{\lim_{x \to a} f(x)}}{\displaystyle{\lim_{x \to a} g(x)}} = \dfrac{L}{M}$ if $M \neq 0$
+\item $\displaystyle{\lim_{x \to a} f(x)^{p}} = A^p$ (if $A^{p}$ is defined and $p$ is a real number)
+\item $\displaystyle{\lim_{x \to a} (x)^{1/n}} = a^{1/n}$
+\end{enumerate}
+
+
+*** Some Simple Tricks
+
+- If you are given a rational expression, try to factorize the numerator or the denominator to eliminate the common factor.
+  
+Example 1: $g(x) = x^2 - 6x + 8$ and $h(x) = x - 2$. What is $\displaystyle{\lim_{x \to 2}} f(x)$ where $f(x) = \dfrac{g(x)}{h(x)}$?
+
+\begin{align*}
+\lim_{x \to 2} f(x) &= \lim_{x \to 2} \dfrac{x^2 - 6x + 8}{x - 2} \\
+\implies \lim_{x \to 2} f(x) &= \lim_{x \to 2} \dfrac{(x - 2)(x - 4)}{x - 2} \tag{factorizing the numerator} \\
+\implies \lim_{x \to 2} f(x) &= \lim_{x \to 2} x + 2 \\
+\implies \lim_{x \to 2} f(x) &= 4
+\end{align*}
+
+- If you have an irrational expression, try to rationalize it to compute the limit.
+
+Example 2: $f(x) = \dfrac{\sqrt{x + 1} - 1}{x}$.  What is $\displaystyle{\lim_{x \to 0} f(x)}$?
+
+\begin{align*}
+\lim_{x \to 0} f(x) &= \lim_{x \to 0} \dfrac{\sqrt{x + 1} - 1}{x} \\
+\lim_{x \to 0} f(x) &= \lim_{x \to 0} \dfrac{(\sqrt{x + 1} - 1)\times{(\sqrt{x + 1} + 1)}}{x\times(\sqrt{x + 1} + 1)} \\
+\lim_{x \to 0} f(x) &= \lim_{x \to 0} \dfrac{(x + 1) - 1}{x\times(\sqrt{x + 1} + 1)} \tag{since $(a + b)(a - b) = a^2 - b^2$} \\
+\lim_{x \to 0} f(x) &= \lim_{x \to 0} \dfrac{x}{x\times(\sqrt{x + 1} + 1)} \\
+\lim_{x \to 0} f(x) &= \lim_{x \to 0} \dfrac{1}{\sqrt{x + 1} + 1} \\
+\lim_{x \to 0} f(x) &= \dfrac{1}{2}
+\end{align*}
+
+ - If you want to compute the limit at infinity for  a rational expression, start with dividing the whole thing by the highest power of $x$ that occurs in the denominator.
+
+ Example 3: $f(x) = \dfrac{2x^2 + 3}{5x^2 + x}$. What is $\displaystyle{\lim_{x \to \infty}} f(x)$?
+
+ \begin{align*}
+ \lim_{x \to \infty} f(x) &= \lim_{x \to \infty} \dfrac{2x^2 + 3}{5x^2 + x} \\
+\implies \lim_{x \to \infty} &= \lim_{x \to \infty} \dfrac{2 + 3/x^2}{5 + 1/x^2} \\
+\implies \lim_{x \to \infty} &= \dfrac{\lim_{x \to \infty} 2 + \lim_{x \to \infty} 3/x^2}{\lim_{x \to \infty} 5 + \lim_{x \to \infty} 1/x^2} \\
+\implies \lim_{x \to \infty} &= \dfrac{2 + 3(0)}{5 + 1(0} \\
+\implies \lim_{x \to \infty} &= \dfrac{2}{5}
+ \end{align*}
+
+
+** Continuity
+
+ 
+A function is continuous at $x=a$ if
+\[ LHL = RHL = \displaystyle{\lim_{x \to a}} f(x) = f(a) \]
+
+A simple checklist-
+\begin{itemize}
+\item Check if $f(a)$ is \textbf{defined}.
+\item Calculate the LHL and the RHL. Verify they match.
+\item Verify if $\displaystyle{\lim_{x \to a}} = f(a)$.
+\end{itemize}
+ 
+We will take a couple of examples to check whether a function is continuous (or not).
+
+Example 1: Is $f(x) = x^2$ continuous at $x = 0$?
+
+\[ \text{LHL: } \lim_{x \to 0^{-}} x^2 = 0 \]
+\[ \text{RHL: } \lim_{x \to 0^{+}} x^2 = 0 \]
+
+LHL = RHL
+
+\[ f(0) = (0)^2 = 0 \]
+
+LHL = RHL = $f(0)$.
+
+Therefore, the function is continuous at $x = 0$.
+
+\vspace{2mm}
+
+Example 2: Is $f(x) = |x|$ continuous at $x = 0$?
+
+Note that $f(x) = \begin{cases} -x & \text{if } x < 0 \\ x & \text{if } x >= 0 \end{cases}$.
+
+\[ \text{LHL: } \lim_{x \to 0^{-}} -x = -(0) = 0 \]
+\[ \text{RHL: } \lim_{x \to 0^{+}} x = 0 \]
+
+LHL = RHL
+
+\[ f(0) = 0 \]
+
+Therefore, the function is continuous at $x = 0$.
+
+** Derivative
+
+*** Slope of a line
+
+We know that if we have a line passing through $(x_1, y_1)$ and $(x_2, y_2)$, the slope of the line $y = mx + c$ is given by:
+\[ m = \dfrac{y_2 - y_1}{x_2 - x_1} \]
+
+We will extend this idea to a real-valued function.
+
+*** The Rate of Change of a Function
+Let there be a function $f(x)$. Let $x_1$ and $x_2$ be two values in the domain of the function. The corresponding values of the function at these points are $f(x_1)$ and $f(x_2)$ respectively.
+Then, the slope (or the rate of change) of the function is
+\[ \text{Slope} = \dfrac{f(x_2) - f(x_1)}{x_2 - x_1} \]
+
+An example: Consider $f(x) = x^2$. What is the average rate of change of the function when $x$ moves from 2 to 4?
+
+Using the formula, we get:
+\[ \text{Slope} = \dfrac{f(4) - f(2)}{4 - 2)}\]
+\[ \text{Slope} = \dfrac{16 - 4}{2} \]
+\[ \text{Slope} = 6 \]
+
+We can say that the average rate of change of $x^2$ between $x = 2$ and $x = 4$ is 6.
+
+*** Derivative
+
+\textbf{Definition}: The derivative of the function $f(x)$ at any point $a$ is given by:
+\[ f^{\prime}(0) = \displaystyle{\lim_{h \to 0}}\dfrac{f(a + h) - f(a)}{h} \]
+
+At first sight, this formula may seem intimidating. Let's unpack it using the idea of slope.
+When $x = a$, $f(x) = f(a)$.
+When $x = a + h$, $f(x) = f(a + h)$.
+
+What will be the average change of the function from $x = a$ to $x = a + h$? It will be:
+\[ \dfrac{f(a + h) - f(a)}{(a + h) - a} \]
+\[ = \dfrac{f(a + h) - f(a)}{h} \]
+
+Alright, then why do we insert limits here? The answer lies in the fact that $h$ tends to be very small and we would like to compute the slope of any function at a given point (not just between two points).
+
+An example: Let $f(x) = x^2$. What is $f^{\prime}(2)$?
+
+\begin{align*}
+f^{\prime}(2) &= \lim_{h \to 0} \dfrac{f(2 + h) - f(2)}{h} \\
+\implies f^{\prime}(2) &= \lim_{h \to 0} \dfrac{(2 + h)^2 - 4}{h} \tag{since $f(x) = x^2$} \\
+\implies f^{\prime}(2) &= \lim_{h \to 0} \dfrac{4 + h^2 + 2ah - 4}{h} \tag{since $(a + b)^2 = a^2 + b^2 + 2ab$} \\
+\implies f^{\prime}(2) &= \lim_{h \to 0} \dfrac{h^2 + 2ah}{h} \\
+\implies f^{\prime}(2) &= \lim_{h \to 0} (h + 2a) \\
+\implies f^{\prime}(2) &= 2a
+\end{align*}
+
+

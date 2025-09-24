@@ -1,0 +1,190 @@
+#+TITLE: Functions of Two Variables: Economic Applications
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath, amssymb, booktabs, caption, dcolumn, etoolbox, float, gensymb, pgfplots, polynom, subcaption,tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage[table, svgnames, dvipsnames]{xcolor}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \pgfplotsset{compat=1.18}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+LATEX_HEADER: \newcounter{myeq}
+#+LATEX_HEADER: \setcounter{myeq}{\value{equation}}
+
+** Homogeneous Functions (Revisited)
+
+A quick recap of the idea: Let $f(x, y)$ and $t$ be any real number. If $f(tx, ty) = t^{k}f(x, y)$, then we say that the function is homogeneous of degree $k$.
+
+*** Euler's Theorem
+
+\begin{tcolorbox}[width=6in, enhanced]
+Let $f$ be a differentiable function of two variables defined on an open set $S$ such that $(tx, ty) \in S$ whenever $t > 0$ and $(x, y) \in S$. Then $f$ is homogeneous of degree $k$ if and only if
+\[ x\dfrac{\partial f}{\partial x} + y\dfrac{\partial f}{\partial y} = kf(x, y) \quad \forall (x, y) \in S \]
+\end{tcolorbox}
+
+An example: Consider a function $g(x, y) = f(x, y) - a\ln(x + y)$. We also know that $x\dfrac{\partial f}{\partial x} + y\dfrac{\partial f}{\partial y} = a$.
+
+Let's first rearrange the equation.
+
+\begin{align*}
+f(x, y) &= g(x, y) + a\ln(x + y) \\
+\text{differentiate both sides w.r.t $x$ }\quad  f_x &= g_x + \dfrac{a}{x + y} \tag{where $f_x = \dfrac{\partial f}{\partial x}$ and $g_x = \dfrac{\partial f}{\partial x}$} \\
+\text{differentiate both sides w.r.t. $y$ }\quad f_y &= g_y + \dfrac{a}{x + y} \tag{where $f_y = \dfrac{\partial f}{\partial y}$ and $g_y = \dfrac{\partial g}{\partial y}$} \\
+xf_x + yf_y &= a \tag{given} \\
+\implies x(g_x + \dfrac{a}{x + y}) + y(g_y + \dfrac{a}{x + y}) &= a \\
+\implies xg_x + yg_y + a &= a \\
+\implies xg_x + yg_y &= 0
+\end{align*}
+
+Therefore, $g(x, y)$ is homogeneous of degree zero.
+
+
+** Production Functions
+A production function maps inputs to the output. Think of a small coffee shop which sells only espressos ($Y$) using two inputs: an espresso machine ($K$) and a barista's labour ($L$). We can define the production function as $Y = F(K, L)$. A relevant economic question could be: what happens to the number of espresso shots if we buy an additional espresso machine? To answer this question, we can rely on two quantities (it could be more but we are restricting ourselves to two inputs): \textbf{marginal product of capital} and \textbf{marginal product of labour}.
+
+\begin{align*}
+\textbf{Marginal product of capital: } MP_K &= \dfrac{\partial Y}{\partial K} \\
+\textbf{Marginal product of labour: } MP_L &= \dfrac{\partial Y}{\partial L}
+\end{align*}
+
+Let's say the marginal product of capital is 10. Therefore, we can say that add one more espresso machine will increase the number of espresso shots by 10.
+
+Another important question that we can ask is as follows: how can we adjust the two inputs such that we can produce the same level of output? Suppose that we want to increase the level of one input while reducing the usage of the other input. We can rely on the concept of the \textbf{marginal rate of technical substitution}.
+
+\begin{tcolorbox}[width = 6in, enhanced]
+For any production function $Y = F(K, L)$, the marginal rate of technical substitution (MRTS) is defined as:
+\[ MRTS_{K,L} = \dfrac{MP_K}{MP_L} \]
+\[ MRTS_{L,K} = \dfrac{MP_L}{MP_K} \]
+\end{tcolorbox}
+
+Please note that the MRTS is usually negative because there is a substitution between the inputs. So, if we wish to increase the usage of one input, it comes at the cost of reducing the other input. We are going to ignore the sign and focus on the absolute value. 
+
+\textbf{Example 1:} Compute the marginal products and the marginal rate of technical substitution for the following production function: $Y = 2K + 3L$.
+
+This function exhibits constant returns to scale (why?).
+
+\begin{center}
+\begin{tabular}{ccc}
+$MP_K = 2$ & $MP_L = 3$ & $MRTS_{K, L} = \dfrac{2}{3}$
+\end{tabular}
+\end{center}
+
+\textbf{Example 2:} $Y = AK^{\alpha}L^{\beta}$.
+
+\begin{align*}
+MP_K &= \dfrac{\partial}{\partial K}(AK^{\alpha}L^{\beta}) \\
+\implies MP_K &= A\alpha{K^{\alpha - 1}}L^{\beta} \tag{using the power rule} \\
+MP_L &= \dfrac{\partial}{\partial L}(AK^{\alpha}L^{\beta}) \\
+\implies MP_L &= A\beta{K^{\alpha}L^{\beta - 1}} \tag{using the power rule} \\
+MRTS_{K,L} &= \dfrac{A\alpha{K^{\alpha - 1}}L^{\beta}}{A\beta{K^{\alpha}L^{\beta - 1}}} \\
+MRTS_{K,L} &= \dfrac{\alpha{L}}{\beta{K}}
+\end{align*}
+
+Let's pick the first example and think of a situation where the coffee shop's production is set to 10 espresso shots. We can write $2K + 3L = 10$[fn:1].
+Compute $\dfrac{dL}{dK}$ using implicit derivatives.
+
+We get:
+
+$2 + 3\dfrac{dL}{dK} = 0 \implies \dfrac{dL}{dK} = -\dfrac{2}{3}$
+
+If we are willing to ignore the sign, this value looks eerily similar to the MRTS. So, we have stumbled upon another way to compute the MRTS provided we have a fixed level of output.
+
+\[ MRTS_{K, L} = \dfrac{dL}{dK} \]
+
+How do interpret the MRTS? In the previous example, $MRTS_{K,L} = \dfrac{2}{3}$. This means that if the firm wishes to add one more unit of capital, while  keep the output level unchanged, it must give up $\dfrac{2}{3}$ units of labour.
+
+
+** Utility Functions
+A utility function maps the quantity of goods to utility. Consider R2D2 who cares only about consuming two goods: coffee ($x$) and cake ($y$). We can write the utility function as:
+\[ U = f(x, y) \]
+
+As R2D2 consumes more of coffee and cake, their utility goes up. Now, we can the following question: by how much does the utility change when R2D2 consumes an additional shot of espresso? We can define:
+
+\begin{align*}
+MU_x &= \dfrac{\partial U}{\partial x} \\
+MU_y &= \dfrac{\partial U}{\partial y} \\
+\end{align*}
+
+\textbf{Example 1}: $U = x^2y^3$
+
+\begin{tabular}{cc}
+$MU_x = 2xy^3$ & $MU_y = 3y^2x^2$
+\end{tabular}
+
+\textbf{Example 2}: $U = \sqrt{x} + y$
+
+\begin{tabular}{cc}
+$MU_x = \dfrac{1}{2\sqrt{x}}$ & $MU_y = 1$
+\end{tabular}
+
+\textbf{Example 3}: $U = min(x, y)$
+
+Note that when $x < y$, $U = x$ and when $x > y$, $U = y$.
+
+Case-I: $x < y$
+\begin{tabular}{cc}
+$MU_x = 1$ & $MU_y = 0$
+\end{tabular}
+
+Case-II: $x > y$
+\begin{tabular}{cc}
+Case-III: $MU_x = 0$ & $MU_y = 1$.
+\end{tabular}
+
+What happens when $x = y$?
+
+$U = x = y = k$.
+
+$MU_x$ is not defined, $MU_y$ is not defined (Why? Because the function is not continuous at $(k, k)$).
+
+
+\textbf{Example 4}: $U = x + y$.
+
+\begin{tabular}{cc}
+$MU_x = 1$ & $MU_y = 1$
+\end{tabular}
+
+Let's return to the coffee and cake universe of R2D2. Economic logic suggests that an individual tries to optimize their utility through various combinations of coffee and cake.
+You will learn later that this structure where different possible combinations of goods yield the same utility is known as the \textbf{indifference curve}.
+Given any combination of coffee and cake, R2D2's \textbf{marginal rate of substitution} is defined as his willingness to give up slices of cake (tragic!) for an additional cup of coffee.
+Mathematically,
+\[ MRS = |\dfrac{MU_x}{MU_y}| \]
+
+Please note that $MRS$ is typically negative. This just means that you need to give up consumption of one good to increase the consumption of the other good.
+Defining the $MRS$ as a positive number allows to clearly express this trade-off.
+
+An example: Let $U = x^\alpha{y^{\beta}}$.
+
+\begin{align*}
+MU_x &= \alpha{x}^{\alpha-1}y^{\beta} \\
+MU_y &= \beta{x}^{\alpha}y^{\beta-1} \\
+MRS_{x, y} &= \dfrac{\alpha{x}^{\alpha-1}y^{\beta}}{\beta{x}^{\alpha}y^{\beta-1}} \\
+\implies MRS_{x, y} &= \dfrac{\alpha{y}}{\beta{x}}
+\end{align*}
+
+
+
+
+
+[fn:1] You will learn later that writing production function this way makes it an \textbf{isoquant}.

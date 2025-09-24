@@ -1,0 +1,191 @@
+#+TITLE: Mathematics of Finance-II
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb,caption, etoolbox, gensymb, subcaption, tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+
+
+** Simple and compound interest
+
+Let's say you borrow \rupee 1000 from a bank which offers loans at an interest rate of 5% per year. Then, after a year, you will have to return the one thousand rupees you originally borrowed plus an interest.
+\rupee 1000 you borrowed is known as the \textbf{principal}. You will also have to add \rupee 50 as the interest amount. 
+\begin{itemize}
+\item \textbf{Simple interest rate:} If you deposit $x$ into your bank account and the bank offers an interest rate of $r\%$ per year, your bank balance after a year is $x + rx = x(1 + r)$. Your bank balance after $n$ years will be $x(1 + r)n$.
+     \begin{itemize}
+     \item If I deposit \rupee 100 with a bank that offers a simple interest rate of $6\%$, how much will be my bank balance at the end of year five?
+     \end{itemize}
+\item \textbf{Compound interest rate:} If you deposit $x$ into your bank account and the bank offers an interest rate that compounds annually at $r\%$, your bank balance after $n$ years will be $x(1 + r)^n$.
+     \begin{itemize}
+     \item If I deposit \rupee 100 with a bank that offers a compound interest rate of $6\%$, how much will be my bank balance at the end of year five?
+     \end{itemize}
+\end{itemize}
+
+** Interest Periods and Effective Rates
+In the examples above, we assumed that interest is accrued only annually to an account. However, banks across the world offer other interest schemes. Sometimes, interest is added quarterly or daily.
+So, we need to distinguish between the annual rate and the periodic rate (quarterly or daily).
+Let the principal be $x$ that yields interest at the rate $r$ per year, but the interest is credited every $p$ periods per year. We assume that this interest is compounded. Then, what will be the amount after, let's say, $t$ periods?
+\[ x\Big(1 + \dfrac{r}{p}\Big)^{t} \]
+
+The periodic interest rate is given by: \[ \dfrac{r}{p} \]
+
+An example: If you invest \rupee 1000 at $12\%$ annual interest compounded monthly ($p = 12$), then how much will be your balance after 24 months? What is the periodic interest rate?
+\[ \text{Balance } = 1000\Big(1 + \dfrac{0.12}{12}\Big)^{24} = 1000\times(1.01)^{24} \]
+\[ \text{Monthly interest rate } = \dfrac{r}{p} = \dfrac{0.12}{12} = 0.01 = 1\% \]
+
+*** Effective Interest Rates
+This is a useful measure to compare different investments (with varying interest rates and differing time periods). When interest is added $p$ times during the year at the rate $\dfrac{r}{p}$ per period, then the effective rate, $EAR$, is defined as
+\[ EAR = \Big(1 + \dfrac{r}{p}\Big)^{p} - 1 \]
+
+We return to the previous example and compute the effective annual interest rate (a.k.a. EAR).
+\[ EAR = \Big(1 + \dfrac{0.12}{12}\Big)^{12} - 1 = (1 + 0.01)^{12} - 1 = 1.126825 - 1 = 0.126825 \approx 12.7\% \]
+
+Now, let's think about a particular situation. You buy a financial product from a bank that offers you an interest rate of $r_1$ in the first year, $r_2$ in the second year, and so on.
+What will be the balance in your account after $n$ years? What will be the EAR?
+
+The balance, after $n$ years, will be:
+\[ \text{Balance}  = P(1 + r_1)(1 + r_2)\cdots(1 + r_n) \]
+
+The EAR will be:
+\[ EAR = [(1 + r_1)(1 + r_2)\cdots(1 + r_n)]^{\frac{1}{n}} - 1 \]
+
+What if we muddy the waters even further? You buy a financial product that offers you an interest rate of $r_1$ for $p_1$ periods (these periods could be daily, monthly, etc.) , $r_2$ for $p_2$ periods, and so on.
+There are, in total, $P$ periods. What will be the balance after $n$ years? What is the effective interest rate?
+
+\[ \text{Balance} = P(1 + r_1)^{p_1}(1 + r_2)^{p_2}\cdots(1 + r_{m})^{p_m} \]
+
+The EAR will be:
+ \begin{equation*} \text{EAR} = [(1 + r_1)^{p_1}\times(1 + r_2)^{p_2}\dots(1 + r_m)^{p_m}]^{1/n} - 1   \end{equation*}
+
+
+** Continuous Compounding
+So far, we have seen that interest is compounded every month or quarter or year. This means that the investment grows by a small amount during every period. However, with \textbf{continuous compounding}, we visualize interest being accrued to your account every moment. So, the number of periods becomes infinite. If the annual interest rate is $r$ and there is continuous compounding of interest, then after $t$ years, a principal of $x_0$ will become
+\[ x(t) = x_0e^{rt} \]
+With continuous compounding of interest at the rate $r$, the principal increases annually by $e^r$.
+
+An example: If you invest \rupee 1000 at $12\%$ annual rate compounded continuously for a year, what will be the balance after a year:
+\[ \textbf{Balance } = 1000\times{e^{0.12}} = 1127.5 \]
+
+What is the $EAR$? It is now $12.75\%$, slightly higher than the case with monthly compounding.
+
+** Present Value
+
+*** Present Discounted Value
+Let one year nominal interest rate be $i_t$. So, if you invest a rupee this year, you expect to get \rupee $(1 + i_t)$ next year. We can turn this argument around and instead ask the following question: how much a rupee next year is worth this year?
+If the interest rate or the discount rate is $p\%$ per year and $r = \dfrac{p}{100}$, and amount $K$ that is due in $t$ years has the \textit{present discounted value} or PDV:
+\begin{itemize}
+\item with annual interest payments, $K(1 + r)^{-t}$
+\item with continuous compounding of interest, $Ke^{-rt}$
+\end{itemize}
+
+*** Present Value
+
+**** Present Value of an Annuity
+The present value of an annuity $a$ per payment period for $n$ periods, at the rate of $r$ per period, where each payment is credited at the end of the period, is given by
+\[ P_n = \dfrac{a}{1 + r} + \cdots + \dfrac{a}{(1 + r)^n} = \dfrac{a}{r}\Big[1 - \dfrac{1}{(1 + r)^n}\Big] \]
+
+where $r = \dfrac{p}{100}$.
+
+
+**** Present Value: General Formula
+In the above formulation, we assume that the interest rate as well as the future payments remain the same. Let's generalize this relationship.
+Denote today's payment as $z_t$, the payment next year by $z_{t+1}$, the payment two years later as $z_{t+2}$. The present value of this sequence of payments will be:
+
+\[ V_{t} = z_t + \dfrac{1}{(1 + i_t)}z_{t+1} + \dfrac{1}{(1 + i_t)(1 + i_{t + 1}}{z_{t+2}} + \cdots \]
+
+Two things are worth noting here.
+
+\begin{itemize}
+\item Each payment is multiplied by its respective discount factor.
+\item The further away you move in time, the smaller will be today's value of that payment.
+\end{itemize}
+
+**** Present Value of a Perpetuity
+Let's now return to a special case where the interest rates are constant and the payments are also constant but they go on forever.
+We assume that, when you invest in this type of financial product, you receive your first payment next year. What will be the present value?
+
+\begin{align*}
+V_t &= \dfrac{1}{(1 + i)}z + \dfrac{1}{(1+i)(1+i)}z + \cdots \\
+    &= \dfrac{1}{(1+i)}\Big[ 1 + \dfrac{1}{(1 + i)} + \cdots\Big]z \tag{factoring out $\dfrac{1}{(1 + i)}$} \\
+\implies V_t &= \dfrac{1}{(1 + i)}\times{\dfrac{1}{(1 - (\dfrac{1}{(1+i)}))}}z \tag{using the formula for an infinite GP} \\
+\implies V_t &= \dfrac{z}{i}
+\end{align*}
+
+*** Future Value of an Annuity
+If an amount $a$ is credited to an account each period for $n$ periods, earning $r$ per period, the future value of the account is
+\[ F_n = \dfrac{a}{r}[(1 + r)^n - 1] \]
+
+
+*** Bonds, Yields, Yada Yada
+
+
+We will discuss one special case[fn:3] before concluding this section: bonds, G-Secs, and T-bills. Each of these are financial instruments of varying maturities\footnote{The maturity of a bond is the length of time which the bond promises to make payments to the holder of the bond.}
+A bond, for instance, is a "debt instrument which an investor loans money to an entity (typically government or corporate) which borrows the funds for a definite period of time at a variable or a fixed interest rate" [fn:2].
+With each bond, we associate a \textbf{coupon payment} and a \textbf{face value}. The coupon payment is the amount of interest you, as an investor, receive at a fixed interval. The face value is the amount that you will receive at maturity. Bonds of different maturities have an associated interest rate known as the \textbf{yield to maturity} or the \textbf{yield} [fn:1].
+
+\begin{itemize}
+\item The ratio of coupon payments to the face value is called the \textbf{coupon rate}.
+\item The \textbf{current yield} is the ratio of coupon payment to the price of the bond.
+\end{itemize}
+
+An example: consider a bond that has a face value of \rupee 10,000. It is priced at \rupee{12,000}, and you receive coupon payments of \rupee{2,000} each year for two years. What is the current yield of this bond and the yield to maturity associated with this bond?
+
+\[ \text{Current Yield} = \dfrac{\text{Coupon Payment}}{\text{Price of the bond}} \]
+
+In this case, the current yield = $\dfrac{2000}{12000} \approx 16.7\%$.
+
+
+To compute the YTM, you need to know the present value of the bond is given. It is the price of the bond! We have to compute the annualized interest rate.
+\[ 12000 = \dfrac{2000}{(1 + i)} + \dfrac{2000 + 10000}{(1 + i)^2} \]
+
+After some math torture (or using a calculator), you will arrive at the following number: $\text{YTM} \approx 6.3\%$.
+
+
+
+\newpage\appendix
+\section{Appendix A: Basic Rules of Logarithms}
+
+Let $a > 0$, $a \neq 1$, and also let $x$ and $y$ be positive real numbers. Then we have the following rules:
+
+\begin{itemize}
+\item[1] \textbf{Product Rule: }  $log_{a}{(xy)} = log_ax + log_ay$
+\item[2] \textbf{Quotient Rule: } $\log_a\Big(\dfrac{x}{y}\Big) = log_ax - log_ay$
+\item[3] \textbf{Power Rule: } $log_{a}{(x^b)} = b\times{log_a{x}}$
+\item[4] \textbf{Logarithm of one: } $log_a{1} = 0$
+\item[5] \textbf{Logarithm of the base: } $log_a{a} = 1$
+\end{itemize}
+
+\section{Appendix B: Rules for Exponential Equations}
+
+\begin{itemize}
+\item[1] \textbf{Inverse Property: } The natural logarithm (ln) and exponential ($e^x$) are inverses. $ln(e^x) = x$ and $e^{ln(x)} = x$.
+\item[2] If you have an equation of the form: $ln(x) = c$, the solution is $x = e^c$.
+\item[3] If you haven an equation of the form $ae^{bx} = c$, the solution is $x = \dfrac{ln(c/a)}{b}$.
+\end{itemize}
+
+
+
+
+* Footnotes
+
+[fn:3] I have (rather shamelessly) used Blanchard's macroeconomics textbook to write this up.
+[fn:2] Source: RBI FAQs 
+
+[fn:1] Bonds with shorter maturity (less than a year) have yields that are termed as \textbf{short-term interest rates} whereas bonds with longer maturity (more than a year) have yields that are called \textbf{long-term interest rates}. You can observe the health of the economy by plotting these yields against maturity!
+ 

@@ -1,0 +1,237 @@
+#+TITLE: Constrained Optimization: A Very Short Introduction
+#+DATE: \today
+#+LANGUAGE: en
+#+LATEX_CLASS: article
+#+OPTIONS: toc:nil
+#+LATEX_COMPILER: xelatex -shell-escape
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath, amssymb, booktabs, caption, dcolumn, etoolbox, float, gensymb, pgfplots, polynom, subcaption,tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[most]{tcolorbox}
+#+LATEX_HEADER: \usepackage[toc]{appendix}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usepackage[table, svgnames, dvipsnames]{xcolor}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \pgfplotsset{compat=1.18}
+#+LATEX_HEADER: \definecolor{green2}{HTML}{008000}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+#+LATEX_HEADER: \definecolor{red_pink}{HTML}{e64173}
+#+LATEX_HEADER: \definecolor{turquoise}{HTML}{20B2AA}
+#+LATEX_HEADER: \definecolor{orange}{HTML}{FFA500}
+#+LATEX_HEADER: \definecolor{purple}{HTML}{6A5ACD}
+#+LATEX_HEADER: \newcommand{\orgbox}[1]{\fbox{\ensuremath{#1}}}
+#+LATEX_HEADER: \appto{\appendix}{\renewcommand{\thesection}{}}
+#+LATEX_HEADER: \setlength{\parindent}{0pt}
+#+LATEX_HEADER: \newcounter{myeq}
+#+LATEX_HEADER: \setcounter{myeq}{\value{equation}}
+#+LATEX_HEADER: \definecolor{saddlecolor}{HTML}{E64173}    % cranberry for saddle points
+#+LATEX_HEADER: \definecolor{mincolor}{HTML}{006896}       % navy for local minima
+#+LATEX_HEADER: \definecolor{maxcolor}{HTML}{D65616}       % orange for local maxima
+#+LATEX_HEADER: \newcommand{\saddlepoint}[1]{{\color{saddlecolor}#1}}
+#+LATEX_HEADER: \newcommand{\minpoint}[1]{{\color{mincolor}#1}}
+#+LATEX_HEADER: \newcommand{\maxpoint}[1]{{\color{maxcolor}#1}}
+
+
+** Introduction
+
+Consider a two-variable function $f(x, y)$. Consider also an equality constraint defined by $g(x, y) = c$. We will assume that both $f$ and $g$ are differentiable.
+Our goal is to:
+\[ \text{max(min)} f(x, y)  \quad \text{subject to } g(x, y) = c \]
+
+
+** The Lagrange Multiplier Method
+
+This is the method developed by the eighteenth century mathematician named Joseph-Louis Lagrange.
+
+Let $f$ and $gb$ be two continuously differentiable functions defined on a set $S$ and suppose that $(x_0, y_0)$ is an interior point of $S$ that solves the problem we stated above. That is, $(x_0, y_0)$ represents the local maximizer (minimizer) of $f(x, y)$ subject to $g(x, y) = c$. Suppose also that $g_x(x_0, y_0) \neq 0$ and $g_y(x_0, y_0) \neq 0$.
+Then, there exists a unique number $\lambda$ (the Lagrange multiplier) such that $(x_0, y_0)$ is a stationary point of the Lagrangian
+
+\[ \mathcal{L}(x, y) = f(x, y) + \lambda(c - g(x, y)) \]
+
+$(x_0, y_0)$ satisfies the following first-order conditions:
+
+\begin{tcolorbox}
+\begin{align*}
+\mathcal{L}_{x}(x_0, y_0) &= f_x(x_0, y_0) -\lambda{g_{x}(x_0, y_0)} = 0 \\
+\mathcal{L}_{y}(x_0, y_0) &= f_y(x_0, y_0) -\lambda{g_{y}(x_0, y_0)} = 0 \\
+g(x_0, y_0) &= c
+\end{align*}
+\end{tcolorbox}
+
+
+An example:
+\vspace{-2mm}
+\[ \text{max}_{x, y}\quad  xy \quad \text{subject to } x + y = 4 \text{ and } x \geq 0,  y \geq 0 \]
+
+The Lagrangian is
+\[ \mathcal{L}(x, y) = xy + \lambda({4 - x - y}) \]
+
+The first-order derivatives are:
+\vspace{-2mm}
+\begin{align*}
+\mathcal{L}_{x} &= y - \lambda = 0 \\
+\mathcal{L}_{y} &= x - \lambda = 0 \\
+x + y &= 4 \\
+\implies 2\lambda &= 4 \\
+\implies \lambda &= 2 \\
+\implies x &= y = \lambda = 2
+\end{align*}
+
+Please note that $g_x = 1$ and $g_y = 1$. So, both derivatives of the constraint do not vanish implying we are on the right track.
+
+Hence, the solution is $(2, 2, 4)$.
+
+\vspace{3mm}
+
+Another example:
+\vspace{-2mm}
+\[ \text{max}_{x, y}\quad x^{\alpha}y^{\beta} \quad \text{ subject to } px + y = m \]
+
+where $p > 0$, $\alpha > 0$, $\beta > 0$, and $m > 0$.
+
+The Lagrangian is:
+\vspace{-2mm}
+\[ \mathcal{L}_{x,y} = x^{\alpha}y^{\beta} + \lambda(m - px - y) \]
+
+The first-order conditions are:
+\vspace{-2mm}
+\begin{align*}
+\alpha{x^{\alpha - 1}}y^{\beta} - p\lambda &= 0 \\
+\beta{x^{\alpha}y^{\beta - 1}} - \lambda &= 0 \\
+px + y &= m \\
+\implies \alpha{y} &= p\beta{x} \tag{from the first two FOCs} \\
+\implies y &= p\dfrac{\beta}{\alpha}x \\
+\implies px + p\dfrac{\beta}{\alpha}x &= m \\
+\implies p\Big(1 + \dfrac{\beta}{\alpha}\Big)x &= m \\
+\implies x &= \dfrac{\alpha{m}}{(\alpha + \beta)p} \\
+\implies y &= \dfrac{\beta{m}}{(\alpha + \beta)}
+\end{align*}
+
+Hence, the solution is $\Big(\dfrac{\alpha{m}}{(\alpha + \beta)p}, \dfrac{\beta{m}}{(\alpha + \beta)}\Big)$.
+
+Please also note that if this were a utility function, the condition for maximization will be: MRS equals the ratio of prices. In this case, $MRS = p$.
+
+
+*** Interpreting the Lagrange Multiplier
+
+The Lagrange multiplier represents the rate at which the optimal value of the function changes w.r.t. changes in the constant $c$. Therefore,
+\[ \dfrac{df^\ast(c)}{dc} = \lambda(c) \]
+
+An example:
+\[ \text{max } \quad xy \quad \text{ subject to } x + y = k \]
+
+The first-order conditions will yield: $y = x = \lambda$. Therefore, $x + x = k \implies x(k) = \dfrac{k}{2}$.
+
+At this point, the function becomes: $f^{\ast}(k) = \Big(\dfrac{k}{2}\Big)^2 = \dfrac{k^2}{4}$.
+
+Compute the derivative w.r.t. $k$: $\dfrac{df^\ast(k)}{dk} = \dfrac{k}{2} = \lambda$.
+
+
+
+*** Utility Maximization: Lagrangian Approach
+
+Consider a utility function $u(x, y)$ and a budget constraint $px + qy = m$ where $p$ is the unit price of good $x$, $q$ the unit price of good $y$, and $m$ is the total budget allocated to $x$ and $y$.
+We want to optimize the following function:
+\[ \text{max}\quad u(x, y) \quad \text{ subject to } px + qy = m \]
+
+The Lagrangian is:
+\[ \mathcal{L} = u(x, y) + \lambda(m - px - qy) \]
+
+The first order conditions are:
+\vspace{-2mm}
+\begin{align*}
+MU_x &= \lambda{p} \\
+MU_y &= \lambda{q} \\
+px + qy &= m
+\end{align*}
+
+We can eliminate $\lambda$ and write:
+\[ \dfrac{MU_x}{MU_y} = \dfrac{p}{q} \]
+
+We already know that the $MRS$ is the ratio of the marginal utilities. Therefore, $MRS = \dfrac{p}{q}$.
+
+We will end the discussion with some standard utility functions.
+
+**** Cobb Douglas Utility Function
+
+Example: maximize $u(x, y) = 3x^{1/3}y^{2/3}$ subject to $px + qy = m$.
+
+The Lagrangian is:
+\[ \mathcal{L} = 3x^{1/3}y^{2/3} + \lambda(m - px - qy) \]
+
+The FOCs are:
+\vspace{-2mm}
+\begin{eqnarray}
+\dfrac{1}{3}\Big(\dfrac{y}{x}\Big)^{2/3} &= \lambda{p} \\
+\dfrac{2}{3}\Big(\dfrac{x}{y}\Big)^{1/3} &= \lambda{q} \\
+px + qy &= m
+\end{eqnarray}
+
+Dividing the first equation by the second one, we get: $\dfrac{y}{2x} = \dfrac{p}{q}$. Plug this back into the third equation.
+\begin{align*}
+px + 2px &= m \\
+\implies x^{\ast} &= \dfrac{m}{3p} \\
+\implies y^{\ast} &= \dfrac{2m}{3q}
+\end{align*}
+
+*** Utility Maximization: Other Approaches
+
+While we can optimize well-behaved utility functions using the Lagrange method, we will need to look elsewhere when utility functions that generate \textbf{corner solutions}.
+
+**** Perfect Substitutes
+
+Consider $u = 2x + y$ and the constraint is $x + y = 10$.
+
+
+Let's try to optimize this function using the Lagrange method.
+
+The Lagrangian is: $\mathcal{L} = 2x + y + \lambda(10 - x - y)$.
+
+FOCs are:
+\begin{align*}
+2 - \lambda & = 0 \\
+1 - \lambda &= 0 \\
+x + y &= 10
+\end{align*}
+
+It turns out that $\lambda = 2$ and $\lambda = 1$ (not possible!).
+
+What should we do now? We should rely on the ratio of the marginal utility to the price. Let $p$ be the price of $x$ and $q$ be the price of $y$. 
+
+$\dfrac{MU_x}{p} = 2$ $>$ $\dfrac{MU_y}{q} = 1$
+
+Since these are perfect substitutes, an individual is better off discarding the good that provides lesser marginal utility per rupee. Therefore, the solution is:
+$(10, 0)$.
+
+
+**** Perfect Complements
+
+Consider $u = min(x, y)$ and the constraint is $x + y = 10$.
+
+This function is not even differentiable. However, the utility is maximized when $x = y$. Therefore, the solution is: $(5, 5)$.
+
+**** Quasi-linear Utility
+
+Let $u = \sqrt{x} + 2y$. The constraint is $x + 8y = 4$.
+
+The Lagrangian is: $\sqrt{x} + 2y + \lambda(4 - x - 8y)$.
+
+The FOCs are:
+\vspace{-3mm}
+\begin{eqnarray}
+\dfrac{1}{2\sqrt{x}} &= \lambda \\
+2 &= 8\lambda \\
+x + 8y &= 4
+\end{eqnarray}
+
+Using the first two equations, we get $\dfrac{1}{2\sqrt{x}} = \dfrac{1}{4} \implies 4x = 16 \implies x = 4$.
+
+Plugging the value of $x$ into the constraint, we have $y = 0$.
+Solution: $(4, 0)$ (a corner solution)
+

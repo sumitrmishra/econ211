@@ -1,0 +1,166 @@
+#+TITLE: Introduction to Matrix Algebra-I
+#+DATE: \today
+#+LANGUAGE: en
+#+OPTIONS: toc:nil
+#+LATEX_CLASS: article
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb,caption, gensymb, subcaption, tfrupee, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta,patterns,positioning}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+
+
+** Definition
+
+A matrix is a rectangular arrangement of numbers. A typical matrix is composed of rows and columns.
+Let $A$ be a matrix, $m$ be the number of rows, and $n$ be the number of columns. We can write the matrix $A$ as $A_{m\times{n}}$.
+
+Let's discuss some definitions before we proceed.
+
+- \textbf{Order of a matrix}: Any matrix having $m$ rows and $n$ columns has the order $m\times{n}$.
+
+- \textbf{Element of a matrix}: An element (or an entry) within a matrix is denoted by $a_{ij}$ where $i$ is the row number and $j$ the column number.
+
+
+Some examples will help us understand these two concepts (order and elements).
+
+Consider the information that you collected from \textit{Buhari} about the quantity of \textit{biriyani} and \textit{samsa} sold on a particular day of the week.
+They sold 2000 plates of \textit{biriyani} and 5000 plates of \textit{samsa} in the month of June 2025. We can write out a matrix (call it $A$).
+$A = \begin{bmatrix} 2000 & 5000 \end{bmatrix}$
+
+Let's focus on the order of the matrix $A$. The number of rows ($A$) = 1 and the number of columns ($A$) = 2. Therefore, the order (or the dimension) of the matrix is:
+\[ dim(A) = 1\times{2} \]
+
+What are the elements of $A$? We need to understand the structure here. The data is stored in a single row and two columns.
+
+$a_{11} = 2000$: the first row and the first column
+
+$a_{12} = 5000$: the first row and the second column
+
+Now, you go back to the restaurant and they supply you with one more data point on the quantities of \textit{biriyani} and \textit{samsa}.
+They sold 2500 plates of \textit{biriyani} and 6000 plates of \textit{samsa} during July 2025. Can we think of a matrix that combines the data that we stored in matrix $A$ and this new information?
+Let's call it $B$ and we can write:
+
+\[B = \begin{bmatrix} 2000 & 5000 \\ 2500 & 6000 \end{bmatrix}\]
+
+Notice one key feature of this matrix- I have arranged the entries corresponding to a particular item vertically. There are two rows and two columns. Therefore,
+\[ dim(B) = 2\times{2} \]
+
+\clearpage\newpage
+
+What are the elements of $B$?
+
+$a_{11} = 2000$: the first row and the first column
+
+$a_{12} = 5000$: the first row and the second column
+
+$a_{21} = 2500$: the second row and the first column
+
+$a_{22} = 6000$: the second row and the second column
+
+\vspace{2mm}
+
+We are all set to write a general matrix.
+
+\[ A_{m\times{n}} = \begin{bmatrix} a_{11} & a_{12} & \dots & a_{1n} \\ \vdots & \vdots & \vdots & \vdots  \\ a_{m1} & a_{m2} & \dots & a_{mn} \end{bmatrix} \]
+
+
+\vspace{3mm}
+
+\textbf{Problem}: Construct a $2\times{2}$ matrix whose elements follow the rule: $a_{ij} = \frac{1}{2}|2i - j^2|$.
+
+** Types of Matrices
+
+*** Row Matrix
+
+A row matrix is a matrix containing a single row. The order of a row matrix is
+\[ dim(A) = 1\times{n} \]
+
+An example:
+
+\[ A = \begin{bmatrix} 1 & 2 & 3 & 4 \end{bmatrix} \]
+
+$A$ is a $1\times{4}$ row matrix or a $1\times{4}$ row vector.
+
+
+*** Column Matrix
+
+A column matrix is a matrix containing a single column. The order of a column matrix is
+\[ dim(A) = m\times{1} \]
+
+An example:
+
+\[ A = \begin{bmatrix} 1 & 2 & 3 & 4 \end{bmatrix} \]
+
+$A$ is a $4\times{1}$ column matrix or a $4\times{1}$ column vector.
+
+*** Square Matrix
+
+A square matrix is a matrix whose number of rows equals the number of columns. The order of a square matrix is
+\[ dim(A) = n\times{n} \]
+
+An example:
+
+\[ A = \begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \]
+
+$A$ is a $2\times{2}$ matrix.
+
+
+*** Diagonal Matrix
+
+Diagonal matrix is a matrix where the entries outside the 'main diagonal' are all zeroes. We must first understand what diagonal means in the context of a matrix.
+Any element of a matrix where the row number equals the column number is a diagonal element. For example, for a $2\times{2}$ square matrix, $a_{11}$ and $a_{22}$ represent the diagonal elements.
+Similarly, think of a $3\times{3}$ matrix. What are its diagonal elements? $a_{11}, a_{22}, a_{33}$.
+Now, we can write the rule:
+
+\[ a_{ij} = 0 \text{ if } i \neq j \]
+
+Please note that we do not impose any restrictions on the values that the diagonal elements themselves can take.
+
+An example:
+
+\[ A = \begin{bmatrix} -2 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & -3 \end{bmatrix} \]
+
+$A$ is a $3\times{3}$ diagonal matrix. 
+
+
+*** Identity Matrix
+
+Identity matrix is a special case of a square diagonal matrix such that
+
+\begin{align*}
+a_{ij} &= 1 \text{ if } i = j \\
+a_{ij} &= 0 \text{ if } i \neq j
+\end{align*}
+
+An example:
+
+\[ A = \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix} \]
+
+$A$ is a $2\times{2}$ identity matrix.
+
+
+*** Zero Matrix
+
+A zero matrix is a matrix where:
+
+\[ a_{ij} = 0 \text{ for all } i, j \]
+
+
+A couple of examples
+
+\[ A = \begin{bmatrix} 0 & 0 & 0 \end{bmatrix}\]
+
+\[ B = \begin{bmatrix} 0 & 0 \\ 0 & 0 \\ 0 & 0 \end{bmatrix} \]
+
+$A$ is a $1\times{3}$ zero matrix and $B$ is a $3\times{2}$ zero matrix.
