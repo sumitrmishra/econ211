@@ -28,6 +28,12 @@ Welcome to **ECON211: Mathematical Methods for Economics-I (2025-26)** at SIAS, 
 
 ## Material
 
-**[Lecture 01](lecture-notes/Lecture01_Notes.pdf)
+**[Lecture 01](lecture-notes/Lecture01_Notes.pdf)**
 
-1. Introduction to set theory
+1. Introduction to set theory-I
+
+**[Lecture 02](lecture-notes/Lecture02_Notes.pdf)**
+
+1. Introduction to set theory-II
+
+1. [Worksheet](worksheets/L02_Worksheet.pdf)
