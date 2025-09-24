@@ -1,0 +1,259 @@
+#+TITLE: Introduction to Sets
+#+DATE: \today
+#+LANGUAGE: en
+#+OPTIONS: toc:nil
+#+LATEX_CLASS: article
+#+LATEX_COMPILER: xelatex -shell-escape
+
+#+LATEX_HEADER: \usepackage{fontspec}
+#+LATEX_HEADER: \setmainfont{TeX Gyre Pagella}
+#+LATEX_HEADER: \usepackage{amsmath,amssymb,caption, gensymb, subcaption, tikz, xcolor}
+#+LATEX_HEADER: \usepackage[backend=biber,style=authoryear-comp]{biblatex}
+#+LATEX_HEADER: \addbibresource{references.bib}
+#+LATEX_HEADER: \usepackage{geometry}
+#+LATEX_HEADER: \geometry{margin=1in}
+#+LATEX_HEADER: \usetikzlibrary{arrows.meta, positioning}
+#+LATEX_HEADER: \definecolor{cbblue}{rgb}{0.0, 0.6, 0.9}
+#+LATEX_HEADER: \definecolor{cbcyan}{rgb}{0.35, 0.7, 0.9}
+#+LATEX_HEADER: \definecolor{cbred}{rgb}{0.8, 0.4, 0.0}
+#+LATEX_HEADER: \definecolor{cbpurple}{rgb}{0.6, 0.6, 0.8}
+#+LATEX_HEADER: \definecolor{cbolive}{rgb}{0.6, 0.7, 0}
+
+* Introduction to Sets
+
+Sets can be thought of as collection of objects. For instance, think of ice cream flavours- vanilla, chocolate, and raspberry. We can claim that vanilla belongs to the set of flavours of ice cream. In mathematics, we have some well-defined sets.
+\begin{align*}
+&\textbf{N}:\text{ the set of all natural numbers} \\
+&\textbf{Z}: \text{the set of all integers} \\
+&\textbf{Q}: \text{the set of all rational numbers} \\
+&\textbf{R}: \text{the set of all real numbers}
+\end{align*}
+
+We need a well-defined collection of objects (we can't be vague!). We typically define a set by capital letters and elements (or objects or members) in lower-case. So, if we say that \textit{a} is an element of a set A, we use the following term
+\[
+a \in A
+\]
+In plain English, a belongs to A.
+
+\[
+b \notin A
+\]
+In plain English, this translates to b does not belong to A.
+
+Now that we are somewhat familiar with what sets are, we will try to build one.
+Let's think of numbers between 4 & 8 and call it a set $T$.
+\[
+T = \{4, 5, 6, 7, 8\}
+\]
+You should note two things.
+
+a) Elements of set $T$ are contained within two curly braces.
+
+b) Elements are comma-separated.
+
+
+Detour: Now, we have a doubt. What if I change the order of the numbers and write another set (call it $P$).
+\[
+P = \{6, 5, 4, 7, 8\}
+\]
+The two sets are identical. They are not different.
+
+We can also create sets by defining a common property for an element to be a part of the set.
+\[
+T = \{x: 4 \leq x \leq  8\}
+\]
+
+Where do we use this in econ?
+\textbf{Example}: In consumer theory, we often choose a bundle of goods given a budget constraint. Formally, let's think of a consumer who wishes to consume $x$ units of pizza and $y$ units of coffee. The price of a slice of pizza is $p$ and that of coffee is $q$. Consumer's income is $m$ which she is going to exhaust by binging on pizza and coffee.
+Then the budget constraint is $px + qy = m$. We impose some more properties. A consumer cannot consume negative quantities of pizza or coffee. Then, we can create a budget set:
+\[
+B = \{(x, y): px + qy = m, x \geq 0, y \geq 0 \}
+\]
+
+We have already seen some features of set membership. Let's expand it.
+Let $A$ and $B$ be any two sets. Then $A$ is a \textbf{subset} of $B$ if each and every member of $A$ is also present in $B$. There's a nice and compact notation to represent a subset. 
+\[ A \subseteq B \]
+Trivially, any given set contains itself. $A \subseteq A$.
+
+If we have two sets such that  $A \subseteq B$ and $B \subseteq A$, $A$ and $B$ are equal and identical.
+
+
+** Set Operations
+
+- $A \cup B$: the elements that belong to at least one of the sets $A$ and $B$.
+  - Formally: $A \cup B = \{x: x \in A \text{ or } x \in B\}$
+  - Example: $A = \{1, 2, 3\}$, $B = \{2, 4, 6\}$.
+    $A \cup B = \{1, 2, 3, 4, 6\}$. 
+- $A \cap B$: the elements that appear both in $A$ as well as $B$.
+  - Formally: $A \cap B = \{x: x \in A \text{ and } x \in B\}$
+  - Example: $A = \{1, 2, 3\}$, $B = \{2, 4, 6\}$.
+    $A \cap B = \{2\}$.
+- $A \backslash B$: the elements that belong to $A$, but not to $B$.
+  - Formally: $A \backslash B = \{x: x \in A \text{ and } x\notin B\}$
+  - Example: $A = \{1, 2, 3\}$, $B = \{2, 4, 6\}$.
+    $A \backslash B = \{1, 3\}$.
+
+ If two sets $A$ and $B$ do not have any common element, they are said to be \textit{disjoint}.
+ Formally, disjoint sets are such that $A \cap B = \varnothing$.
+
+ \text{Universal set}: We define a fixed set $\ohm$  that contains all other sets in a family of sets. An example may be helpful here.
+ Think of all students in this university as a universal set that contains all students who are majoring in different disciplines.
+ If $A$ is a subset of the universal set $\ohm$, then $\ohm \backslash A$ is the set of elements that are not in $A$.
+ The idea of universal set is important when we want to think about what a given set \textit{does not} contain.
+ - Example: Let $\ohm$ be the set of all students in a university. Let $M$ be the set of math students, $C$ the students in Mudra, and $E$ be the students in the economics program.
+   $\ohm \backslash M$: students not studying math in the university.
+   
+A compact way to describe such a set is to just write $A^{\mathsf{c}}$ or, in plain English, the \textit{complement} of set $A$.
+
+\textbf{Question:} Is the null set $\varnothing$ a subset of all sets?
+
+
+** Cardinality of Sets
+
+We can measure the size of a set through \textbf{cardinality}. For all finite sets, there is a natural number associated with a set. Incomprehensible much, right?
+An example will help us here. Let'sthink of a pretty simple set $A = \{1, 2, 3\}$. The cardinality of set $A$ is the number of elements in set $A$. Therefore,
+\[ |A| = 3 \]
+Cardinality need not apply to sets which contain numbers. Let's build a set that contains Ingmar Bergman movies.
+\[ B = \{\text{Eva}, \text{The Seventh Seal}, \text{Persona}\} \]
+The cardinality of set $B$ is
+\[ |B| = 3 \]
+Alrighty! Let's create some chaos. There is a set $C = \{1, 1, 2, 2\}$. What is $|C|$? It turns out that
+\[ |C| = 2 \]
+We learn more about cardinality. It is the number of distinct elements in a set.
+Some simple rules of cardinality are as follows.
+\begin{align*}
+|A \cup B| &= |A| + |B| - |A \cap B| \\
+|A \setminus B| &= |A| - |A \cap B| \\
+|B \setminus A| &= |B| - |A \cap B|
+\end{align*} 
+
+Let's apply the rules of cardinality to a less boring scenario. Imagine you run (yet another) coffee shop in Indiranagar and you survey 100 customers about their preferred beverage. 60 reported that they like espresso, 30 said that they prefer milk-based coffee, and 20 said they like both types.
+How many customers preferred only \textbf{espresso}?
+Let $E$ be the set that likes espresso, $M$ be the set that prefers milk-based coffee.
+We know that $|E| = 60$ and $|M| = 30$. We also know that $|E \cap M| = 30$.
+We can easily define the set that likes espressos alone. It is $E \setminus M$.
+\[ |E \setminus M| = |E| - |E \cap M| = 60 - 20 = 40 \]
+So, 40 customers like only espresso.
+How many reported to have liked espresso or milk-based coffee?
+\[ |E \cup M| = |E| + |M| - |E \cap M| = 60 + 30 - 20 = 70 \]
+How many do you think like neither?
+
+\clearpage
+\newpage
+
+** Venn Diagrams
+
+Like with many other things, life becomes much easier when we are able to visualize a mathematical operation. We will do this with set operations via Venn diagrams.
+Figure \ref{fig:fig01} represents $A \cup B$. Figure \ref{fig:fig02} represents $A \cap B$, Figure \ref{fig:fig03} $A \setminus B$. We have $A^{\mathsf{c}}$ captured in Figure \ref{fig:fig04}, and $B^{\mathsf{c}}$ in Figure \ref{fig:fig05}.
+
+\begin{figure}[htbp!]
+\caption{\label{fig:fig01}}
+\begin{tikzpicture} 
+\draw[thick] (-3,-2) rectangle (3,2) node[above right] {\(U\)};
+ \begin{scope} \clip (-3,-2) rectangle (3,2); 
+\fill[blue!30] (-1,0) circle (1.5); 
+\fill[blue!30] (1,0) circle (1.5); 
+\end{scope} % Draw circles A and B 
+\draw (-1,0) circle (1.5) node[left] {\(A\)}; 
+\draw (1,0) circle (1.5) node[right] {\(B\)}; 
+\node at (0,-1.8) {\(A \cup B\)}; 
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[htbp!]
+\caption{\label{fig:fig02}}
+\begin{tikzpicture}
+\draw[thick] (-3, -2) rectangle (3, 2) node[above right] {\(U\)};
+\begin{scope}
+\clip(-1,0) circle(1.5);
+\fill[cbcyan!60] (1, 0) circle (1.5);
+\end{scope}
+\draw (-1,0) circle(1.5) node[left] {\(A\)};
+\draw (1,0) circle(1.5) node[right] {\(B\)};
+\node at (0, -1.8) {\(A \cap B\)};
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[htbp!]
+\caption{\label{fig:fig03}}
+\begin{tikzpicture}
+\draw[thick] (-3, -2) rectangle (3, 2) node[above right] {\(U\)};
+\begin{scope}
+\clip (-3, -2) rectangle (3,2);
+\clip (-1,0) circle (1.5);
+\fill[cbred!60] (-1, 0) circle (1.5);
+\begin{scope}
+\clip (1, 0) circle (1.5);
+\fill[white] (-1,0) circle(1.5);
+\end{scope}
+\end{scope}
+\draw (-1,0) circle (1.5) node[left] {\(A\)};
+\draw (1,0) circle (1.5) node[right] {\(B\)};
+\node at (0, -1.8) {\(A \setminus B\)};
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[htbp!]
+\caption{\label{fig:fig04}}
+\begin{tikzpicture}
+\draw[thick] (-3, -2) rectangle (3, 2) node[above right] {\(U\)};
+\begin{scope}
+\clip (-3, -2) rectangle (3, 2);
+\fill[cbpurple!60] (-3, -2) rectangle (3, 2);
+\begin{scope}
+\clip (-1, 0) circle (1.5);
+\fill[white] (-3, -2) rectangle (3, 2);
+\end{scope}
+\end{scope}
+\draw (-1,0) circle (1.5) node[left] {\(A\)};
+\draw (1, 0) circle (1.5) node[right] {\(B\)};
+\node at (0, -1.8) {\(A^{\mathsf{c}}\)};
+\end{tikzpicture}
+\end{figure}
+
+\begin{figure}[htbp!]
+\caption{\label{fig:fig05}}
+\begin{tikzpicture}
+\draw[thick] (-3, -2) rectangle (3, 2) node[above right] {\(U\)};
+\begin{scope}
+\clip (-3, -2) rectangle (3, 2);
+\fill[cbolive!60] (-3, -2) rectangle (3, 2);
+\begin{scope}
+\clip (1, 0) circle (1.5);
+\fill[white] (-3, -2) rectangle (3, 2);
+\end{scope}
+\end{scope}
+\draw (-1,0) circle (1.5) node[left] {\(A\)};
+\draw (1,0) circle (1.5) node[right] {\(B\)};
+\node at (0, -1.8) {\(B^{\mathsf{c}}\)};
+\end{tikzpicture}
+\end{figure}
+
+
+\begin{figure}[htbp!]
+\caption{\label{fig:fig06}}
+\parbox{\linewidth}{Let's return to our coffee shop example and think about a Venn diagram that represents the data from the survey. Figure \ref{fig:fig06} shows the results.}
+\begin{tikzpicture}[every node/.style={font=\small}]
+	\draw[thick] (-3,-2.5) rectangle (6.5,2.5);
+	\node[anchor=north west, font=\large] at (-3,2.5) {$U$};
+	\fill[orange!30] (0,0) circle (2cm);  
+	\fill[cyan!30] (3,0) circle (2cm);       
+	\draw[thick] (0,0) circle (2cm);
+	\draw[thick] (3,0) circle (2cm);
+	\node at (-2.3,1.6) {\Large $E$};
+	\node at (5.3,1.6) {\Large $M$};
+	\node (onlyE) at (-1,0) {\Large\textbf{40}};
+	\node (both) at (1.5,0) {\Large\textbf{20}};
+	\node (onlyM) at (4,0) {\Large\textbf{10}};
+	\node (neither) at (5.6,-1.8) {\Large\textbf{30}};
+	\node (labelE) at (-3.8,0.3) {Only Espresso};
+	\node (labelBoth) at (1.5,-1.7) {Both};
+	\node (labelM) at (7.8,0.3) {Only Milk-based};
+	\node (labelN) at (7.4,-2.2) {Neither};
+	\draw[-{Latex[scale=1]}, thick] (labelE) -- (onlyE);
+	\draw[-{Latex[scale=1]}, thick] (labelBoth) -- (both);
+	\draw[-{Latex[scale=1]}, thick] (labelM) -- (onlyM);
+	\draw[-{Latex[scale=1]}, thick] (labelN) -- (neither);
+\end{tikzpicture}
+
+\end{figure}
