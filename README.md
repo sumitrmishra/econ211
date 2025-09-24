@@ -1,10 +1,11 @@
 # ECON211, T4 (2025-2026)
 
-Welcome to **ECON211: Mathematical Methods for Economics-I (2025-26)** at SIAS, Krea University, <br> taught by Vidya Bharathi Rajkumar, Yashwanth Viswanathan, and [Sumit Mishra](https://sumitrmishra.github.io)
+Welcome to **ECON211: Mathematical Methods for Economics-I (2025-26)** at SIAS, Krea University, taught by Vidya Bharathi Rajkumar, Yashwanth Viswanathan, and [Sumit Mishra](https://sumitrmishra.github.io).
 
 ## Schedule
 
 **Lecture** Tue and Thu (12.30-13.20)
+
 **Tutorial** Mo and Wed
 
 ## Office Hours
@@ -27,6 +28,6 @@ Welcome to **ECON211: Mathematical Methods for Economics-I (2025-26)** at SIAS, 
 
 ## Material
 
-**Lecture 01
+**[Lecture 01](lecture-notes/Lecture01_Notes.pdf)
 
 1. Introduction to set theory
