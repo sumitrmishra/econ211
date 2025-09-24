@@ -159,3 +159,11 @@ Welcome to **ECON211: Mathematical Methods for Economics-I (2025-26)** at SIAS, 
 1. Constrained Optimization: A Very Short Introduction
 
 1. [Worksheet](worksheets/L22_Worksheet.pdf)
+
+## Assessment
+
+### Quizzes
+
+**Quiz 01**
+<br>Files: [Question Paper (Set A)](quiz-etc/Quiz01_SetA.pdf) [Question Paper (Set B)](quiz-etc/Quiz01_SetB.pdf) | [data](https://github.com/edrubin/EC421W25/tree/master/problem-sets/000/data-acs.csv) | [Solution (Set A)](quiz-etc/Quiz01_SetA_Solution.pdf) [Solution (Set B)](quiz-etc/Quiz01_SetB_Solution.pdf)
+
