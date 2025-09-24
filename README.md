@@ -56,20 +56,10 @@ Welcome to **ECON211: Mathematical Methods for Economics-I (2025-26)** at SIAS, 
 
 ## Assessment
 
-### Quizzes
-
-**Quiz 01**
-Files: [Question Paper (Set A)](quiz-exam-etc/Quiz01_SetA.pdf) [Question Paper (Set B)](quiz-exam-etc/Quiz01_SetB.pdf) [Question Paper (Set C)](quiz-exam-etc/Quiz01_SetC.pdf) | [Solution (Set A)](quiz-exam-etc/Quiz01_SetA_Solution.pdf) [Solution (Set B)](quiz-exam-etc/Quiz01_SetB_Solution.pdf) [Solution (Set C)](quiz-exam-etc/Quiz01_SetB_Solution.pdf)
-
-**Quiz 02**
-Files: [Question Paper (Set A)](quiz-exam-etc/Quiz02_SetA.pdf) [Question Paper (Set B)](quiz-exam-etc/Quiz02_SetB.pdf) [Question Paper (Set C)](quiz-exam-etc/Quiz02_SetC.pdf) | [Solution (Set A)](quiz-exam-etc/Quiz02_SetA_Solution.pdf) [Solution (Set B)](quiz-exam-etc/Quiz02_SetB_Solution.pdf) [Solution (Set C)](quiz-exam-etc/Quiz02_SetB_Solution.pdf)
-
-**Quiz 03**
-[Question Paper (Set A)](quiz-exam-etc/Quiz03_SetA.pdf) [Question Paper (Set B)](quiz-exam-etc/Quiz03_SetB.pdf) [Question Paper (Set C)](quiz-exam-etc/Quiz03_SetC.pdf) | [Solution (Set A)](quiz-exam-etc/Quiz03_SetA_Solution.pdf) [Solution (Set B)](quiz-exam-etc/Quiz03_SetB_Solution.pdf) [Solution (Set C)](quiz-exam-etc/Quiz03_SetB_Solution.pdf)
-
-**Quiz 04**
-[Question Paper (Set A)](quiz-exam-etc/Quiz04_SetA.pdf) [Question Paper (Set B)](quiz-exam-etc/Quiz04_SetB.pdf) [Question Paper (Set C)](quiz-exam-etc/Quiz04_SetC.pdf) | [Solution (Set A)](quiz-exam-etc/Quiz04_SetA_Solution.pdf) [Solution (Set B)](quiz-exam-etc/Quiz04_SetB_Solution.pdf) [Solution (Set C)](quiz-exam-etc/Quiz04_SetB_Solution.pdf)
-
-## Midterm
-
-[Question Paper (Set A)](quiz-exam-etc/Midterm_SetA.pdf) [Question Paper (Set B)](quiz-exam-etc/Midterm_SetB.pdf) [Question Paper (Set C)](quiz-exam-etc/Midterm_SetC.pdf) | [Solution (Set A)](quiz-exam-etc/Midterm_SetA_Solution.pdf) [Solution (Set B)](quiz-exam-etc/Midterm_SetB_Solution.pdf) [Solution (Set C)](quiz-exam-etc/Midterm_SetB_Solution.pdf)
+| Assessment | Question Papers | Solutions |
+| :--- | :--- | :--- |
+| **Quiz 01** | [Set A](quiz-exam-etc/Quiz01_SetA.pdf) [Set B](quiz-exam-etc/Quiz01_SetB.pdf) [Set C](quiz-exam-etc/Quiz01_SetC.pdf) | [Set A](quiz-exam-etc/Quiz01_SetA_Solution.pdf) [Set B](quiz-exam-etc/Quiz01_SetB_Solution.pdf) [Set C](quiz-exam-etc/Quiz01_SetC_Solution.pdf) |
+| **Quiz 02** | [Set A](quiz-exam-etc/Quiz02_SetA.pdf) [Set B](quiz-exam-etc/Quiz02_SetB.pdf) [Set C](quiz-exam-etc/Quiz02_SetC.pdf) | [Set A](quiz-exam-etc/Quiz02_SetA_Solution.pdf) [Set B](quiz-exam-etc/Quiz02_SetB_Solution.pdf) [Set C](quiz-exam-etc/Quiz02_SetC_Solution.pdf) |
+| **Quiz 03** | [Set A](quiz-exam-etc/Quiz03_SetA.pdf) [Set B](quiz-exam-etc/Quiz03_SetB.pdf) [Set C](quiz-exam-etc/Quiz03_SetC.pdf) | [Set A](quiz-exam-etc/Quiz03_SetA_Solution.pdf) [Set B](quiz-exam-etc/Quiz03_SetB_Solution.pdf) [Set C](quiz-exam-etc/Quiz03_SetC_Solution.pdf) |
+| **Quiz 04** | [Set A](quiz-exam-etc/Quiz04_SetA.pdf) [Set B](quiz-exam-etc/Quiz04_SetB.pdf) [Set C](quiz-exam-etc/Quiz04_SetC.pdf) | [Set A](quiz-exam-etc/Quiz04_SetA_Solution.pdf) [Set B](quiz-exam-etc/Quiz04_SetB_Solution.pdf) [Set C](quiz-exam-etc/Quiz04_SetC_Solution.pdf) |
+| **Midterm** | [Set A](quiz-exam-etc/Midterm_SetA.pdf) [Set B](quiz-exam-etc/Midterm_SetB.pdf) [Set C](quiz-exam-etc/Midterm_SetC.pdf) | [Set A](quiz-exam-etc/Midterm_SetA_Solution.pdf) [Set B](quiz-exam-etc/Midterm_SetB_Solution.pdf) [Set C](quiz-exam-etc/Midterm_SetC_Solution.pdf) |
