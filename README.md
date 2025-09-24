@@ -142,19 +142,19 @@ Welcome to **ECON211: Mathematical Methods for Economics-I (2025-26)** at SIAS, 
 
 1. [Worksheet](worksheets/L19_Worksheet.pdf)
 
-**[Lecture 20](lecture-notes/Lecture20_Notes.pdf)
+**[Lecture 20](lecture-notes/Lecture20_Notes.pdf)**
 
 1. Functions of Two Variables: Economic Applications
 
 1. [Worksheet](worksheets/L20_Worksheet.pdf)
 
-**[Lecture 21](lecture-notes/Lecture21_Notes.pdf)
+**[Lecture 21](lecture-notes/Lecture21_Notes.pdf)**
 
 1. Unconstrained Optimization
 
 1. [Worksheet](worksheets/L21_Worksheet.pdf)
 
-**[Lecture 22](lecture-notes/Lecture22_Notes.pdf)
+**[Lecture 22](lecture-notes/Lecture22_Notes.pdf)**
 
 1. Constrained Optimization: A Very Short Introduction
 
