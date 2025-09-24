@@ -4,9 +4,9 @@ Welcome to **ECON211: Mathematical Methods for Economics-I (2025-26)** at SIAS, 
 
 ## Schedule
 
-**Lecture** Tue and Thu (12.30-13.20)
+**Lecture** Tue and Thu (12.30-14.20)
 
-**Tutorial** Mo and Wed
+**Tutorial** Mo (08.30) and Wed (12.30)
 
 ## Office Hours
 
@@ -16,13 +16,14 @@ Welcome to **ECON211: Mathematical Methods for Economics-I (2025-26)** at SIAS, 
 
 ### Required Textbook
 
-**Essential Mathematics for Economic Analysis** *(SH)*
+**Essential Mathematics for Economic Analysis (5th edition)** *(SH)*
 <br>*Sydsaeter and Hammond*
 
+**Mathematics for Economics and Businesss (5th edition)** *(IJ)*
 
 ### Other Textbooks
 
-**Fundamental Methods of Mathematical Economics**
+**Fundamental Methods of Mathematical Economics (4th edition)**
 <br>*Alpha C.Chiang*
 
 
